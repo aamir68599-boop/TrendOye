@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Saree · Header & Category</title>
+
+  <style>
+    /* ============================================
+       CSS VARIABLES
+       ============================================ */
+    :root {
+      --primary-pink: #d81b60;
+      --gold-border: #c9a84c;
+      --text-color: #1a1a1a;
+      --border-color: #e0e0e0;
+      --bg-white: #ffffff;
+      --bg-announcement: #d81b60;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --circle-size: 180px;
+      --circle-gap: 32px;
+      --max-width: 1280px;
+      --transition: 0.25s ease;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--bg-white);
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================
+       ANNOUNCEMENT BAR
+       ============================================ */
+    .announcement-bar {
+      background: var(--bg-announcement);
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .announcement-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      height: 100%;
+    }
+
+    .announcement-bar span {
+      color: #fff;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ============================================
+       MAIN HEADER
+       ============================================ */
+    .main-header {
+      background: var(--bg-white);
+      height: 80px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .main-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+    }
+
+    .header-left {
+      flex: 0 0 0;
+    }
+
+    .header-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-center .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-center .logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .header-center .logo .logo-text {
+      display: none;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-color);
+    }
+
+    .header-center .logo .logo-text span {
+      color: var(--primary-pink);
+      font-weight: 500;
+    }
+
+    .header-right {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-left: 16px;
+    }
+
+    .header-right .icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-color);
+      padding: 4px;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .header-right .icon-btn:hover {
+      color: var(--primary-pink);
+    }
+
+    .header-right .icon-btn svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .header-right .icon-btn .badge {
+      position: absolute;
+      top: -2px;
+      right: -4px;
+      background: var(--primary-pink);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-right .currency-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: var(--text-color);
+      cursor: default;
+    }
+
+    .header-right .currency-wrap .flag {
+      display: flex;
+      align-items: center;
+      margin-right: 2px;
+    }
+
+    .header-right .currency-wrap .flag svg {
+      width: 20px;
+      height: 14px;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .header-right .currency-wrap .chevron {
+      margin-left: 2px;
+    }
+
+    .header-right .currency-wrap .chevron svg {
+      width: 12px;
+      height: 12px;
+      display: block;
+      fill: var(--text-color);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text-color);
+      flex-shrink: 0;
+    }
+
+    .hamburger-btn svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    /* ============================================
+       DESKTOP NAVIGATION
+       ============================================ */
+    .nav-menu {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-color);
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-menu .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+    }
+
+    .nav-menu ul {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      height: 100%;
+    }
+
+    .nav-menu ul li {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-menu ul li a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--text-color);
+      transition: color var(--transition);
+      padding: 0 2px;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .nav-menu ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-pink);
+      transition: width var(--transition);
+    }
+
+    .nav-menu ul li a:hover {
+      color: var(--primary-pink);
+    }
+
+    .nav-menu ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* ============================================
+       MOBILE NAV
+       ============================================ */
+    .mobile-nav {
+      display: none;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 24px;
+    }
+
+    .mobile-nav.open {
+      max-height: 420px;
+      padding: 16px 24px 24px;
+    }
+
+    .mobile-nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav ul li a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-color);
+      padding: 6px 0;
+      display: block;
+      transition: color var(--transition);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .mobile-nav ul li a:hover {
+      color: var(--primary-pink);
+    }
+
+    /* ============================================
+       CATEGORY SECTION
+       ============================================ */
+    .category-section {
+      background: var(--bg-white);
+      padding: 36px 0 44px;
+    }
+
+    .category-section .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .category-grid {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: var(--circle-gap);
+      width: 100%;
+      flex-wrap: nowrap;
+    }
+
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 0 0 auto;
+      width: var(--circle-size);
+    }
+
+    .category-circle {
+      width: var(--circle-size);
+      height: var(--circle-size);
+      border-radius: 50%;
+      border: 2.5px solid var(--gold-border);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #f5ede0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color var(--transition), transform 0.3s ease;
+    }
+
+    .category-circle:hover {
+      border-color: #b8952e;
+      transform: scale(1.02);
+    }
+
+    .category-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .category-name {
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-color);
+      text-align: center;
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    /* ============================================
+       RESPONSIVE – TABLET
+       ============================================ */
+    @media (max-width: 1024px) {
+      :root {
+        --circle-size: 150px;
+        --circle-gap: 24px;
+      }
+
+      .header-center .logo img {
+        height: 36px;
+      }
+
+      .header-center .logo .logo-text {
+        font-size: 22px;
+        letter-spacing: 3px;
+      }
+
+      .header-right {
+        gap: 12px;
+      }
+
+      .header-right .icon-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .nav-menu ul {
+        gap: 28px;
+      }
+
+      .nav-menu ul li a {
+        font-size: 10px;
+        letter-spacing: 1.2px;
+      }
+
+      .category-name {
+        font-size: 13px;
+      }
+    }
+
+    /* ============================================
+       RESPONSIVE – MOBILE
+       ============================================ */
+    @media (max-width: 768px) {
+      :root {
+        --circle-size: 120px;
+        --circle-gap: 16px;
+      }
+
+      .announcement-bar {
+        height: 24px;
+      }
+      .announcement-bar span {
+        font-size: 8px;
+        letter-spacing: 1.4px;
+      }
+
+      .main-header {
+        height: 64px;
+      }
+
+      .main-header .container {
+        padding: 0 16px;
+      }
+
+      .header-center .logo img {
+        height: 30px;
+      }
+
+      .header-center .logo .logo-text {
+        font-size: 18px;
+        letter-spacing: 2.5px;
+      }
+
+      .header-right {
+        gap: 10px;
+        padding-left: 8px;
+      }
+
+      .header-right .icon-btn svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .header-right .currency-wrap {
+        font-size: 10px;
+      }
+      .header-right .currency-wrap .flag svg {
+        width: 17px;
+        height: 12px;
+      }
+      .header-right .currency-wrap .chevron svg {
+        width: 10px;
+        height: 10px;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .category-section {
+        padding: 24px 0 32px;
+      }
+
+      .category-section .container {
+        padding: 0 12px;
+        overflow: visible;
+      }
+
+      .category-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: visible;
+        justify-content: flex-start;
+        gap: 18px;
+        padding: 4px 4px 12px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+      }
+
+      .category-grid::-webkit-scrollbar {
+        height: 3px;
+        background: #f0f0f0;
+        border-radius: 4px;
+      }
+
+      .category-grid::-webkit-scrollbar-thumb {
+        background: var(--gold-border);
+        border-radius: 4px;
+      }
+
+      .category-item {
+        flex: 0 0 auto;
+        width: var(--circle-size);
+        scroll-snap-align: start;
+      }
+
+      .category-circle {
+        width: var(--circle-size);
+        height: var(--circle-size);
+        border-width: 2px;
+      }
+
+      .category-name {
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 420px) {
+        .header-right .icon-btn.hide-mobile {
+          display: none;
+        }
+        .header-right {
+          gap: 6px;
+        }
+        .header-right .icon-btn svg {
+          width: 15px;
+          height: 15px;
+        }
+        .header-center .logo .logo-text {
+          font-size: 15px;
+          letter-spacing: 2px;
+        }
+        :root {
+          --circle-size: 100px;
+          --circle-gap: 12px;
+        }
+        .category-circle {
+          width: var(--circle-size);
+          height: var(--circle-size);
+        }
+      }
+    }
+
+    /* ============================================
+       UTILITY – scrollbar hide on desktop
+       ============================================ */
+    @media (min-width: 769px) {
+      .category-grid {
+        flex-wrap: nowrap;
+        overflow: visible;
+      }
+    }
+
+    /* fallback placeholder for images */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5ede0;
+      color: #999;
+      font-size: 12px;
+      text-align: center;
+      padding: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== TOP ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar">
+    <div class="container">
+      <span>Blouse Stitching Available</span>
+    </div>
+  </div>
+
+  <!-- ===== MAIN HEADER ===== -->
+  <header class="main-header">
+    <div class="container">
+      <!-- left empty -->
+      <div class="header-left"></div>
+
+      <!-- center: logo -->
+      <div class="header-center">
+        <div class="logo">
+          <!-- Placeholder image – replace with assets/logo.png -->
+          <img src="https://picsum.photos/seed/saree-brand/240/80" alt="Saree Brand Logo" />
+          <span class="logo-text">Saree<span>.</span></span>
+        </div>
+      </div>
+
+      <!-- right: icons -->
+      <div class="header-right">
+        <!-- 1. User -->
+        <button class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </button>
+
+        <!-- 2. Search -->
+        <button class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+
+        <!-- 3. Shopping bag -->
+        <button class="icon-btn" aria-label="Shopping Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="badge">2</span>
+        </button>
+
+        <!-- 4. India flag + INR + chevron -->
+        <div class="currency-wrap">
+          <span class="flag">
+            <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+              <rect width="60" height="13.33" fill="#ff9933" />
+              <rect y="13.33" width="60" height="13.33" fill="#fff" />
+              <rect y="26.66" width="60" height="13.34" fill="#138808" />
+              <circle cx="30" cy="20" r="5.5" fill="none" stroke="#000080" stroke-width="0.8" />
+              <circle cx="30" cy="20" r="2.8" fill="none" stroke="#000080" stroke-width="0.6" />
+              <line x1="30" y1="14.5" x2="30" y2="25.5" stroke="#000080" stroke-width="0.4" />
+              <line x1="24.5" y1="20" x2="35.5" y2="20" stroke="#000080" stroke-width="0.4" />
+            </svg>
+          </span>
+          <span class="currency-code">INR</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </span>
+        </div>
+
+        <!-- Hamburger (mobile) -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== DESKTOP NAVIGATION ===== -->
+  <nav class="nav-menu" id="desktopNav">
+    <div class="container">
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Sarees</a></li>
+        <li><a href="#">Ready-to-Wear Sarees</a></li>
+        <li><a href="#">Lehengas</a></li>
+        <li><a href="#">Occasions</a></li>
+        <li><a href="#">Track Your Order</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE NAV (slide-down) ===== -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#">New Arrivals</a></li>
+      <li><a href="#">Sarees</a></li>
+      <li><a href="#">Ready-to-Wear Sarees</a></li>
+      <li><a href="#">Lehengas</a></li>
+      <li><a href="#">Occasions</a></li>
+      <li><a href="#">Track Your Order</a></li>
+    </ul>
+  </div>
+
+  <!-- ===== CATEGORY SECTION ===== -->
+  <section class="category-section">
+    <div class="container">
+      <div class="category-grid">
+        <!-- 1. New Arrival Sarees -->
+        <div class="category-item">
+          <div class="category-circle">
+            <img src="https://picsum.photos/seed/cat1/400/400" alt="New Arrival Sarees" loading="lazy" />
+          </div>
+          <div class="category-name">New Arrival Sarees</div>
+        </div>
+        <!-- 2. New Arrival Lehenga-Set -->
+        <div class="category-item">
+          <div class="category-circle">
+            <img src="https://picsum.photos/seed/cat2/400/400" alt="New Arrival Lehenga-Set" loading="lazy" />
+          </div>
+          <div class="category-name">New Arrival Lehenga-Set</div>
+        </div>
+        <!-- 3. Wedding Sarees -->
+        <div class="category-item">
+          <div class="category-circle">
+            <img src="https://picsum.photos/seed/cat3/400/400" alt="Wedding Sarees" loading="lazy" />
+          </div>
+          <div class="category-name">Wedding Sarees</div>
+        </div>
+        <!-- 4. Ready-To-Wear Sarees -->
+        <div class="category-item">
+          <div class="category-circle">
+            <img src="https://picsum.photos/seed/cat4/400/400" alt="Ready-To-Wear Sarees" loading="lazy" />
+          </div>
+          <div class="category-name">Ready-To-Wear Sarees</div>
+        </div>
+        <!-- 5. Designer Sarees -->
+        <div class="category-item">
+          <div class="category-circle">
+            <img src="https://picsum.photos/seed/cat5/400/400" alt="Designer Sarees" loading="lazy" />
+          </div>
+          <div class="category-name">Designer Sarees</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ---- Hamburger toggle ----
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileNav = document.getElementById('mobileNav');
+
+      if (hamburgerBtn && mobileNav) {
+        hamburgerBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mobileNav.classList.toggle('open');
+          const expanded = mobileNav.classList.contains('open');
+          hamburgerBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        document.addEventListener('click', function(e) {
+          if (mobileNav.classList.contains('open')) {
+            const isClickInside = mobileNav.contains(e.target) ||
+              hamburgerBtn.contains(e.target);
+            if (!isClickInside) {
+              mobileNav.classList.remove('open');
+              hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+            hamburgerBtn.focus();
+          }
+        });
+      }
+
+      // ---- Logo fallback: show text if image fails ----
+      const logoImg = document.querySelector('.header-center .logo img');
+      const logoText = document.querySelector('.header-center .logo .logo-text');
+      if (logoImg && logoText) {
+        logoImg.addEventListener('error', function() {
+          this.style.display = 'none';
+          logoText.style.display = 'block';
+        });
+        logoImg.addEventListener('load', function() {
+          logoText.style.display = 'none';
+        });
+        if (logoImg.complete) {
+          if (logoImg.naturalWidth === 0) {
+            logoImg.style.display = 'none';
+            logoText.style.display = 'block';
+          } else {
+            logoText.style.display = 'none';
+          }
+        }
+      }
+
+      // ---- Category image fallback ----
+      document.querySelectorAll('.category-circle img').forEach(img => {
+        img.addEventListener('error', function() {
+          const parent = this.parentElement;
+          const placeholder = document.createElement('div');
+          placeholder.className = 'img-placeholder';
+          placeholder.textContent = this.alt || 'Saree';
+          parent.innerHTML = '';
+          parent.appendChild(placeholder);
+        });
+      });
+
+      console.log('✨ Premium Saree Header & Category ready.');
+    })();
+  </script>
+
+</body>
+</html>
