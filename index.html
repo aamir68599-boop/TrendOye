@@ -67,7 +67,7 @@
     }
 
     /* ============================================
-       ANNOUNCEMENT BAR
+       ANNOUNCEMENT BAR — SLIDER
        ============================================ */
     .announcement-bar {
       background: var(--bg-announcement);
@@ -76,6 +76,8 @@
       align-items: center;
       justify-content: center;
       width: 100%;
+      position: relative;
+      overflow: hidden;
     }
 
     .announcement-bar .container {
@@ -84,15 +86,56 @@
       justify-content: center;
       padding: 0 24px;
       height: 100%;
+      width: 100%;
+      position: relative;
     }
 
-    .announcement-bar span {
+    .announcement-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .announcement-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .announcement-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .announcement-slide.leaving {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .announcement-slide span {
       color: #fff;
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 1.8px;
       text-transform: uppercase;
       text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
 
     /* ============================================
@@ -567,7 +610,7 @@
       .announcement-bar {
         height: 24px;
       }
-      .announcement-bar span {
+      .announcement-slide span {
         font-size: 8px;
         letter-spacing: 1.4px;
       }
@@ -733,10 +776,26 @@
 
 <body>
 
-  <!-- ===== TOP ANNOUNCEMENT BAR ===== -->
+  <!-- ===== TOP ANNOUNCEMENT BAR — SLIDER ===== -->
   <div class="announcement-bar">
     <div class="container">
-      <span>Blouse Stitching Available</span>
+      <div class="announcement-slider" id="announcementSlider">
+        <div class="announcement-slide active">
+          <span>Blouse Stitching Available</span>
+        </div>
+        <div class="announcement-slide">
+          <span>💛 Stunning Designer Wedding &amp; Celebration Sarees</span>
+        </div>
+        <div class="announcement-slide">
+          <span>✈️ Global Free Shipping Above $180</span>
+        </div>
+        <div class="announcement-slide">
+          <span>🇮🇳 Get Instant 10% Off on Prepaid Orders Here in Bharat</span>
+        </div>
+        <div class="announcement-slide">
+          <span>🇮🇳 TrendOye - Celebration Wear Brand from India</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -988,6 +1047,26 @@
           } else {
             logoText.style.display = 'none';
           }
+        }
+      }
+
+      // ---- Announcement bar slider (5s per slide) ----
+      const announcementSlider = document.getElementById('announcementSlider');
+      if (announcementSlider) {
+        const annSlides = announcementSlider.querySelectorAll('.announcement-slide');
+        if (annSlides.length > 1) {
+          let annCurrent = 0;
+          setInterval(function() {
+            const prev = annSlides[annCurrent];
+            prev.classList.remove('active');
+            prev.classList.add('leaving');
+            setTimeout(function() {
+              prev.classList.remove('leaving');
+            }, 600);
+
+            annCurrent = (annCurrent + 1) % annSlides.length;
+            annSlides[annCurrent].classList.add('active');
+          }, 5000);
         }
       }
 
