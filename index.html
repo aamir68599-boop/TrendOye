@@ -489,6 +489,27 @@
     }
 
     /* ============================================
+       FEATURED IMAGE SECTION (below hero)
+       ============================================ */
+    .featured-image-section {
+      width: 100%;
+      height: 252px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-white);
+      overflow: hidden;
+      padding: 0 24px;
+    }
+
+    .featured-image-section img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ============================================
        CATEGORY SECTION
        ============================================ */
     .category-section {
@@ -991,6 +1012,15 @@
         />
       </div>
     </div>
+  </section>
+
+  <!-- ===== FEATURED IMAGE SECTION (height 252px, centered image) ===== -->
+  <section class="featured-image-section">
+    <img
+      src="https://trendoye.aamir68599.workers.dev/image%20shock%202.avif"
+      alt="Featured Collection"
+      loading="lazy"
+    />
   </section>
 
   <script>
