@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Georgette Silk Party Saree with Zari &amp; Sequin Border - TrendOye</title>
+
+  <style>
+    /* ============================================
+       CSS VARIABLES
+       ============================================ */
+    :root {
+      --primary-pink: #d81b60;
+      --gold-border: #c9a84c;
+      --text-color: #1a1a1a;
+      --border-color: #e0e0e0;
+      --bg-white: #ffffff;
+      --bg-announcement: #d81b60;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --circle-size: 180px;
+      --circle-gap: 32px;
+      --max-width: 1280px;
+      --transition: 0.25s ease;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--bg-white);
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================
+       ANNOUNCEMENT BAR — SLIDER
+       ============================================ */
+    .announcement-bar {
+      background: var(--bg-announcement);
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .announcement-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .announcement-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .announcement-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .announcement-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .announcement-slide.leaving {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .announcement-slide span {
+      color: #fff;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    /* ============================================
+       MAIN HEADER — GRID LAYOUT FOR PERFECT CENTERING
+       ============================================ */
+    .main-header {
+      background: var(--bg-white);
+      height: 80px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .main-header .container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      padding: 0 24px;
+    }
+
+    .header-left { grid-column: 1 / 2; }
+
+    .header-center {
+      grid-column: 2 / 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-center .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-center .logo img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-center .logo .logo-text {
+      display: none;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-color);
+    }
+
+    .header-center .logo .logo-text span {
+      color: var(--primary-pink);
+      font-weight: 500;
+    }
+
+    .header-right {
+      grid-column: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+      padding-left: 16px;
+    }
+
+    .header-right .icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-color);
+      padding: 4px;
+      transition: color var(--transition);
+      position: relative;
+      overflow: visible;
+    }
+
+    .header-right .icon-btn:hover { color: var(--primary-pink); }
+
+    .header-right .icon-btn svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .header-right .icon-btn .badge {
+      position: absolute;
+      top: -2px;
+      right: -4px;
+      background: var(--primary-pink);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-right .currency-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: var(--text-color);
+      cursor: default;
+    }
+
+    .header-right .currency-wrap .flag {
+      display: flex;
+      align-items: center;
+      margin-right: 2px;
+    }
+
+    .header-right .currency-wrap .flag svg {
+      width: 20px;
+      height: 14px;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .header-right .currency-wrap .chevron {
+      margin-left: 2px;
+    }
+
+    .header-right .currency-wrap .chevron svg {
+      width: 12px;
+      height: 12px;
+      display: block;
+      fill: var(--text-color);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text-color);
+      flex-shrink: 0;
+      position: relative;
+      overflow: visible;
+    }
+
+    .hamburger-btn svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    /* ============================================
+       DESKTOP NAVIGATION
+       ============================================ */
+    .nav-menu {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-color);
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-menu .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 24px;
+    }
+
+    .nav-menu ul {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      height: 100%;
+    }
+
+    .nav-menu ul li {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-menu ul li a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--text-color);
+      transition: color var(--transition);
+      padding: 0 2px;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .nav-menu ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-pink);
+      transition: width var(--transition);
+    }
+
+    .nav-menu ul li a:hover { color: var(--primary-pink); }
+    .nav-menu ul li a:hover::after { width: 100%; }
+
+    /* ============================================
+       MOBILE NAV
+       ============================================ */
+    .mobile-nav {
+      display: none;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 24px;
+    }
+
+    .mobile-nav.open {
+      max-height: 420px;
+      padding: 16px 24px 24px;
+    }
+
+    .mobile-nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav ul li a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-color);
+      padding: 6px 0;
+      display: block;
+      transition: color var(--transition);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .mobile-nav ul li a:hover { color: var(--primary-pink); }
+
+    /* ============================================
+       PRODUCT PAGE SECTION
+       ============================================ */
+    .product-page-section {
+      padding: 40px 0;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Gallery */
+    .product-gallery {
+      display: flex;
+      gap: 16px;
+    }
+
+    .thumbnail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color var(--transition);
+      background: #f5f5f5;
+    }
+
+    .thumb.active, .thumb:hover {
+      border-color: var(--primary-pink);
+    }
+
+    .main-image-wrapper {
+      flex: 1;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #f5f5f5;
+      position: relative;
+    }
+
+    .main-image-wrapper img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Product Info */
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .product-title {
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--text-color);
+    }
+
+    .product-price {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary-pink);
+    }
+
+    .offers-box {
+      background: #fce4ec;
+      padding: 16px;
+      border-radius: 4px;
+      border-left: 4px solid var(--primary-pink);
+    }
+
+    .offers-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--primary-pink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .offers-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-color);
+    }
+
+    .color-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .color-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #000;
+      border: 2px solid var(--primary-pink);
+      box-shadow: 0 0 0 2px #fff inset;
+      cursor: pointer;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .qty-btn {
+      background: none;
+      border: none;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+    }
+
+    .qty-input {
+      width: 40px;
+      height: 36px;
+      text-align: center;
+      border: none;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      font-size: 14px;
+      font-weight: 600;
+      outline: none;
+    }
+
+    .stitching-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .stitching-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .size-chart-link {
+      color: var(--primary-pink);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 10px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .checkbox-row label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary-pink);
+      cursor: pointer;
+    }
+
+    .price-tag {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .free-tag {
+      background: #000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-add-cart {
+      background: var(--primary-pink);
+      color: #fff;
+    }
+
+    .btn-add-cart:hover {
+      background: #b0154d;
+    }
+
+    .btn-buy-now {
+      background: transparent;
+      color: var(--primary-pink);
+      border: 2px solid var(--primary-pink);
+    }
+
+    .btn-buy-now:hover {
+      background: var(--primary-pink);
+      color: #fff;
+    }
+
+    .product-description {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* Accordions */
+    .accordion {
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-color);
+    }
+
+    .accordion-icon {
+      font-size: 18px;
+      font-weight: 400;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 1000px;
+      padding-bottom: 20px;
+    }
+
+    .accordion-content ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .accordion-content ul li {
+      margin-bottom: 6px;
+    }
+
+    .accordion-content p {
+      margin-bottom: 10px;
+    }
+
+    /* ============================================
+       REVIEWS SECTION
+       ============================================ */
+    .reviews-section {
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .reviews-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .stars {
+      color: #ddd;
+      font-size: 24px;
+      letter-spacing: 4px;
+      margin-bottom: 10px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .btn-write-review {
+      background: var(--primary-pink);
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .btn-write-review:hover {
+      background: #b0154d;
+    }
+
+    /* ============================================
+       RELATED PRODUCTS SECTION
+       ============================================ */
+    .related-products-section {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .related-title {
+      font-size: 28px;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .related-card {
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .related-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .related-card img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .related-card-info {
+      padding: 12px;
+      text-align: center;
+    }
+
+    .related-card-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .related-card-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-pink);
+    }
+
+    /* ============================================
+       WHATSAPP FLOAT
+       ============================================ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+
+    /* ============================================
+       RESPONSIVE – TABLET
+       ============================================ */
+    @media (max-width: 1024px) {
+      :root {
+        --circle-size: 150px;
+        --circle-gap: 24px;
+      }
+      .header-center .logo img { height: 48px; }
+      .header-center .logo .logo-text { font-size: 22px; letter-spacing: 3px; }
+      .header-right { gap: 12px; }
+      .header-right .icon-btn svg { width: 18px; height: 18px; }
+      .nav-menu ul { gap: 28px; }
+      .nav-menu ul li a { font-size: 10px; letter-spacing: 1.2px; }
+
+      .product-layout { gap: 32px; }
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ============================================
+       RESPONSIVE – MOBILE
+       ============================================ */
+    @media (max-width: 768px) {
+      :root {
+        --circle-size: 120px;
+        --circle-gap: 16px;
+      }
+      .announcement-bar { height: 24px; }
+      .announcement-slide span { font-size: 8px; letter-spacing: 1.4px; }
+      .main-header { height: 64px; }
+      .main-header .container { padding: 0 16px; grid-template-columns: 1fr auto 1fr; }
+      .header-center .logo img { height: 38px; }
+      .header-center .logo .logo-text { font-size: 18px; letter-spacing: 2.5px; }
+      .header-right { gap: 10px; padding-left: 8px; }
+      .header-right .icon-btn svg { width: 17px; height: 17px; }
+      .header-right .currency-wrap { font-size: 10px; }
+      .header-right .currency-wrap .flag svg { width: 17px; height: 12px; }
+      .header-right .currency-wrap .chevron svg { width: 10px; height: 10px; }
+      .nav-menu { display: none; }
+      .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+      .mobile-nav { display: block; }
+
+      /* Product Page Mobile */
+      .product-page-section { padding: 24px 0; }
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .product-gallery {
+        flex-direction: column-reverse;
+      }
+      .thumbnail-list {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .thumb {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+      }
+      .main-image-wrapper img {
+        aspect-ratio: 1/1;
+      }
+      .product-title { font-size: 20px; }
+      .product-price { font-size: 18px; }
+      .related-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .related-title { font-size: 22px; }
+    }
+
+    @media (max-width: 420px) {
+      .header-right .icon-btn.hide-mobile { display: none; }
+      .header-right { gap: 6px; }
+      .header-right .icon-btn svg { width: 15px; height: 15px; }
+      .header-center .logo .logo-text { font-size: 15px; letter-spacing: 2px; }
+      .header-center .logo img { height: 32px; }
+      :root { --circle-size: 100px; --circle-gap: 12px; }
+    }
+
+    .img-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: #f5ede0; color: #999; font-size: 12px; text-align: center; padding: 8px;
+    }
+
+    /* ============================================
+       SILVER UNDERLINES
+       ============================================ */
+    .header-right .icon-btn::after,
+    .hamburger-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 3px;
+      background: #c0c0c0;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .fast-delivery-slide span {
+      text-decoration: underline;
+      text-decoration-color: #c0c0c0;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== TOP ANNOUNCEMENT BAR — SLIDER ===== -->
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="announcement-slider" id="announcementSlider">
+        <div class="announcement-slide active"><span>Blouse Stitching Available</span></div>
+        <div class="announcement-slide"><span>💛 Stunning Designer Wedding &amp; Celebration Sarees</span></div>
+        <div class="announcement-slide"><span>✈️ Global Free Shipping Above $180</span></div>
+        <div class="announcement-slide fast-delivery-slide"><span>🚚 Fast Delivery – Dispatched Within 24 Hours</span></div>
+        <div class="announcement-slide"><span>🔄 Easy Returns &amp; Exchanges</span></div>
+        <div class="announcement-slide"><span>🇮🇳 Get Instant 10% Off on Prepaid Orders Here in Bharat</span></div>
+        <div class="announcement-slide"><span>🇮🇳 TrendOye - Celebration Wear Brand from India</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN HEADER ===== -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-left"></div>
+      <div class="header-center">
+        <div class="logo">
+          <img src="https://trendoye.aamir68599.workers.dev/trendoye%20logo.avif" alt="TrendOye Logo" />
+          <span class="logo-text">Saree<span>.</span></span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="Shopping Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="badge">2</span>
+        </button>
+        <div class="currency-wrap">
+          <span class="flag">
+            <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+              <rect width="60" height="13.33" fill="#ff9933" /><rect y="13.33" width="60" height="13.33" fill="#fff" /><rect y="26.66" width="60" height="13.34" fill="#138808" />
+              <circle cx="30" cy="20" r="5.5" fill="none" stroke="#000080" stroke-width="0.8" /><circle cx="30" cy="20" r="2.8" fill="none" stroke="#000080" stroke-width="0.6" />
+              <line x1="30" y1="14.5" x2="30" y2="25.5" stroke="#000080" stroke-width="0.4" /><line x1="24.5" y1="20" x2="35.5" y2="20" stroke="#000080" stroke-width="0.4" />
+            </svg>
+          </span>
+          <span class="currency-code">INR</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </span>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== DESKTOP NAVIGATION ===== -->
+  <nav class="nav-menu" id="desktopNav">
+    <div class="container">
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Sarees</a></li>
+        <li><a href="#">Ready-to-Wear Sarees</a></li>
+        <li><a href="#">Lehengas</a></li>
+        <li><a href="#">Occasions</a></li>
+        <li><a href="#">Track Your Order</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE NAV ===== -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#">New Arrivals</a></li>
+      <li><a href="#">Sarees</a></li>
+      <li><a href="#">Ready-to-Wear Sarees</a></li>
+      <li><a href="#">Lehengas</a></li>
+      <li><a href="#">Occasions</a></li>
+      <li><a href="#">Track Your Order</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- ===== PRODUCT PAGE SECTION ===== -->
+  <!-- ============================================ -->
+  <section class="product-page-section">
+    <div class="container product-layout">
+
+      <!-- Left: Gallery -->
+      <div class="product-gallery">
+        <div class="thumbnail-list">
+          <img src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-.webp" class="thumb active" onclick="changeImage(this, 'https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-.webp')" alt="Thumbnail 1">
+          <img src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image.webp" class="thumb" onclick="changeImage(this, 'https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image.webp')" alt="Thumbnail 2">
+          <img src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%203.webp" class="thumb" onclick="changeImage(this, 'https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%203.webp')" alt="Thumbnail 3">
+          <img src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%204.webp" class="thumb" onclick="changeImage(this, 'https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%204.webp')" alt="Thumbnail 4">
+          <img src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%205.webp" class="thumb" onclick="changeImage(this, 'https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%205.webp')" alt="Thumbnail 5">
+          <img src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%206.webp" class="thumb" onclick="changeImage(this, 'https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-image%206.webp')" alt="Thumbnail 6">
+        </div>
+        <div class="main-image-wrapper">
+          <img id="mainImage" src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-.webp" alt="Black Georgette Silk Party Saree">
+        </div>
+      </div>
+
+      <!-- Right: Product Info -->
+      <div class="product-info">
+        <h1 class="product-title">Black Georgette Silk Party Saree with Zari &amp; Sequin Border</h1>
+        <div class="product-price">₹ 2,835.00 INR</div>
+
+        <div class="offers-box">
+          <div class="offers-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15 9H22L17 14L19 22L12 18L5 22L7 14L2 9H9L12 2Z"/></svg>
+            AVAILABLE OFFERS
+          </div>
+          <div class="offers-text">FREE FAST GLOBAL SHIPPING ON ORDERS ABOVE $180</div>
+        </div>
+
+        <!-- Color -->
+        <div class="option-group">
+          <div class="option-label">Color:</div>
+          <div class="color-option">
+            <div class="color-circle" title="Black"></div>
+            <span style="font-size:13px; font-weight:500;">Black</span>
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="option-group">
+          <div class="option-label">Quantity:</div>
+          <div class="quantity-selector">
+            <button class="qty-btn" onclick="decreaseQty()">−</button>
+            <input type="text" class="qty-input" id="qtyInput" value="1" readonly>
+            <button class="qty-btn" onclick="increaseQty()">+</button>
+          </div>
+        </div>
+
+        <!-- Stitching Options -->
+        <div class="stitching-options">
+          <div class="stitching-header">
+            <span>STITCHING OPTIONS - SAREE</span>
+            <span class="size-chart-link">SIZE CHART</span>
+          </div>
+
+          <div class="checkbox-row">
+            <label>
+              <input type="checkbox" id="blouseStitching">
+              BLOUSE STITCHING
+            </label>
+            <span class="price-tag">(+₹ 1,950.00 INR)</span>
+          </div>
+          <div class="checkbox-row">
+            <label>
+              <input type="checkbox" id="fallEdging" checked>
+              FALL &amp; EDGING
+            </label>
+            <span class="free-tag">FREE</span>
+          </div>
+          <div class="checkbox-row">
+            <label>
+              <input type="checkbox" id="giftWrapping">
+              GIFT WRAPPING
+            </label>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn btn-add-cart">ADD TO CART</button>
+          <button class="btn btn-buy-now">BUY IT NOW</button>
+        </div>
+
+        <!-- Description -->
+        <div class="product-description">
+          <p>Make every moment memorable with TrendOye Designer Georgette Silk Black Saree.</p>
+          <p>Highlighted with intricate zari embroidery and sparkling sequins. Crafted for women who love subtle glamour. Soft silk georgette drapes beautifully on all body types. The elegant zari border completes the luxurious look.</p>
+          <p>Perfect for parties, festivals, and modern ceremonies. A trending saree design that stands out instantly.</p>
+          <p>Global delivery available with fast service. Shop online today for a truly timeless outfit.</p>
+        </div>
+
+        <!-- Accordions -->
+        <div class="accordion">
+          <!-- Design Details -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>DESIGN DETAILS</span>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+              <ul>
+                <li><strong>Saree Color:</strong> Black</li>
+                <li><strong>Saree Fabric:</strong> Georgette Silk</li>
+                <li><strong>Saree Type:</strong> Party &amp; Celebration</li>
+                <li><strong>Saree Length:</strong> 6.30 Meters With Blouse Piece</li>
+                <li><strong>Blouse Piece Length:</strong> 0.8 Meters</li>
+                <li><strong>Wash Care:</strong> Dry Clean Preferably</li>
+                <li><strong>Country Of Origin:</strong> Bharat (India)</li>
+                <li><strong>FREE SHIPPING WITHIN BHARAT</strong></li>
+                <li><strong>EASY RETURNS &amp; EXCHANGE:</strong> 2 Days Super-Easy Returns &amp; Exchange</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Shipping & Returns -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>SHIPPING &amp; RETURNS/EXCHANGE POLICY</span>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+              <p><strong>SHIPPING:</strong></p>
+              <p><strong>INDIA:</strong> We Offer Free Shipping Across India. TrendOye’s commitment to deliver your order accurately, fresh, in good condition and always on time, is unmatchable. All our orders go through extensive 3 levels quality check, and we ensure that you get the right product in the right condition. Most of your orders are shipped within 6-7 business/working days once the order is placed except on weekend or on public holidays &amp; except bulk made to order products or made to order products. And then another 7-8 days to get the same delivered, depending upon the delivery location. We deliver to most of the locations across the world.</p>
+              <p>However as mentioned above, there are certain products which are bulk fresh made to order, in that case the shipment/dispatch schedule may get extended, depending upon the product.</p>
+              <p><strong>RETURNS &amp; EXCHANGE:</strong> We believe in satisfying and delighting our customers. The product which we sell we believe that is the best customer can get at the price. Our returns and exchange policy is made keeping our valuable customers in mind and hence we have easy transparent procedure for it. However we wish that you do not need to use the policy as far as possible but we do understand that under unforeseen conditions it is necessary to exchange/return the product.</p>
+              <p><strong>HOWEVER WE DO HAVE 2 DAYS RETURNS &amp; EXCHANGE POLICY. HERE THE UNBOXING/UNPACKING VIDEO OF THE RECEIVED PRODUCT IS COMPULSORY AND WITHOUT WHICH THE RETURNS WILL NOT BE APPROVED AND ACCEPTED.</strong></p>
+              <p><strong>INTERNATIONAL SHIPPING/EXCHANGE/RETURNS:</strong> (USA / UK / CANADA / UAE / AUSTRALIA AND OTHER SUB-CONTINENTS &amp; COUNTRIES) We deliver to most of the locations across the world. All international orders takes approx 8-10 business days to ship. International orders may take 10-15 days to deliver, after the shipment, depending upon the delivery country and city. Shipping charges varies by country-to-country and depends upon the weight of the shipment. You can add items to your cart to view shipping charges.</p>
+            </div>
+          </div>
+
+          <!-- Wash Care -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>WASH CARE TIPS</span>
+              <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+              <p>Always hand wash dark colors separately in cold water with mild liquid detergent, dry clean or as explicitly mentioned above herein.</p>
+              <p>Do not wring, do not bleach, iron on reverse side and dry in shade.</p>
+              <p>Apart from the wash care instructions mentioned on the website, you can also follow the instructions if any, mentioned on the wash care label of the outfit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ===== CUSTOMER REVIEWS SECTION ===== -->
+  <!-- ============================================ -->
+  <section class="reviews-section">
+    <div class="container">
+      <h2 class="reviews-title">Customer Reviews</h2>
+      <div class="stars">☆☆☆☆☆</div>
+      <p class="review-text">Be the first to write a review</p>
+      <button class="btn-write-review">Write a review</button>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ===== RELATED PRODUCTS SECTION ===== -->
+  <!-- ============================================ -->
+  <section class="related-products-section">
+    <div class="container">
+      <h2 class="related-title">Related products</h2>
+      <div class="related-grid">
+        <div class="related-card">
+          <img src="https://trendoye.aamir68599.workers.dev/New%20Arrival%20Sarees%20category%201%20image.avif" alt="Related Product 1">
+          <div class="related-card-info">
+            <div class="related-card-title">Red Silk Saree</div>
+            <div class="related-card-price">₹ 2,500.00 INR</div>
+          </div>
+        </div>
+        <div class="related-card">
+          <img src="https://trendoye.aamir68599.workers.dev/Ready-To-Wear%20Sarees%20category.avif" alt="Related Product 2">
+          <div class="related-card-info">
+            <div class="related-card-title">White Georgette Saree</div>
+            <div class="related-card-price">₹ 2,100.00 INR</div>
+          </div>
+        </div>
+        <div class="related-card">
+          <img src="https://trendoye.aamir68599.workers.dev/Designer%20Sarees%20category.webp" alt="Related Product 3">
+          <div class="related-card-info">
+            <div class="related-card-title">Black Designer Saree</div>
+            <div class="related-card-price">₹ 3,200.00 INR</div>
+          </div>
+        </div>
+        <div class="related-card">
+          <img src="https://trendoye.aamir68599.workers.dev/Wedding%20Sarees%20category%201%20image.avif" alt="Related Product 4">
+          <div class="related-card-info">
+            <div class="related-card-title">Pink Wedding Saree</div>
+            <div class="related-card-price">₹ 4,500.00 INR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHATSAPP FLOAT ===== -->
+  <a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.7 13.9 10.8-1.6 33.3-13.6 38-26.7 4.7-13.1 4.7-24.3 3.3-26.7-1.4-2.4-5.1-3.8-10.6-6.6z"/>
+    </svg>
+  </a>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // --- Mobile Nav ---
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileNav = document.getElementById('mobileNav');
+
+      if (hamburgerBtn && mobileNav) {
+        hamburgerBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mobileNav.classList.toggle('open');
+          const expanded = mobileNav.classList.contains('open');
+          hamburgerBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        document.addEventListener('click', function(e) {
+          if (mobileNav.classList.contains('open')) {
+            const isClickInside = mobileNav.contains(e.target) || hamburgerBtn.contains(e.target);
+            if (!isClickInside) {
+              mobileNav.classList.remove('open');
+              hamburgerBtn.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+            hamburgerBtn.focus();
+          }
+        });
+      }
+
+      // --- Logo Fallback ---
+      const logoImg = document.querySelector('.header-center .logo img');
+      const logoText = document.querySelector('.header-center .logo .logo-text');
+      if (logoImg && logoText) {
+        logoImg.addEventListener('error', function() {
+          this.style.display = 'none';
+          logoText.style.display = 'block';
+        });
+        logoImg.addEventListener('load', function() {
+          logoText.style.display = 'none';
+        });
+        if (logoImg.complete) {
+          if (logoImg.naturalWidth === 0) {
+            logoImg.style.display = 'none';
+            logoText.style.display = 'block';
+          } else {
+            logoText.style.display = 'none';
+          }
+        }
+      }
+
+      // --- Announcement Slider ---
+      const announcementSlider = document.getElementById('announcementSlider');
+      if (announcementSlider) {
+        const annSlides = announcementSlider.querySelectorAll('.announcement-slide');
+        if (annSlides.length > 1) {
+          let annCurrent = 0;
+          setInterval(function() {
+            const prev = annSlides[annCurrent];
+            prev.classList.remove('active');
+            prev.classList.add('leaving');
+            setTimeout(function() { prev.classList.remove('leaving'); }, 600);
+
+            annCurrent = (annCurrent + 1) % annSlides.length;
+            annSlides[annCurrent].classList.add('active');
+          }, 5000);
+        }
+      }
+
+    })();
+
+    // --- Product Page Functions ---
+    function changeImage(element, src) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.thumb').forEach(thumb => thumb.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    function increaseQty() {
+      const input = document.getElementById('qtyInput');
+      input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseQty() {
+      const input = document.getElementById('qtyInput');
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+      }
+    }
+
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      const content = item.querySelector('.accordion-content');
+      const icon = header.querySelector('.accordion-icon');
+
+      // Close all other accordions
+      document.querySelectorAll('.accordion-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.accordion-content').style.maxHeight = null;
+          otherItem.querySelector('.accordion-icon').textContent = '+';
+        }
+      });
+
+      // Toggle current
+      item.classList.toggle('active');
+      if (item.classList.contains('active')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.textContent = '−';
+      } else {
+        content.style.maxHeight = null;
+        icon.textContent = '+';
+      }
+    }
+
+    console.log('✨ Premium Saree Product Page ready.');
+  </script>
+
+</body>
+</html>
