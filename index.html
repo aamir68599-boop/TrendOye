@@ -497,6 +497,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 16px;
       background: var(--bg-white);
       overflow: hidden;
       padding: 0 24px;
@@ -504,7 +505,7 @@
 
     .featured-image-section img {
       max-height: 100%;
-      max-width: 100%;
+      max-width: 50%;
       object-fit: contain;
       display: block;
     }
@@ -1014,11 +1015,16 @@
     </div>
   </section>
 
-  <!-- ===== FEATURED IMAGE SECTION (height 252px, centered image) ===== -->
+  <!-- ===== FEATURED IMAGE SECTION (height 252px, two balanced images) ===== -->
   <section class="featured-image-section">
     <img
       src="https://trendoye.aamir68599.workers.dev/image%20shock%202.avif"
       alt="Featured Collection"
+      loading="lazy"
+    />
+    <img
+      src="https://trendoye.aamir68599.workers.dev/image%20shock%203.avif"
+      alt="Featured Collection 2"
       loading="lazy"
     />
   </section>
