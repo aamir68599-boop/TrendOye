@@ -579,6 +579,114 @@
     }
 
     /* ============================================
+       NEW ARRIVALS SAREES — PRODUCT GRID
+       ============================================ */
+    .new-arrivals-section {
+      background: var(--bg-white);
+      padding: 48px 0 60px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .new-arrivals-section .section-title {
+      font-size: clamp(20px, 3vw, 34px);
+      font-weight: 400;
+      letter-spacing: 7px;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--text-color);
+      margin: 0 0 38px;
+      line-height: 1.35;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 34px 26px;
+      width: 100%;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-white);
+    }
+
+    .product-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #f5ede0;
+    }
+
+    /* fallback for very old browsers */
+    @supports not (aspect-ratio: 3 / 4) {
+      .product-media {
+        height: 0;
+        padding-top: 133.3333%; /* 4 / 3 * 100 */
+      }
+    }
+
+    .product-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.6s ease;
+      will-change: transform;
+    }
+
+    .product-card:hover .product-media img {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      width: 56px;
+      padding: 6px 4px;
+      background: var(--primary-pink);
+      color: #fff;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      line-height: 1.35;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .product-info {
+      padding: 14px 6px 0;
+      text-align: center;
+    }
+
+    .product-name {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      line-height: 1.45;
+      color: var(--text-color);
+      transition: color var(--transition);
+    }
+
+    .product-price {
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-color);
+      letter-spacing: 0.3px;
+    }
+
+    .product-card:hover .product-name {
+      color: var(--primary-pink);
+    }
+
+    /* ============================================
        RESPONSIVE – TABLET
        ============================================ */
     @media (max-width: 1024px) {
@@ -616,6 +724,25 @@
 
       .category-name {
         font-size: 13px;
+      }
+
+      /* --- new arrivals --- */
+      .new-arrivals-section .section-title {
+        font-size: 22px;
+        letter-spacing: 4px;
+        margin-bottom: 28px;
+      }
+
+      .product-grid {
+        gap: 26px 18px;
+      }
+
+      .product-name {
+        font-size: 12px;
+      }
+
+      .product-price {
+        font-size: 12px;
       }
     }
 
@@ -738,6 +865,48 @@
       .category-name {
         font-size: 12px;
         margin-top: 10px;
+      }
+
+      /* --- new arrivals --- */
+      .new-arrivals-section {
+        padding: 32px 0 44px;
+      }
+
+      .new-arrivals-section .container {
+        padding: 0 14px;
+      }
+
+      .new-arrivals-section .section-title {
+        font-size: 16px;
+        letter-spacing: 2.6px;
+        margin-bottom: 22px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px 12px;
+      }
+
+      .product-badge {
+        width: 46px;
+        padding: 4px 3px;
+        font-size: 7px;
+        letter-spacing: 1px;
+        top: 8px;
+        right: 8px;
+      }
+
+      .product-info {
+        padding-top: 10px;
+      }
+
+      .product-name {
+        font-size: 11px;
+      }
+
+      .product-price {
+        font-size: 11px;
+        margin-top: 4px;
       }
 
       @media (max-width: 420px) {
@@ -1023,6 +1192,119 @@
     <img src="https://trendoye.aamir68599.workers.dev/image%20shock%206.avif" alt="Featured Collection 5" loading="lazy" />
   </section>
 
+  <!-- ===== NEW ARRIVALS SAREES ===== -->
+  <section class="new-arrivals-section">
+    <div class="container">
+      <h2 class="section-title">New Arrivals Sarees</h2>
+
+      <div class="product-grid">
+
+        <!-- ===== PRODUCT 1 ===== -->
+        <a class="product-card" href="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree">
+          <div class="product-media">
+            <span class="product-badge">New Arrivals</span>
+            <img
+              src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree.webp"
+              alt="Black Georgette Silk Party Saree with Zari & Sequin Border"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree.avif';"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Black Georgette Silk Party Saree with Zari &amp; Sequin Border</h3>
+            <div class="product-price">₹ 2,835.00 INR</div>
+          </div>
+        </a>
+
+        <!-- ===== PRODUCT 2 ===== -->
+        <a class="product-card" href="https://trendoye.aamir68599.workers.dev/ruby-red-georgette-silk-party-saree">
+          <div class="product-media">
+            <span class="product-badge">New Arrivals</span>
+            <img
+              src="https://trendoye.aamir68599.workers.dev/ruby-red-georgette-silk-party-saree.webp"
+              alt="Ruby Red Georgette Silk Party Saree with Zari & Sequin Border"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://trendoye.aamir68599.workers.dev/ruby-red-georgette-silk-party-saree.avif';"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Ruby Red Georgette Silk Party Saree with Zari &amp; Sequin Border</h3>
+            <div class="product-price">₹ 2,835.00 INR</div>
+          </div>
+        </a>
+
+        <!-- ===== PRODUCT 3 ===== -->
+        <a class="product-card" href="https://trendoye.aamir68599.workers.dev/light-brown-regal-designer-georgette-silk-saree-for-brides">
+          <div class="product-media">
+            <span class="product-badge">New Arrivals</span>
+            <img
+              src="https://trendoye.aamir68599.workers.dev/light-brown-regal-designer-georgette-silk-saree-for-brides.webp"
+              alt="Light Brown Regal Designer Georgette Silk Saree for Brides"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://trendoye.aamir68599.workers.dev/light-brown-regal-designer-georgette-silk-saree-for-brides.avif';"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Light Brown Regal Designer Georgette Silk Saree for Brides</h3>
+            <div class="product-price">₹ 10,416.00 INR</div>
+          </div>
+        </a>
+
+        <!-- ===== PRODUCT 4 ===== -->
+        <a class="product-card" href="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree">
+          <div class="product-media">
+            <span class="product-badge">New Arrivals</span>
+            <img
+              src="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree.webp"
+              alt="Black Georgette Silk Party Saree with Zari & Sequin Border"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree.avif';"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Black Georgette Silk Party Saree with Zari &amp; Sequin Border</h3>
+            <div class="product-price">₹ 2,835.00 INR</div>
+          </div>
+        </a>
+
+        <!-- ===== PRODUCT 5 ===== -->
+        <a class="product-card" href="https://trendoye.aamir68599.workers.dev/ruby-red-georgette-silk-party-saree">
+          <div class="product-media">
+            <span class="product-badge">New Arrivals</span>
+            <img
+              src="https://trendoye.aamir68599.workers.dev/ruby-red-georgette-silk-party-saree.webp"
+              alt="Ruby Red Georgette Silk Party Saree with Zari & Sequin Border"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://trendoye.aamir68599.workers.dev/ruby-red-georgette-silk-party-saree.avif';"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Ruby Red Georgette Silk Party Saree with Zari &amp; Sequin Border</h3>
+            <div class="product-price">₹ 2,835.00 INR</div>
+          </div>
+        </a>
+
+        <!-- ===== PRODUCT 6 ===== -->
+        <a class="product-card" href="https://trendoye.aamir68599.workers.dev/light-brown-regal-designer-georgette-silk-saree-for-brides">
+          <div class="product-media">
+            <span class="product-badge">New Arrivals</span>
+            <img
+              src="https://trendoye.aamir68599.workers.dev/light-brown-regal-designer-georgette-silk-saree-for-brides.webp"
+              alt="Light Brown Regal Designer Georgette Silk Saree for Brides"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://trendoye.aamir68599.workers.dev/light-brown-regal-designer-georgette-silk-saree-for-brides.avif';"
+            />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Light Brown Regal Designer Georgette Silk Saree for Brides</h3>
+            <div class="product-price">₹ 10,416.00 INR</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <script>
     (function() {
       'use strict';
@@ -1111,6 +1393,18 @@
       }
 
       document.querySelectorAll('.category-circle img').forEach(img => {
+        img.addEventListener('error', function() {
+          const parent = this.parentElement;
+          const placeholder = document.createElement('div');
+          placeholder.className = 'img-placeholder';
+          placeholder.textContent = this.alt || 'Saree';
+          parent.innerHTML = '';
+          parent.appendChild(placeholder);
+        });
+      });
+
+      /* NEW ARRIVALS — image fallback */
+      document.querySelectorAll('.product-media img').forEach(img => {
         img.addEventListener('error', function() {
           const parent = this.parentElement;
           const placeholder = document.createElement('div');
