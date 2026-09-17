@@ -579,6 +579,77 @@
     }
 
     /* ============================================
+       SHOP BY COLLECTIONS SECTION (NEW)
+       ============================================ */
+    .collections-section {
+      background: var(--bg-white);
+      padding: 40px 0 60px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .collections-heading {
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--text-color);
+      margin: 0 0 34px;
+      line-height: 1.35;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      width: 100%;
+    }
+
+    .collection-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #f5ede0;
+      cursor: pointer;
+      border: 3px solid #c9a84c; /* Gold border matching screenshot */
+    }
+
+    .collection-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.6s ease;
+      will-change: transform;
+    }
+
+    .collection-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .collection-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 20px;
+      z-index: 2;
+      text-align: center;
+      padding: 0 10px;
+      color: #fff;
+      font-family: 'Georgia', 'Times New Roman', serif; /* Elegant font matching screenshot */
+      font-size: clamp(14px, 1.6vw, 22px);
+      font-weight: 500;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* ============================================
        SHOP BY CATEGORY SECTION
        ============================================ */
     .shop-by-category-section {
@@ -984,6 +1055,30 @@
         margin-top: 10px;
       }
 
+      /* --- shop by collections --- */
+      .collections-section {
+        padding: 28px 0 40px;
+      }
+      .collections-section .container {
+        padding: 0 14px;
+      }
+      .collections-heading {
+        font-size: 14px;
+        letter-spacing: 2.6px;
+        margin-bottom: 18px;
+      }
+      .collections-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .collection-card {
+        border-width: 2px;
+      }
+      .collection-label {
+        bottom: 12px;
+        font-size: 13px;
+      }
+
       /* --- shop by category --- */
       .shop-by-category-section {
         padding: 28px 0 40px;
@@ -1335,6 +1430,64 @@
     <img src="https://trendoye.aamir68599.workers.dev/image%20shock%206.avif" alt="Featured Collection 5" loading="lazy" />
   </section>
 
+  <!-- ===== SHOP BY COLLECTIONS SECTION (NEW) ===== -->
+  <section class="collections-section">
+    <div class="container">
+      <h2 class="collections-heading">SHOP BY COLLECTIONS</h2>
+      <div class="collections-grid">
+        
+        <!-- Collection 1 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/Gorgcous%20banarasi%20image.webp" alt="Gorgeous Banarasi's" loading="lazy" />
+          <div class="collection-label">Gorgeous Banarasi's</div>
+        </a>
+
+        <!-- Collection 2 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/vibrant%20patola's%20image.webp" alt="Vibrant Patola's" loading="lazy" />
+          <div class="collection-label">Vibrant Patola's</div>
+        </a>
+
+        <!-- Collection 3 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/Kanjivaram%20image.webp" alt="Kanjivaram's" loading="lazy" />
+          <div class="collection-label">Kanjivaram's</div>
+        </a>
+
+        <!-- Collection 4 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/royal%20paithani's.webp" alt="Royal Paithani's" loading="lazy" />
+          <div class="collection-label">Royal Paithani's</div>
+        </a>
+
+        <!-- Collection 5 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/weightless%20georgette's.webp" alt="Weightless Georgette's" loading="lazy" />
+          <div class="collection-label">Weightless Georgette's</div>
+        </a>
+
+        <!-- Collection 6 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/slay%20in%20satin's.webp" alt="Slay in Satin's" loading="lazy" />
+          <div class="collection-label">Slay in Satin's</div>
+        </a>
+
+        <!-- Collection 7 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/opulent%20organza's.webp" alt="Opulent Organza's" loading="lazy" />
+          <div class="collection-label">Opulent Organza's</div>
+        </a>
+
+        <!-- Collection 8 -->
+        <a href="#" class="collection-card">
+          <img src="https://trendoye.aamir68599.workers.dev/all%20silk's.webp" alt="All Silk's" loading="lazy" />
+          <div class="collection-label">All Silk's</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===== NEW ARRIVALS SAREES ===== -->
   <section class="new-arrivals-section">
     <div class="container">
@@ -1597,6 +1750,20 @@
           const parent = this.parentElement;
           const label = parent.querySelector('.shop-category-label');
           const labelText = label ? label.textContent : 'Category';
+          const placeholder = document.createElement('div');
+          placeholder.className = 'img-placeholder';
+          placeholder.textContent = labelText;
+          this.style.display = 'none';
+          parent.insertBefore(placeholder, parent.firstChild);
+        });
+      });
+
+      /* SHOP BY COLLECTIONS — image fallback */
+      document.querySelectorAll('.collection-card img').forEach(img => {
+        img.addEventListener('error', function() {
+          const parent = this.parentElement;
+          const label = parent.querySelector('.collection-label');
+          const labelText = label ? label.textContent : 'Collection';
           const placeholder = document.createElement('div');
           placeholder.className = 'img-placeholder';
           placeholder.textContent = labelText;
