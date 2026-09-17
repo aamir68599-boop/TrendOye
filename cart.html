@@ -868,6 +868,46 @@
       const cartContainer = document.getElementById('cartContainer');
       const cartBadge = document.getElementById('cartBadge');
 
+      // Product Database (Mock) - Matches Product Pages
+      const PRODUCTS_DB = {
+        'black-georgette-silk-party-saree': {
+          name: 'Black Georgette Silk Party Saree with Zari & Sequin Border',
+          price: 2835,
+          image: 'https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree-.webp',
+          color: 'Black'
+        },
+        'ruby-red-georgette-silk-party-saree': {
+          name: 'Ruby Red Georgette Silk Party Saree with Zari & Sequin Border',
+          price: 2835,
+          image: 'https://trendoye.aamir68599.workers.dev/Ruby%20Red%20Georgette%20image%201.webp',
+          color: 'Red'
+        },
+        'light-brown-regal-designer-georgette-silk-saree-for-brides': {
+          name: 'Light Brown Regal Designer Georgette Silk Saree for Brides',
+          price: 10416,
+          image: 'https://trendoye.aamir68599.workers.dev/Light%20Brown%20image%201.webp',
+          color: 'Light Brown'
+        },
+        'flaxen-yellow-crush-paper-silk-saree-with-pearl-work': {
+          name: 'Flaxen Yellow Crush Paper Silk Saree With Pearl Work',
+          price: 12615,
+          image: 'https://trendoye.aamir68599.workers.dev/Flaxen%20Yellow%20Crush%20image%201.webp',
+          color: 'Flaxen Yellow'
+        },
+        'steel-blue-satin-silk-saree': {
+          name: 'Steel Blue Premium Satin Silk Wedding Saree With Blouse Piece',
+          price: 12615,
+          image: 'https://trendoye.aamir68599.workers.dev/Steel%20Blue%20Premium%20image%201.webp',
+          color: 'Steel Blue'
+        },
+        'teal-blue-crush-satin-saree': {
+          name: 'Teal Blue Crush Satin Silk Saree With Pearl Work',
+          price: 13335,
+          image: 'https://trendoye.aamir68599.workers.dev/Teal%20Blue%20Crush%20Satin%20image%201.webp',
+          color: 'Teal Blue'
+        }
+      };
+
       function getCart() {
         try {
           const data = localStorage.getItem(CART_KEY);
@@ -890,6 +930,36 @@
 
       function formatPrice(price) {
         return '₹ ' + price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' INR';
+      }
+
+      // Function to add product from URL parameters
+      function addProductFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const qty = parseInt(urlParams.get('qty')) || 1;
+
+        if (productId && PRODUCTS_DB[productId]) {
+          const productData = PRODUCTS_DB[productId];
+          const cart = getCart();
+          const existingItem = cart.find(item => item.id === productId);
+
+          if (existingItem) {
+            existingItem.quantity += qty;
+          } else {
+            cart.push({
+              id: productId,
+              name: productData.name,
+              price: productData.price,
+              image: productData.image,
+              color: productData.color,
+              quantity: qty
+            });
+          }
+          saveCart(cart);
+
+          // Clean URL
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
       }
 
       function renderCart() {
@@ -1006,7 +1076,8 @@
         window.location.href = 'checkout.html';
       };
 
-      // Initial render
+      // Initialize: Add product from URL, then render
+      addProductFromUrl();
       renderCart();
 
       console.log('✨ Cart page ready.');
