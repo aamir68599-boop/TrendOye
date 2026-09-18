@@ -841,7 +841,7 @@
        FOOTER SECTION
        ============================================ */
     .trendoye-footer {
-      background-color: #f8c8d8; /* Pinkish background matching screenshot */
+      background-color: #f8c8d8;
       color: #1a1a1a;
       padding: 50px 0 20px;
       font-size: 13px;
@@ -887,11 +887,10 @@
     }
 
     .footer-col ul li a:hover {
-      color: #d81b60; /* primary pink */
+      color: #d81b60;
       text-decoration: underline;
     }
 
-    /* Newsletter Form */
     .newsletter-form {
       display: flex;
       flex-direction: column;
@@ -932,7 +931,6 @@
       background: #d81b60;
     }
 
-    /* Bottom Section */
     .footer-bottom {
       padding-top: 30px;
     }
@@ -1093,7 +1091,6 @@
       .hamburger-btn { display: flex; align-items: center; justify-content: center; }
       .mobile-nav { display: block; }
 
-      /* Product Page Mobile */
       .product-page-section { padding: 24px 0; }
       .product-layout {
         grid-template-columns: 1fr;
@@ -1121,7 +1118,6 @@
       .related-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .related-title { font-size: 22px; }
 
-      /* --- Footer Responsive --- */
       .footer-top {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -1152,9 +1148,6 @@
       background: #f5ede0; color: #999; font-size: 12px; text-align: center; padding: 8px;
     }
 
-    /* ============================================
-       SILVER UNDERLINES
-       ============================================ */
     .header-right .icon-btn::after,
     .hamburger-btn::after {
       content: '';
@@ -1699,7 +1692,6 @@
       const content = item.querySelector('.accordion-content');
       const icon = header.querySelector('.accordion-icon');
 
-      // Close all other accordions
       document.querySelectorAll('.accordion-item').forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
@@ -1708,7 +1700,6 @@
         }
       });
 
-      // Toggle current
       item.classList.toggle('active');
       if (item.classList.contains('active')) {
         content.style.maxHeight = content.scrollHeight + 'px';
