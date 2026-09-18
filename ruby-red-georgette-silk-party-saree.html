@@ -1357,8 +1357,8 @@
 
         <!-- Action Buttons -->
         <div class="action-buttons">
-          <button class="btn btn-add-cart">ADD TO CART</button>
-          <button class="btn btn-buy-now">BUY IT NOW</button>
+          <button class="btn btn-add-cart" onclick="redirectToPage('cart.html')">ADD TO CART</button>
+          <button class="btn btn-buy-now" onclick="redirectToPage('checkout.html')">BUY IT NOW</button>
         </div>
 
         <!-- Description -->
@@ -1717,6 +1717,13 @@
         content.style.maxHeight = null;
         icon.textContent = '+';
       }
+    }
+
+    // --- Redirect Function for Cart & Checkout ---
+    function redirectToPage(page) {
+      const qty = document.getElementById('qtyInput').value;
+      const productId = 'ruby-red-georgette-silk-party-saree';
+      window.location.href = `${page}?id=${productId}&qty=${qty}`;
     }
 
     console.log('✨ Premium Saree Product Page ready.');
