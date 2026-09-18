@@ -980,15 +980,75 @@
         `;
       }
 
-      // --- Place Order Function ---
+      // --- Place Order Function (Connected to Google Sheets) ---
       window.placeOrder = function() {
-        // Yahan aap apna order placing logic add kar sakte hain
-        // Jaise: API call, thank you page par redirect, etc.
-        alert('🎉 Order Placed Successfully! Thank you for shopping with TrendOye.');
-        window.location.href = 'index.html'; // Redirect to home after order
+        // 1. Form ki values uthayein
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const state = document.getElementById('state').value;
+        const zip = document.getElementById('zip').value;
+        const country = document.getElementById('country').value;
+        const paymentMethod = document.getElementById('payment').value;
+
+        // 2. URL se Product ki info uthayein
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const qty = parseInt(urlParams.get('qty')) || 1;
+        
+        let productName = 'Unknown Product';
+        let totalAmount = 0;
+
+        // 3. Product Database se price aur name nikalein
+        if (productId && PRODUCTS_DB[productId]) {
+          productName = PRODUCTS_DB[productId].name;
+          totalAmount = PRODUCTS_DB[productId].price * qty;
+        }
+
+        // 4. Data ko ek object me daalein
+        const formData = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phone: phone,
+          address: address,
+          city: city,
+          state: state,
+          zip: zip,
+          country: country,
+          paymentMethod: paymentMethod,
+          productName: productName,
+          quantity: qty,
+          totalAmount: totalAmount
+        };
+
+        // 5. Google Apps Script URL (Aapka Deployed URL)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz-ArxHd67exLp1DcmdbDVBF_P7QWwL_apeYHkiQK8VkD12Yz1VqnMq-472uWo8N_bSmw/exec';
+
+        // 6. Google Sheets me data bhejein
+        fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors', // CORS error se bachne ke liye
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(() => {
+          // Success message aur redirect
+          alert('🎉 Order Placed Successfully! Thank you for shopping with TrendOye.');
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          alert('❌ Server se connect nahi ho paya. Kripya dobara try karein.');
+        });
       };
 
-      // --- Announcement Slider (Reused from other pages) ---
+      // --- Announcement Slider ---
       const announcementSlider = document.getElementById('announcementSlider');
       if (announcementSlider) {
         const annSlides = announcementSlider.querySelectorAll('.announcement-slide');
@@ -1005,7 +1065,7 @@
         }
       }
 
-      console.log('✨ Checkout Page ready.');
+      console.log('✨ Checkout Page ready with Google Sheets integration.');
     })();
   </script>
 
