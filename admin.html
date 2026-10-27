@@ -6,35 +6,32 @@
 <meta name="robots" content="noindex,nofollow" />
 <title>TrendOye · Admin Panel</title>
 <style>
-  /* ============================================================
-     VARIABLES
-     ============================================================ */
   :root{
-    --pink:#d81b60;
-    --pink-dark:#ad1457;
-    --pink-soft:#fdecf3;
-    --gold:#c9a84c;
-    --ink:#1a1a1a;
-    --muted:#6b7280;
-    --line:#e8e8ec;
-    --bg:#f5f6f8;
+    --orange:#f97316;
+    --orange-dark:#ea580c;
+    --orange-soft:#fff7ed;
+    --navy:#1e293b;
+    --navy-dark:#0f172a;
+    --ink:#0f172a;
+    --muted:#64748b;
+    --line:#e2e8f0;
+    --bg:#f1f5f9;
     --white:#fff;
-    --green:#15803d;
-    --green-soft:#e8f5ec;
-    --amber:#b45309;
-    --amber-soft:#fdf3e3;
-    --red:#b91c1c;
-    --red-soft:#fdeaea;
-    --radius:10px;
-    --shadow:0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.06);
+    --green:#10b981;
+    --green-soft:#ecfdf5;
+    --amber:#f59e0b;
+    --amber-soft:#fef3c7;
+    --red:#ef4444;
+    --red-soft:#fee2e2;
+    --radius:14px;
+    --radius-sm:10px;
+    --shadow-sm:0 1px 2px rgba(15,23,42,.05);
+    --shadow:0 4px 14px rgba(15,23,42,.07);
+    --shadow-lg:0 24px 60px rgba(15,23,42,.14);
     --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   }
-
-  /* ============================================================
-     RESET
-     ============================================================ */
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-  html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  html{-webkit-font-smoothing:antialiased}
   body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
   img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
@@ -42,389 +39,445 @@
   button,input,select,textarea{font:inherit;color:inherit}
   body.modal-open{overflow:hidden}
 
-  /* ============================================================
-     BUTTONS / FORM CONTROLS
-     ============================================================ */
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:6px;
-    padding:9px 16px;border:1px solid transparent;border-radius:8px;
-    font-size:12.5px;font-weight:600;letter-spacing:.02em;cursor:pointer;
-    transition:.2s ease;white-space:nowrap;background:none;
-  }
-  .btn.primary{background:var(--pink);color:#fff}
-  .btn.primary:hover{background:var(--pink-dark)}
-  .btn.dark{background:var(--ink);color:#fff}
-  .btn.dark:hover{background:#000}
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    padding:10px 18px;border:1px solid transparent;border-radius:10px;
+    font-size:13px;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap;background:none}
+  .btn.primary{background:var(--orange);color:#fff;box-shadow:0 2px 6px rgba(249,115,22,.3)}
+  .btn.primary:hover{background:var(--orange-dark)}
   .btn.ghost{background:#fff;border-color:var(--line);color:var(--ink)}
-  .btn.ghost:hover{border-color:#c9c9d1;background:#fafafb}
+  .btn.ghost:hover{background:#f8fafc;border-color:#cbd5e1}
+  .btn.dark{background:var(--navy);color:#fff}
+  .btn.dark:hover{background:var(--navy-dark)}
   .btn.danger{background:var(--red);color:#fff}
-  .btn.danger:hover{background:#991b1b}
+  .btn.danger:hover{background:#dc2626}
   .btn.block{width:100%}
-  .btn.sm{padding:6px 11px;font-size:11.5px}
+  .btn.sm{padding:7px 12px;font-size:12px}
   .btn:disabled{opacity:.5;cursor:not-allowed}
 
-  .icon-btn{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:34px;height:34px;border:1px solid var(--line);border-radius:8px;
-    background:#fff;cursor:pointer;transition:.2s;flex-shrink:0;color:var(--ink);
-  }
-  .icon-btn:hover{background:#fafafb;border-color:#cfcfd8}
-  .icon-btn.sm{width:28px;height:28px;font-size:13px}
+  .icon-btn{display:inline-flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:#fff;cursor:pointer;transition:.2s;flex-shrink:0;color:var(--ink)}
+  .icon-btn:hover{background:#f8fafc;border-color:#cbd5e1}
+  .icon-btn.sm{width:30px;height:30px;font-size:14px}
 
   input[type=text],input[type=password],input[type=number],input[type=email],
   input[type=search],select,textarea{
-    width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;
-    background:#fff;font-size:13px;outline:none;transition:.18s;
-  }
-  input:focus,select:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(216,27,96,.10)}
-  textarea{resize:vertical;min-height:70px}
+    width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;
+    background:#fff;font-size:13.5px;outline:none;transition:.18s}
+  input:focus,select:focus,textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(249,115,22,.12)}
+  textarea{resize:vertical;min-height:90px;font-family:inherit}
   select{cursor:pointer;appearance:none;
-    background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='3'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;
-  }
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 
   /* ============================================================
-     LOGIN SCREEN
+     LOGIN — split card layout
      ============================================================ */
-  .login{
-    min-height:100vh;display:grid;place-items:center;padding:24px;
+  .login{min-height:100vh;display:grid;place-items:center;padding:24px;
     background:
-      radial-gradient(circle at 15% 15%, #fde7ef 0%, transparent 45%),
-      radial-gradient(circle at 85% 85%, #fdf6e3 0%, transparent 45%),
-      #fff6f9;
-  }
-  .login-card{
-    width:100%;max-width:390px;background:#fff;border:1px solid #f6dde7;
-    border-radius:18px;padding:38px 32px 30px;
-    box-shadow:0 24px 60px rgba(216,27,96,.13), 0 2px 8px rgba(0,0,0,.04);
-    animation:pop .35s ease;
-  }
-  @keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
-  .login-brand{
-    text-align:center;font-size:26px;font-weight:400;letter-spacing:5px;
-    text-transform:uppercase;color:var(--ink);margin-bottom:4px;
-  }
-  .login-brand span{color:var(--pink);font-weight:600}
-  .login-sub{
-    text-align:center;font-size:10.5px;letter-spacing:3px;text-transform:uppercase;
-    color:var(--muted);margin-bottom:30px;
-  }
-  .login-card label{display:block;margin-bottom:16px}
-  .login-card label span{
-    display:block;font-size:11px;font-weight:600;letter-spacing:.09em;
-    text-transform:uppercase;color:var(--muted);margin-bottom:7px;
-  }
-  .login-error{
-    display:none;background:var(--red-soft);color:var(--red);border:1px solid #f6c9c9;
-    padding:9px 12px;border-radius:8px;font-size:12.5px;margin-bottom:16px;
-  }
+      radial-gradient(circle at 15% 15%, #ffe9d6 0%, transparent 50%),
+      radial-gradient(circle at 85% 85%, #fff3e0 0%, transparent 50%),
+      #fff9f3}
+  .login-card{display:grid;grid-template-columns:1.05fr 1fr;
+    width:100%;max-width:1000px;background:#fff;border-radius:26px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(249,115,22,.12), 0 4px 12px rgba(0,0,0,.04);
+    animation:pop .4s ease;min-height:560px}
+  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+
+  .login-left{padding:44px 40px;background:linear-gradient(160deg,#fb923c 0%,#ea580c 100%);
+    color:#fff;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .login-left::before{content:'';position:absolute;width:340px;height:340px;
+    background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);
+    top:-80px;right:-80px;border-radius:50%}
+  .login-left h1{font-size:32px;font-weight:800;line-height:1.2;letter-spacing:-.02em;
+    margin-bottom:16px;position:relative;z-index:1}
+  .login-left h1 u{text-decoration-color:rgba(255,255,255,.5);text-underline-offset:8px;
+    text-decoration-thickness:3px}
+  .login-left p{font-size:14px;opacity:.92;line-height:1.6;margin-bottom:auto;
+    max-width:340px;position:relative;z-index:1}
+  .login-illust{position:relative;z-index:1;margin-top:32px;display:grid;place-items:center}
+  .login-illust svg{max-width:100%;height:auto}
+
+  .login-right{padding:48px 44px;display:flex;flex-direction:column;justify-content:center}
+  .login-brand{display:flex;align-items:center;gap:10px;margin-bottom:32px}
+  .login-brand .logo{width:40px;height:40px;border-radius:12px;
+    background:linear-gradient(135deg,#fb923c,#ea580c);
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px}
+  .login-brand .name{font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .login-right h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+  .login-right .sub{color:var(--muted);font-size:14px;margin-bottom:26px}
+
+  .login-error{display:none;background:var(--red-soft);color:#b91c1c;
+    border:1px solid #fecaca;padding:11px 14px;border-radius:10px;
+    font-size:13px;margin-bottom:16px;font-weight:500}
   .login-error.show{display:block}
-  .login-hint{
-    margin-top:18px;text-align:center;font-size:11.5px;color:var(--muted);
-    line-height:1.7;padding-top:16px;border-top:1px dashed var(--line);
-  }
-  .login-hint code{background:#f4f4f6;padding:1px 6px;border-radius:4px;font-size:11px;color:var(--pink-dark)}
+
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:12px;font-weight:600;color:#334155;
+    margin-bottom:7px;letter-spacing:.02em}
+  .field-hint{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+
+  .login-hint{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);
+    font-size:12px;color:var(--muted);line-height:1.8;text-align:center}
+  .login-hint code{background:#fff7ed;color:var(--orange-dark);
+    padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600}
 
   /* ============================================================
      APP SHELL
      ============================================================ */
-  .app{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+  .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
 
-  /* ---- Sidebar ---- */
-  .sidebar{
-    background:#171719;color:#fff;display:flex;flex-direction:column;
-    position:sticky;top:0;height:100vh;z-index:60;
-  }
-  .sidebar-head{padding:22px 20px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
-  .sidebar-head .brand{font-size:18px;font-weight:400;letter-spacing:3.5px;text-transform:uppercase}
-  .sidebar-head .brand span{color:var(--pink);font-weight:600}
-  .sidebar-head small{
-    display:block;margin-top:4px;font-size:9.5px;letter-spacing:2.6px;
-    text-transform:uppercase;color:rgba(255,255,255,.4);
-  }
-  .sidebar-nav{padding:14px 12px;flex:1;overflow-y:auto}
-  .sidebar-nav button{
-    display:flex;align-items:center;gap:11px;width:100%;padding:10px 12px;
-    border:none;background:none;color:rgba(255,255,255,.68);border-radius:8px;
-    font-size:13px;font-weight:500;cursor:pointer;transition:.18s;text-align:left;
-  }
-  .sidebar-nav button:hover{background:rgba(255,255,255,.07);color:#fff}
-  .sidebar-nav button.active{background:var(--pink);color:#fff}
-  .sidebar-nav button .ic{width:17px;height:17px;flex-shrink:0;opacity:.9}
-  .sidebar-nav button .count{
-    margin-left:auto;background:rgba(255,255,255,.14);border-radius:20px;
-    font-size:10px;font-weight:700;padding:1px 7px;min-width:20px;text-align:center;
-  }
-  .sidebar-nav button.active .count{background:rgba(0,0,0,.22)}
-  .sidebar-foot{
-    padding:14px 18px;border-top:1px solid rgba(255,255,255,.08);
-    font-size:10.5px;color:rgba(255,255,255,.35);letter-spacing:.4px;
-  }
+  .sidebar{background:var(--navy);color:#fff;display:flex;flex-direction:column;
+    position:sticky;top:0;height:100vh;z-index:60}
+  .sidebar-head{padding:24px 22px 20px;border-bottom:1px solid rgba(255,255,255,.08);
+    display:flex;align-items:center;gap:11px}
+  .sidebar-head .logo{width:38px;height:38px;border-radius:11px;
+    background:linear-gradient(135deg,#fb923c,#ea580c);
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;flex-shrink:0}
+  .sidebar-head .info{min-width:0}
+  .sidebar-head .name{font-size:16px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+  .sidebar-head .role{font-size:10.5px;color:rgba(255,255,255,.45);letter-spacing:.05em;
+    text-transform:uppercase;margin-top:1px}
 
-  /* ---- Main ---- */
+  .sidebar-nav{padding:16px 14px;flex:1;overflow-y:auto}
+  .sidebar-nav .nav-label{font-size:10px;color:rgba(255,255,255,.35);
+    letter-spacing:.14em;text-transform:uppercase;padding:8px 12px 6px;font-weight:600}
+  .sidebar-nav button{display:flex;align-items:center;gap:12px;width:100%;
+    padding:11px 13px;border:none;background:none;color:rgba(255,255,255,.7);
+    border-radius:10px;font-size:13.5px;font-weight:500;cursor:pointer;
+    transition:.18s;text-align:left;margin-bottom:2px}
+  .sidebar-nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+  .sidebar-nav button.active{background:var(--orange);color:#fff;
+    box-shadow:0 4px 12px rgba(249,115,22,.35)}
+  .sidebar-nav button .ic{width:18px;height:18px;flex-shrink:0;opacity:.95}
+  .sidebar-nav button .count{margin-left:auto;background:rgba(255,255,255,.15);
+    border-radius:20px;font-size:10.5px;font-weight:700;padding:2px 8px;
+    min-width:22px;text-align:center}
+  .sidebar-nav button.active .count{background:rgba(0,0,0,.25)}
+
+  .sidebar-foot{padding:16px 20px;border-top:1px solid rgba(255,255,255,.08)}
+  .sidebar-foot button{display:flex;align-items:center;gap:11px;width:100%;
+    padding:11px 13px;border:none;background:none;color:rgba(255,255,255,.7);
+    border-radius:10px;font-size:13.5px;font-weight:500;cursor:pointer;transition:.18s}
+  .sidebar-foot button:hover{background:rgba(239,68,68,.15);color:#fca5a5}
+
+  /* MAIN */
   .main{display:flex;flex-direction:column;min-width:0}
-  .topbar{
-    position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid var(--line);
-    height:62px;display:flex;align-items:center;gap:14px;padding:0 22px;
-  }
-  .topbar h1{font-size:16px;font-weight:600;letter-spacing:.2px;flex:1;min-width:0;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .topbar-right{display:flex;align-items:center;gap:10px}
-  .user-chip{
-    display:flex;align-items:center;gap:7px;background:#f5f5f7;border-radius:30px;
-    padding:5px 13px 5px 6px;font-size:12px;font-weight:600;color:#3d3d45;
-  }
-  .user-chip .av{
-    width:23px;height:23px;border-radius:50%;background:var(--pink);color:#fff;
-    display:grid;place-items:center;font-size:11px;font-weight:700;text-transform:uppercase;
-  }
+  .topbar{position:sticky;top:0;z-index:40;background:#fff;
+    border-bottom:1px solid var(--line);height:70px;display:flex;align-items:center;
+    gap:16px;padding:0 26px}
+  .topbar .search-wrap{flex:1;max-width:380px;position:relative}
+  .topbar .search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    color:var(--muted);pointer-events:none}
+  .topbar .search-wrap input{padding-left:42px;background:#f8fafc;border-color:transparent;
+    border-radius:30px;height:42px}
+  .topbar .search-wrap input:focus{background:#fff;border-color:var(--orange)}
+  .topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+  .topbar-right .icon-btn{background:#f8fafc;border-color:transparent}
+  .user-chip{display:flex;align-items:center;gap:10px;background:#f8fafc;
+    border-radius:30px;padding:5px 14px 5px 5px;cursor:pointer}
+  .user-chip .av{width:34px;height:34px;border-radius:50%;
+    background:linear-gradient(135deg,#fb923c,#ea580c);color:#fff;
+    display:grid;place-items:center;font-size:14px;font-weight:700;text-transform:uppercase}
+  .user-chip .info{display:flex;flex-direction:column;line-height:1.2}
+  .user-chip .nm{font-size:12.5px;font-weight:600}
+  .user-chip .rl{font-size:10.5px;color:var(--muted)}
   .menu-btn{display:none}
 
-  .content{padding:22px;flex:1}
-  .view{display:none;animation:fade .22s ease}
+  .content{padding:26px;flex:1}
+  .view{display:none;animation:fade .25s ease}
   .view.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  /* ============================================================
-     PANELS / STATS
-     ============================================================ */
+  /* PANELS */
   .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    box-shadow:var(--shadow);overflow:hidden}
-  .panel + .panel{margin-top:18px}
-  .panel-head{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:15px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap;
-  }
-  .panel-head h2{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#2b2b33}
-  .panel-body{padding:18px}
+    box-shadow:var(--shadow-sm);overflow:hidden}
+  .panel + .panel{margin-top:20px}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .panel-head h2{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .panel-body{padding:22px}
 
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
-  .stat{
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:16px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden;
-  }
-  .stat::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pink)}
-  .stat.g::after{background:var(--green)}
-  .stat.a::after{background:var(--amber)}
-  .stat.r::after{background:var(--red)}
-  .stat.gold::after{background:var(--gold)}
-  .stat .lbl{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-  .stat .val{font-size:23px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
-  .stat .sub{font-size:11.5px;color:var(--muted);margin-top:3px}
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:18px;margin-bottom:22px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+  .stat .icon{position:absolute;top:20px;right:20px;width:42px;height:42px;
+    border-radius:12px;display:grid;place-items:center;background:var(--orange-soft);color:var(--orange)}
+  .stat .lbl{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:10px;
+    letter-spacing:.01em}
+  .stat .val{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+  .stat .sub{font-size:12px;color:var(--muted);margin-top:6px}
+  .stat .sub.up{color:var(--green)}
+  .stat.g .icon{background:var(--green-soft);color:var(--green)}
+  .stat.a .icon{background:var(--amber-soft);color:var(--amber)}
+  .stat.r .icon{background:var(--red-soft);color:var(--red)}
 
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .grid-2{display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start}
+  .grid-2.even{grid-template-columns:1fr 1fr}
 
-  /* ============================================================
-     TOOLBAR
-     ============================================================ */
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
-  .toolbar .grow{flex:1;min-width:180px}
-  .toolbar select{width:auto;min-width:135px}
+  /* TOOLBAR */
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+  .toolbar .grow{flex:1;min-width:220px}
+  .toolbar select{width:auto;min-width:150px}
 
-  /* ============================================================
-     TABLES
-     ============================================================ */
+  /* TABLE */
   .table-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  thead th{
-    text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.09em;
-    text-transform:uppercase;color:var(--muted);padding:11px 16px;
-    border-bottom:1px solid var(--line);background:#fafafb;white-space:nowrap;
-  }
-  tbody td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  thead th{text-align:left;font-size:11.5px;font-weight:600;color:var(--muted);
+    padding:12px 18px;border-bottom:1px solid var(--line);background:#f8fafc;
+    white-space:nowrap;letter-spacing:.02em;text-transform:uppercase}
+  tbody td{padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:middle}
   tbody tr:last-child td{border-bottom:none}
-  tbody tr:hover{background:#fffafc}
-  .cell-product{display:flex;align-items:center;gap:11px;min-width:230px}
-  .cell-product .thumb{
-    width:44px;height:56px;border-radius:6px;object-fit:cover;background:#f5ede0;
-    flex-shrink:0;border:1px solid var(--line);
-  }
+  tbody tr:hover{background:#fff7ed}
+  .cell-product{display:flex;align-items:center;gap:13px;min-width:250px}
+  .cell-product .thumb{width:48px;height:60px;border-radius:8px;object-fit:cover;
+    background:#f1f5f9;flex-shrink:0;border:1px solid var(--line)}
   .cell-product .txt{min-width:0}
-  .cell-product .txt strong{
-    display:block;font-size:12.5px;font-weight:600;line-height:1.35;
-    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
-  }
-  .cell-product .txt small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+  .cell-product .txt strong{display:block;font-size:13px;font-weight:600;line-height:1.35;
+    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .cell-product .txt small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
   .row-actions{display:flex;gap:6px;justify-content:flex-end}
-  .empty{padding:46px 20px;text-align:center;color:var(--muted);font-size:13px}
-  .empty strong{display:block;color:var(--ink);font-size:14.5px;margin-bottom:5px}
 
-  .pill{
-    display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;
-    font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;
-  }
+  .empty{padding:56px 20px;text-align:center;color:var(--muted);font-size:13.5px}
+  .empty strong{display:block;color:var(--ink);font-size:16px;margin-bottom:6px;font-weight:700}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;
+    border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
   .pill.in{background:var(--green-soft);color:var(--green)}
   .pill.low{background:var(--amber-soft);color:var(--amber)}
   .pill.out{background:var(--red-soft);color:var(--red)}
   .pill.active{background:var(--green-soft);color:var(--green)}
-  .pill.draft{background:#eef0f4;color:#556}
-  .pill.archived{background:#f1eef5;color:#6b5b8a}
-  .pill.gold{background:#fdf6e3;color:#8a6d1f}
+  .pill.draft{background:#f1f5f9;color:#475569}
+  .pill.archived{background:#f3e8ff;color:#7c3aed}
+  .pill.gold{background:var(--orange-soft);color:var(--orange-dark)}
 
-  .stock-input{width:74px;text-align:center;font-weight:600;padding:6px 6px}
-  .stock-ctrl{display:flex;align-items:center;gap:5px}
+  .stock-input{width:78px;text-align:center;font-weight:600;padding:7px 8px}
+  .stock-ctrl{display:flex;align-items:center;gap:6px}
 
-  .price-cell{font-weight:600;white-space:nowrap}
-  .price-cell small{display:block;font-weight:400;font-size:10.5px;color:var(--muted);text-decoration:line-through}
+  .price-cell{font-weight:700;white-space:nowrap}
+  .price-cell small{display:block;font-weight:400;font-size:11px;color:var(--muted);
+    text-decoration:line-through;margin-top:1px}
 
-  .table-foot{
-    padding:11px 16px;border-top:1px solid var(--line);background:#fafafb;
-    font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
-  }
+  .table-foot{padding:14px 18px;border-top:1px solid var(--line);background:#f8fafc;
+    font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:10px}
 
-  /* ============================================================
-     CATEGORY LIST
-     ============================================================ */
-  .cat-form{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
-  .cat-form input{flex:1;min-width:180px}
-  .cat-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-  .cat-item{
-    display:flex;align-items:center;gap:10px;border:1px solid var(--line);
-    border-radius:9px;padding:11px 13px;background:#fff;transition:.18s;
-  }
-  .cat-item:hover{border-color:#d9d9e2;background:#fafafb}
-  .cat-item .nm{flex:1;font-size:12.5px;font-weight:600;min-width:0;
+  /* CHART */
+  .chart-card{padding:22px}
+  .chart-card .chart-head{display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:18px;flex-wrap:wrap;gap:10px}
+  .chart-card .chart-head h3{font-size:16px;font-weight:700}
+  .chart-select{padding:8px 14px;border-radius:8px;border:1px solid var(--line);
+    background:#fff;font-size:12.5px;cursor:pointer;width:auto}
+
+  /* CATEGORY */
+  .cat-form{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+  .cat-form input{flex:1;min-width:220px}
+  .cat-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+  .cat-item{display:flex;align-items:center;gap:11px;border:1px solid var(--line);
+    border-radius:12px;padding:14px 16px;background:#fff;transition:.18s}
+  .cat-item:hover{border-color:var(--orange);background:#fff7ed}
+  .cat-item .nm{flex:1;font-size:13.5px;font-weight:600;min-width:0;
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .cat-item .cnt{font-size:10.5px;color:var(--muted);background:#f2f2f5;border-radius:20px;padding:2px 8px}
+  .cat-item .cnt{font-size:11.5px;color:var(--muted);background:#f1f5f9;
+    border-radius:20px;padding:3px 10px;font-weight:600}
 
-  /* ============================================================
-     SETTINGS
-     ============================================================ */
-  .settings-note{
-    font-size:12px;color:var(--muted);line-height:1.65;
-    background:#fbfbfd;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:16px;
-  }
+  /* SETTINGS */
+  .settings-note{font-size:13px;color:var(--muted);line-height:1.65;
+    background:#f8fafc;border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;margin-bottom:18px}
   .settings-note b{color:var(--ink)}
-  .field{margin-bottom:14px}
-  .field span{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .field-set{margin-bottom:16px}
+  .field-set > span{display:block;font-size:12px;font-weight:600;color:#334155;
+    margin-bottom:7px}
+  .field-set > span em{color:var(--orange);font-style:normal}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap}
 
   /* ============================================================
-     MODAL
+     PRODUCT FORM PAGE
      ============================================================ */
-  .modal{
-    position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
-    padding:20px;background:rgba(20,20,26,.5);backdrop-filter:blur(2px);
-  }
+  .form-page{display:flex;flex-direction:column;gap:0}
+  .form-head{display:flex;align-items:center;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+  .form-head h1{font-size:26px;font-weight:800;letter-spacing:-.02em;flex:1;min-width:0}
+  .form-head h1 small{display:block;font-size:13px;font-weight:400;color:var(--muted);
+    margin-top:4px;letter-spacing:0}
+  .form-head-actions{display:flex;gap:10px}
+  .form-body{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
+
+  .form-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;box-shadow:var(--shadow-sm)}
+  .form-card + .form-card{margin-top:18px}
+  .form-card h3{font-size:15px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em}
+
+  .upload-zone{position:relative;border:2px dashed #e2e8f0;border-radius:12px;
+    background:#f8fafc;aspect-ratio:4/5;display:grid;place-items:center;
+    cursor:pointer;overflow:hidden;transition:.2s;margin-bottom:12px}
+  .upload-zone:hover{border-color:var(--orange);background:#fff7ed}
+  .upload-zone img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .upload-zone .upload-empty{display:flex;flex-direction:column;align-items:center;
+    gap:8px;color:var(--muted);text-align:center;padding:20px;z-index:1}
+  .upload-zone .upload-empty svg{color:#cbd5e1}
+  .upload-zone .upload-empty p{font-size:13px;font-weight:600;color:var(--ink)}
+  .upload-zone .upload-empty small{font-size:11.5px}
+
+  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .form-card label{display:block;margin-bottom:14px}
+  .form-card label:last-child{margin-bottom:0}
+  .form-card label > span{display:block;font-size:12px;font-weight:600;color:#334155;
+    margin-bottom:7px}
+  .form-card label > span em{color:var(--orange);font-style:normal}
+
+  /* CONFIRM MODAL */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;
+    justify-content:center;padding:20px;background:rgba(15,23,42,.55);
+    backdrop-filter:blur(3px)}
   .modal.show{display:flex;animation:fade .2s ease}
-  .modal-card{
-    background:#fff;border-radius:14px;width:100%;max-width:660px;max-height:92vh;
-    overflow-y:auto;box-shadow:0 30px 70px rgba(0,0,0,.28);animation:pop .25s ease;
-  }
-  .modal-card.small{max-width:400px;padding:24px}
-  .modal-head{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2;
-  }
-  .modal-head h2{font-size:15px;font-weight:700;letter-spacing:.02em}
-  .modal-body{padding:22px}
-  .modal-foot{
-    display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;
-    border-top:1px solid var(--line);background:#fafafb;position:sticky;bottom:0;
-  }
-  .modal-card.small .modal-foot{background:none;border:none;padding:18px 0 0}
-  .modal-card.small h2{font-size:15.5px;margin-bottom:8px}
-  .modal-card.small p{font-size:13px;color:var(--muted);line-height:1.6}
+  .modal-card{background:#fff;border-radius:16px;width:100%;max-width:420px;
+    padding:28px;box-shadow:0 30px 70px rgba(0,0,0,.3);animation:pop .25s ease}
+  .modal-card h2{font-size:19px;font-weight:800;margin-bottom:10px}
+  .modal-card p{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:22px}
+  .modal-foot{display:flex;justify-content:flex-end;gap:10px}
 
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .form-grid .span-2{grid-column:1 / -1}
-  .form-grid label{display:block}
-  .form-grid label > span{
-    display:block;font-size:11px;font-weight:700;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--muted);margin-bottom:6px;
-  }
-  .form-grid label > span em{color:var(--pink);font-style:normal}
-  .img-preview{
-    width:74px;height:94px;border-radius:8px;border:1px dashed #d8d8e0;background:#fafafb;
-    display:grid;place-items:center;overflow:hidden;flex-shrink:0;
-    font-size:9.5px;color:#aaa;text-align:center;padding:4px;
-  }
-  .img-preview img{width:100%;height:100%;object-fit:cover;border-radius:6px}
-  .img-row{display:flex;gap:12px;align-items:flex-start}
-  .img-row > label{flex:1;min-width:0}
-
-  /* ============================================================
-     TOAST
-     ============================================================ */
-  #toastWrap{position:fixed;top:18px;right:18px;z-index:400;display:flex;flex-direction:column;gap:9px}
-  .toast{
-    display:flex;align-items:center;gap:9px;min-width:220px;max-width:330px;
-    background:#17171b;color:#fff;border-radius:9px;padding:11px 15px;font-size:12.5px;font-weight:500;
-    box-shadow:0 12px 30px rgba(0,0,0,.24);animation:slideIn .25s ease;
-  }
-  .toast.ok{border-left:3px solid #22c55e}
-  .toast.err{border-left:3px solid #ef4444}
-  .toast.info{border-left:3px solid var(--gold)}
+  /* TOAST */
+  #toastWrap{position:fixed;top:20px;right:20px;z-index:400;display:flex;
+    flex-direction:column;gap:10px}
+  .toast{display:flex;align-items:center;gap:10px;min-width:240px;max-width:360px;
+    background:var(--navy);color:#fff;border-radius:12px;padding:13px 18px;
+    font-size:13px;font-weight:500;box-shadow:0 16px 40px rgba(0,0,0,.28);
+    animation:slideIn .28s ease}
+  .toast.ok{border-left:4px solid #22c55e}
+  .toast.err{border-left:4px solid #ef4444}
+  .toast.info{border-left:4px solid var(--orange)}
   @keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
 
-  /* ============================================================
-     OVERLAY (mobile drawer)
-     ============================================================ */
-  .overlay{
-    display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:55;
-  }
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55}
   .overlay.show{display:block}
 
-  /* ============================================================
-     RESPONSIVE
-     ============================================================ */
-  @media (max-width:980px){
+  /* RESPONSIVE */
+  @media (max-width:1024px){
+    .login-card{grid-template-columns:1fr;max-width:440px}
+    .login-left{padding:32px 28px}
+    .login-left h1{font-size:24px}
+    .login-illust{margin-top:20px;max-height:200px}
+    .login-illust svg{max-height:200px}
     .app{grid-template-columns:1fr}
-    .sidebar{
-      position:fixed;left:0;top:0;bottom:0;width:245px;height:100vh;
-      transform:translateX(-100%);transition:transform .28s ease;
-    }
-    .sidebar.open{transform:none;box-shadow:20px 0 50px rgba(0,0,0,.3)}
+    .sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;height:100vh;
+      transform:translateX(-100%);transition:transform .28s ease}
+    .sidebar.open{transform:none;box-shadow:20px 0 60px rgba(0,0,0,.35)}
     .menu-btn{display:inline-flex}
-    .grid-2{grid-template-columns:1fr}
+    .form-body{grid-template-columns:1fr}
+    .grid-2,.grid-2.even{grid-template-columns:1fr}
   }
   @media (max-width:640px){
-    .content{padding:14px}
-    .topbar{padding:0 14px;height:58px}
-    .topbar h1{font-size:14.5px}
-    .user-chip span.uname{display:none}
-    .form-grid{grid-template-columns:1fr}
-    .toolbar select{flex:1;min-width:0}
-    .toolbar .grow{min-width:100%}
-    .stats{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-    .stat .val{font-size:19px}
+    .content{padding:16px}
+    .topbar{padding:0 16px;height:64px}
+    .topbar .search-wrap{max-width:none}
+    .user-chip .info{display:none}
+    .form-grid-2{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+    .stat .val{font-size:22px}
     #toastWrap{left:14px;right:14px;top:14px}
     .toast{max-width:none}
+    .login{padding:14px}
+    .login-right{padding:36px 26px}
+    .login-left{padding:26px 24px}
+    .login-left h1{font-size:22px}
   }
 </style>
 </head>
-
 <body>
 
 <!-- ============================================================
-     LOGIN SCREEN
+     LOGIN
      ============================================================ -->
 <div class="login" id="loginScreen">
-  <form class="login-card" id="loginForm" autocomplete="off">
-    <div class="login-brand">TrendOye<span>.</span></div>
-    <div class="login-sub">Admin Panel</div>
+  <div class="login-card">
+    <div class="login-left">
+      <h1>Simplify management with our <u>dashboard.</u></h1>
+      <p>Simplify your e-commerce management with our user-friendly admin dashboard.</p>
+      <div class="login-illust">
+        <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- shadow p1 -->
+          <ellipse cx="140" cy="285" rx="72" ry="10" fill="rgba(0,0,0,0.14)"/>
+          <!-- p1 pants -->
+          <rect x="100" y="240" width="34" height="50" rx="6" fill="#8b6f4e"/>
+          <rect x="146" y="240" width="34" height="50" rx="6" fill="#8b6f4e"/>
+          <!-- p1 body sweater -->
+          <path d="M92 240 L92 190 Q92 155 140 155 Q188 155 188 190 L188 240 Z" fill="#d9c4a8"/>
+          <!-- sweater vest -->
+          <path d="M110 165 L110 240 L140 240 L140 175 Q140 158 128 158 Z" fill="#c9b391" opacity="0.7"/>
+          <path d="M170 165 L170 240 L140 240 L140 175 Q140 158 152 158 Z" fill="#c9b391" opacity="0.7"/>
+          <!-- p1 arm (waving) -->
+          <path d="M92 200 Q70 195 62 215 Q58 228 70 230 Q80 228 92 220 Z" fill="#d9c4a8"/>
+          <circle cx="62" cy="222" r="10" fill="#f5d4b8"/>
+          <!-- p1 head -->
+          <circle cx="140" cy="125" r="34" fill="#f5d4b8"/>
+          <!-- p1 hair -->
+          <path d="M104 118 Q104 88 140 88 Q176 88 176 118 Q172 100 140 100 Q108 100 104 118 Z" fill="#6b4530"/>
+          <!-- p1 glasses -->
+          <circle cx="128" cy="124" r="10" fill="none" stroke="#2a2a2a" stroke-width="2.4"/>
+          <circle cx="154" cy="124" r="10" fill="none" stroke="#2a2a2a" stroke-width="2.4"/>
+          <line x1="138" y1="124" x2="144" y2="124" stroke="#2a2a2a" stroke-width="2.4"/>
+          <!-- p1 smile -->
+          <path d="M130 142 Q140 150 152 142" fill="none" stroke="#a67c5c" stroke-width="2.4" stroke-linecap="round"/>
 
-    <div class="login-error" id="loginError"></div>
+          <!-- shadow p2 -->
+          <ellipse cx="285" cy="285" rx="72" ry="10" fill="rgba(0,0,0,0.14)"/>
+          <!-- p2 pants white -->
+          <rect x="248" y="240" width="34" height="50" rx="6" fill="#f3f4f6"/>
+          <rect x="290" y="240" width="34" height="50" rx="6" fill="#f3f4f6"/>
+          <!-- p2 body yellow -->
+          <path d="M240 240 L240 190 Q240 155 286 155 Q332 155 332 190 L332 240 Z" fill="#fbbf24"/>
+          <!-- p2 arm -->
+          <path d="M332 195 Q352 195 358 215 Q360 228 350 230 Q340 228 332 218 Z" fill="#fbbf24"/>
+          <circle cx="358" cy="222" r="9" fill="#f5d4b8"/>
+          <!-- p2 head -->
+          <circle cx="286" cy="125" r="34" fill="#f5d4b8"/>
+          <!-- p2 black bob -->
+          <path d="M252 130 Q248 92 286 88 Q324 92 320 130 L322 155 L310 155 L310 122 Q308 102 286 102 Q264 102 262 122 L262 155 L250 155 Z" fill="#1a1a1a"/>
+          <!-- p2 eyes -->
+          <circle cx="274" cy="128" r="3.2" fill="#1a1a1a"/>
+          <circle cx="298" cy="128" r="3.2" fill="#1a1a1a"/>
+          <!-- p2 smile -->
+          <path d="M276 144 Q286 152 296 144" fill="none" stroke="#a67c5c" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
 
-    <label>
-      <span>Username</span>
-      <input type="text" id="loginUser" placeholder="Enter username" required autocomplete="username" />
-    </label>
+    <div class="login-right">
+      <div class="login-brand">
+        <div class="logo">T</div>
+        <span class="name">TrendOye</span>
+      </div>
+      <h2>Welcome Back</h2>
+      <p class="sub">Please login to your admin account</p>
 
-    <label>
-      <span>Password</span>
-      <input type="password" id="loginPass" placeholder="Enter password" required autocomplete="current-password" />
-    </label>
+      <div class="login-error" id="loginError"></div>
 
-    <button type="submit" class="btn primary block" style="padding:11px;margin-top:6px">Sign In</button>
+      <form id="loginForm" autocomplete="off">
+        <div class="field">
+          <label>Username</label>
+          <input type="text" id="loginUser" placeholder="Enter username" required autocomplete="username" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="Enter password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn primary block" style="padding:13px;margin-top:6px">
+          Login
+        </button>
+      </form>
 
-    <p class="login-hint">
-      Default credentials<br />
-      <code>admin</code> &nbsp;/&nbsp; <code>TrendOye@2026</code><br />
-      <small style="opacity:.75">Change these from Settings after first login.</small>
-    </p>
-  </form>
+      <p class="login-hint">
+        Default credentials<br />
+        <code>admin</code> &nbsp;/&nbsp; <code>TrendOye@2026</code><br />
+        <small style="opacity:.8">Change these from Settings after first login.</small>
+      </p>
+    </div>
+  </div>
 </div>
 
 <!-- ============================================================
@@ -432,16 +485,20 @@
      ============================================================ -->
 <div class="app" id="app" style="display:none">
 
-  <!-- ---------- SIDEBAR ---------- -->
+  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-head">
-      <div class="brand">TrendOye<span>.</span></div>
-      <small>Admin Panel</small>
+      <div class="logo">T</div>
+      <div class="info">
+        <div class="name">TrendOye</div>
+        <div class="role">Admin Panel</div>
+      </div>
     </div>
 
     <nav class="sidebar-nav" id="sidebarNav">
+      <div class="nav-label">Menu</div>
       <button data-view="dashboard" class="active">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
         Dashboard
       </button>
       <button data-view="products">
@@ -458,54 +515,83 @@
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
         Categories
       </button>
+      <div class="nav-label" style="margin-top:14px">System</div>
       <button data-view="settings">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.36.4.66.73.87"/></svg>
         Settings
       </button>
     </nav>
 
-    <div class="sidebar-foot">© 2026 TrendOye · v1.0</div>
+    <div class="sidebar-foot">
+      <button id="logoutBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </button>
+    </div>
   </aside>
 
   <div class="overlay" id="overlay"></div>
 
-  <!-- ---------- MAIN ---------- -->
+  <!-- MAIN -->
   <div class="main">
     <header class="topbar">
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <h1 id="pageTitle">Dashboard</h1>
+      <div class="search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="globalSearch" placeholder="Search products…" />
+      </div>
       <div class="topbar-right">
+        <button class="icon-btn" aria-label="Notifications">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
         <div class="user-chip">
           <span class="av" id="userAvatar">A</span>
-          <span class="uname" id="userChip">admin</span>
+          <div class="info">
+            <span class="nm" id="userChip">admin</span>
+            <span class="rl">Administrator</span>
+          </div>
         </div>
-        <button class="btn ghost sm" id="logoutBtn">Logout</button>
       </div>
     </header>
 
     <main class="content">
 
-      <!-- ============ DASHBOARD ============ -->
+      <!-- DASHBOARD -->
       <section class="view active" id="view-dashboard">
         <div class="stats" id="statsGrid"></div>
+
         <div class="grid-2">
+          <div class="panel chart-card">
+            <div class="chart-head">
+              <h3>Sales Overview</h3>
+              <select class="chart-select">
+                <option>Last 6 months</option>
+                <option>Last 12 months</option>
+              </select>
+            </div>
+            <div id="salesChart"></div>
+          </div>
           <div class="panel">
             <div class="panel-head"><h2>Low Stock Alerts</h2></div>
             <div class="table-wrap" id="lowStockList"></div>
           </div>
-          <div class="panel">
-            <div class="panel-head"><h2>Recently Added</h2></div>
-            <div class="table-wrap" id="recentList"></div>
+        </div>
+
+        <div class="panel" style="margin-top:20px">
+          <div class="panel-head">
+            <h2>Recently Added Products</h2>
+            <button class="btn ghost sm" id="viewAllProducts">View All →</button>
           </div>
+          <div class="table-wrap" id="recentList"></div>
         </div>
       </section>
 
-      <!-- ============ PRODUCTS ============ -->
+      <!-- PRODUCTS -->
       <section class="view" id="view-products">
         <div class="toolbar">
-          <input type="search" class="grow" id="pSearch" placeholder="Search by product name or SKU…" />
+          <input type="search" class="grow" id="pSearch" placeholder="Search by name or SKU…" />
           <select id="pCategory"><option value="">All Categories</option></select>
           <select id="pStatus">
             <option value="">All Status</option>
@@ -552,7 +638,105 @@
         </div>
       </section>
 
-      <!-- ============ INVENTORY ============ -->
+      <!-- PRODUCT FORM (full page) -->
+      <section class="view" id="view-product-form">
+        <div class="form-page">
+          <div class="form-head">
+            <div style="flex:1;min-width:0">
+              <button class="btn ghost sm" id="formBackBtn" style="margin-bottom:10px">← Back</button>
+              <h1 id="formTitle">Add New Product<small id="formSubtitle">Fill in the details below</small></h1>
+            </div>
+            <div class="form-head-actions">
+              <button type="button" class="btn ghost" id="formCancelBtn">Cancel</button>
+              <button type="button" class="btn primary" id="formSaveBtn">Save Product</button>
+            </div>
+          </div>
+
+          <form id="productForm" class="form-body">
+            <!-- LEFT COLUMN -->
+            <div>
+              <div class="form-card">
+                <h3>Thumbnail</h3>
+                <div class="upload-zone" id="uploadZone">
+                  <img id="imgPreview" style="display:none" alt="" />
+                  <div class="upload-empty" id="uploadEmpty">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    <p>Click to upload</p>
+                    <small>PNG, JPG, WEBP · max 2MB</small>
+                  </div>
+                  <input type="file" id="imageFileInput" accept="image/*" hidden />
+                </div>
+                <input type="text" name="image" id="formImage" placeholder="Or paste image URL…" />
+              </div>
+
+              <div class="form-card">
+                <h3>Status</h3>
+                <label>
+                  <span>Visibility</span>
+                  <select name="status">
+                    <option value="active">Active</option>
+                    <option value="draft">Draft</option>
+                    <option value="archived">Archived</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div>
+              <div class="form-card">
+                <h3>General</h3>
+                <label>
+                  <span>Product Name <em>*</em></span>
+                  <input type="text" name="name" required maxlength="160" placeholder="e.g. Ruby Red Georgette Silk Party Saree" />
+                </label>
+                <label>
+                  <span>Description</span>
+                  <textarea name="description" rows="4" maxlength="500" placeholder="Fabric, work, blouse details…"></textarea>
+                </label>
+                <div class="form-grid-2">
+                  <label>
+                    <span>Category</span>
+                    <select name="category" id="formCategory"></select>
+                  </label>
+                  <label>
+                    <span>SKU</span>
+                    <input type="text" name="sku" maxlength="40" placeholder="TRD-0001" />
+                  </label>
+                </div>
+                <label>
+                  <span>Badge Label</span>
+                  <input type="text" name="badge" maxlength="30" placeholder="New Arrivals" />
+                </label>
+              </div>
+
+              <div class="form-card">
+                <h3>Pricing &amp; Stock</h3>
+                <div class="form-grid-2">
+                  <label>
+                    <span>Selling Price (₹) <em>*</em></span>
+                    <input type="number" name="price" min="0" step="0.01" required placeholder="0.00" />
+                  </label>
+                  <label>
+                    <span>MRP (₹)</span>
+                    <input type="number" name="mrp" min="0" step="0.01" placeholder="0.00" />
+                  </label>
+                  <label>
+                    <span>Stock Quantity <em>*</em></span>
+                    <input type="number" name="stock" min="0" step="1" required value="0" />
+                  </label>
+                  <label>
+                    <span>Low Stock Alert At</span>
+                    <input type="number" name="lowStockAt" min="0" step="1" value="5" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- INVENTORY -->
       <section class="view" id="view-inventory">
         <div class="stats" id="invStats"></div>
 
@@ -569,7 +753,7 @@
         <div class="panel">
           <div class="panel-head">
             <h2>Stock Manager</h2>
-            <span style="font-size:11.5px;color:var(--muted)">Changes save automatically</span>
+            <span style="font-size:12px;color:var(--muted)">Changes save automatically</span>
           </div>
           <div class="table-wrap">
             <table>
@@ -579,7 +763,7 @@
                   <th>SKU</th>
                   <th>Status</th>
                   <th>Alert At</th>
-                  <th style="min-width:190px">Stock Quantity</th>
+                  <th style="min-width:200px">Stock Quantity</th>
                 </tr>
               </thead>
               <tbody id="inventoryTbody"></tbody>
@@ -589,7 +773,7 @@
         </div>
       </section>
 
-      <!-- ============ CATEGORIES ============ -->
+      <!-- CATEGORIES -->
       <section class="view" id="view-categories">
         <div class="panel">
           <div class="panel-head"><h2>Product Categories</h2></div>
@@ -603,32 +787,32 @@
         </div>
       </section>
 
-      <!-- ============ SETTINGS ============ -->
+      <!-- SETTINGS -->
       <section class="view" id="view-settings">
-        <div class="grid-2">
+        <div class="grid-2 even">
 
           <div class="panel">
             <div class="panel-head"><h2>Login Credentials</h2></div>
             <div class="panel-body">
               <div class="settings-note">
-                Change the admin username / password. You’ll need to log in again after saving.
+                Change the admin username / password. You'll need to log in again after saving.
               </div>
 
               <form id="credsForm">
-                <div class="field">
-                  <span>Current Password <em style="color:var(--pink)">*</em></span>
+                <div class="field-set">
+                  <span>Current Password <em>*</em></span>
                   <input type="password" name="current" required autocomplete="current-password" />
                 </div>
-                <div class="field">
+                <div class="field-set">
                   <span>New Username</span>
                   <input type="text" name="username" id="credUser" required autocomplete="username" />
                 </div>
-                <div class="field">
-                  <span>New Password <em style="color:var(--pink)">*</em></span>
+                <div class="field-set">
+                  <span>New Password <em>*</em></span>
                   <input type="password" name="next" required minlength="6" autocomplete="new-password" />
                 </div>
-                <div class="field">
-                  <span>Confirm New Password <em style="color:var(--pink)">*</em></span>
+                <div class="field-set">
+                  <span>Confirm New Password <em>*</em></span>
                   <input type="password" name="confirm" required minlength="6" autocomplete="new-password" />
                 </div>
                 <button type="submit" class="btn primary">Update Credentials</button>
@@ -641,22 +825,23 @@
             <div class="panel-body">
               <div class="settings-note">
                 All data is stored in this browser (<b>localStorage</b>). Export a JSON backup
-                regularly and import it on any device / browser to restore.
+                regularly and import it on any device / browser to restore. Images are stored
+                as base64 inside the backup — completely portable.
               </div>
 
-              <div class="btn-row" style="margin-bottom:18px">
+              <div class="btn-row" style="margin-bottom:20px">
                 <button class="btn dark" id="exportBtn">⬇ Export Backup (JSON)</button>
                 <button class="btn ghost" id="importBtn">⬆ Import Backup</button>
                 <input type="file" id="importFile" accept="application/json,.json" hidden />
               </div>
 
-              <hr style="border:none;border-top:1px solid var(--line);margin:18px 0" />
+              <hr style="border:none;border-top:1px solid var(--line);margin:20px 0" />
 
               <div class="btn-row">
                 <button class="btn ghost" id="seedBtn">Reload Demo Products</button>
                 <button class="btn danger" id="resetBtn">Factory Reset</button>
               </div>
-              <p style="font-size:11.5px;color:var(--muted);margin-top:10px;line-height:1.6">
+              <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.65">
                 <b>Factory Reset</b> deletes all products, categories and your login — the panel returns to default.
               </p>
             </div>
@@ -669,96 +854,9 @@
   </div>
 </div>
 
-<!-- ============================================================
-     PRODUCT MODAL
-     ============================================================ -->
-<div class="modal" id="productModal">
-  <form class="modal-card" id="productForm">
-    <div class="modal-head">
-      <h2 id="modalTitle">Add Product</h2>
-      <button type="button" class="icon-btn sm" data-close aria-label="Close">✕</button>
-    </div>
-
-    <div class="modal-body">
-      <div class="form-grid">
-
-        <label class="span-2">
-          <span>Product Name <em>*</em></span>
-          <input type="text" name="name" required maxlength="160" placeholder="e.g. Ruby Red Georgette Silk Party Saree" />
-        </label>
-
-        <label>
-          <span>SKU</span>
-          <input type="text" name="sku" maxlength="40" placeholder="TRD-0001" />
-        </label>
-
-        <label>
-          <span>Category</span>
-          <select name="category" id="formCategory"></select>
-        </label>
-
-        <label>
-          <span>Selling Price (₹) <em>*</em></span>
-          <input type="number" name="price" min="0" step="0.01" required placeholder="0.00" />
-        </label>
-
-        <label>
-          <span>MRP (₹)</span>
-          <input type="number" name="mrp" min="0" step="0.01" placeholder="0.00" />
-        </label>
-
-        <label>
-          <span>Stock Quantity <em>*</em></span>
-          <input type="number" name="stock" min="0" step="1" required value="0" />
-        </label>
-
-        <label>
-          <span>Low Stock Alert At</span>
-          <input type="number" name="lowStockAt" min="0" step="1" value="5" />
-        </label>
-
-        <div class="span-2 img-row">
-          <label>
-            <span>Image URL</span>
-            <input type="text" name="image" id="formImage" placeholder="https://…/saree.webp" />
-          </label>
-          <div class="img-preview" id="imgPreview">Preview</div>
-        </div>
-
-        <label>
-          <span>Badge Label</span>
-          <input type="text" name="badge" maxlength="30" placeholder="New Arrivals" />
-        </label>
-
-        <label>
-          <span>Status</span>
-          <select name="status">
-            <option value="active">Active</option>
-            <option value="draft">Draft</option>
-            <option value="archived">Archived</option>
-          </select>
-        </label>
-
-        <label class="span-2">
-          <span>Description</span>
-          <textarea name="description" rows="3" maxlength="500" placeholder="Fabric, work, blouse details…"></textarea>
-        </label>
-
-      </div>
-    </div>
-
-    <div class="modal-foot">
-      <button type="button" class="btn ghost" data-close>Cancel</button>
-      <button type="submit" class="btn primary" id="saveProductBtn">Save Product</button>
-    </div>
-  </form>
-</div>
-
-<!-- ============================================================
-     CONFIRM MODAL
-     ============================================================ -->
+<!-- CONFIRM MODAL -->
 <div class="modal" id="confirmModal">
-  <div class="modal-card small">
+  <div class="modal-card">
     <h2 id="confirmTitle">Are you sure?</h2>
     <p id="confirmText">This action cannot be undone.</p>
     <div class="modal-foot">
@@ -774,25 +872,23 @@
 (function () {
   'use strict';
 
-  /* ============================================================
-     0. TINY HELPERS
-     ============================================================ */
+  /* ============ HELPERS ============ */
   const $  = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
   const K = {
-    products:   'trendoye_products_v1',
-    categories: 'trendoye_categories_v1',
-    auth:       'trendoye_auth_v1',
-    lock:       'trendoye_lock_v1'
+    products:   'trendoye_products_v2',
+    categories: 'trendoye_categories_v2',
+    auth:       'trendoye_auth_v2',
+    lock:       'trendoye_lock_v2'
   };
-  const SESSION_KEY = 'trendoye_session_v1';
+  const SESSION_KEY = 'trendoye_session_v2';
   const SESSION_HOURS = 8;
+  const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
 
   const LS = {
     get(key, fallback) {
-      try {
-        const raw = localStorage.getItem(key);
+      try { const raw = localStorage.getItem(key);
         return raw === null ? fallback : JSON.parse(raw);
       } catch (e) { return fallback; }
     },
@@ -803,9 +899,8 @@
     del(key) { try { localStorage.removeItem(key); } catch (e) {} }
   };
 
-  /* Fast, salted, non-reversible hash (cyrb53 variant) */
   function hash(str) {
-    const s = 'trendoye::v1::' + String(str);
+    const s = 'trendoye::v2::' + String(str);
     let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
     for (let i = 0; i < s.length; i++) {
       const ch = s.charCodeAt(i);
@@ -818,25 +913,21 @@
   }
 
   const uid = () => 'p_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
-
   const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', {
     minimumFractionDigits: 2, maximumFractionDigits: 2
   });
-
   const esc = s => String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
   const PLACEHOLDER = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="88" height="110">' +
-    '<rect width="100%" height="100%" fill="#f5ede0"/>' +
-    '<text x="50%" y="52%" font-family="sans-serif" font-size="11" fill="#c0a998" text-anchor="middle">No Image</text>' +
+    '<rect width="100%" height="100%" fill="#f1f5f9"/>' +
+    '<text x="50%" y="52%" font-family="sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">No Image</text>' +
     '</svg>'
   );
 
-  /* ============================================================
-     1. TOAST
-     ============================================================ */
+  /* ============ TOAST ============ */
   function toast(msg, type = 'ok') {
     const el = document.createElement('div');
     el.className = 'toast ' + type;
@@ -847,12 +938,39 @@
       el.style.opacity = '0';
       el.style.transform = 'translateX(30px)';
       setTimeout(() => el.remove(), 320);
-    }, 2600);
+    }, 2800);
   }
 
-  /* ============================================================
-     2. DEFAULT DATA
-     ============================================================ */
+  /* ============ IMAGE UPLOAD ============ */
+  function resizeImage(file, maxDim = 800, quality = 0.78) {
+    return new Promise((resolve, reject) => {
+      if (!file.type.startsWith('image/')) return reject(new Error('Not an image'));
+      if (file.size > MAX_IMAGE_BYTES * 2) return reject(new Error('Image too large (max 4MB)'));
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          let { width, height } = img;
+          if (width > maxDim || height > maxDim) {
+            const ratio = Math.min(maxDim / width, maxDim / height);
+            width = Math.round(width * ratio);
+            height = Math.round(height * ratio);
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.onerror = () => reject(new Error('Cannot read image'));
+        img.src = e.target.result;
+      };
+      reader.onerror = () => reject(new Error('Read error'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ============ DEFAULT DATA ============ */
   const DEFAULT_AUTH = {
     username: 'admin',
     passHash: hash('TrendOye@2026'),
@@ -860,14 +978,9 @@
   };
 
   const DEFAULT_CATEGORIES = [
-    'Party Sarees',
-    'Wedding Sarees',
-    'Designer Sarees',
-    'Ready To Wear Sarees',
-    'Banarasi Sarees',
-    'Kanjivaram Sarees',
-    'Lehenga Sets',
-    'Silk Sarees'
+    'Party Sarees', 'Wedding Sarees', 'Designer Sarees',
+    'Ready To Wear Sarees', 'Banarasi Sarees', 'Kanjivaram Sarees',
+    'Lehenga Sets', 'Silk Sarees'
   ];
 
   const BASE_IMG = 'https://trendoye.aamir68599.workers.dev/';
@@ -875,122 +988,75 @@
   function seedProducts() {
     const now = Date.now();
     const raw = [
-      {
-        name: 'Black Georgette Silk Party Saree with Zari & Sequin Border',
-        sku: 'TRD-BLK-001', category: 'Party Sarees',
-        price: 2835, mrp: 3999, stock: 12, lowStockAt: 5,
+      { name: 'Black Georgette Silk Party Saree with Zari & Sequin Border', sku: 'TRD-BLK-001',
+        category: 'Party Sarees', price: 2835, mrp: 3999, stock: 12, lowStockAt: 5,
         image: BASE_IMG + 'black-georgette-silk-party-saree-.webp',
-        badge: 'New Arrivals', status: 'active',
-        description: 'Georgette silk saree with zari & sequin border. Blouse piece included.'
-      },
-      {
-        name: 'Ruby Red Georgette Silk Party Saree with Zari & Sequin Border',
-        sku: 'TRD-RED-002', category: 'Party Sarees',
-        price: 2835, mrp: 3999, stock: 8, lowStockAt: 5,
+        badge: 'New Arrivals', status: 'active', description: 'Georgette silk saree with zari & sequin border.' },
+      { name: 'Ruby Red Georgette Silk Party Saree with Zari & Sequin Border', sku: 'TRD-RED-002',
+        category: 'Party Sarees', price: 2835, mrp: 3999, stock: 8, lowStockAt: 5,
         image: BASE_IMG + 'Ruby%20Red%20Georgette%20image%201.webp',
-        badge: 'New Arrivals', status: 'active',
-        description: 'Ruby red georgette silk saree with zari & sequin border.'
-      },
-      {
-        name: 'Light Brown Regal Designer Georgette Silk Saree for Brides',
-        sku: 'TRD-BRN-003', category: 'Designer Sarees',
-        price: 10416, mrp: 13999, stock: 3, lowStockAt: 5,
+        badge: 'New Arrivals', status: 'active', description: 'Ruby red georgette silk saree.' },
+      { name: 'Light Brown Regal Designer Georgette Silk Saree for Brides', sku: 'TRD-BRN-003',
+        category: 'Designer Sarees', price: 10416, mrp: 13999, stock: 3, lowStockAt: 5,
         image: BASE_IMG + 'Light%20Brown%20image%201.webp',
-        badge: 'New Arrivals', status: 'active',
-        description: 'Regal designer georgette silk bridal saree.'
-      },
-      {
-        name: 'Flaxen Yellow Crush Paper Silk Saree With Pearl Work',
-        sku: 'TRD-YLW-004', category: 'Designer Sarees',
-        price: 12615, mrp: 15999, stock: 0, lowStockAt: 3,
+        badge: 'New Arrivals', status: 'active', description: 'Regal designer georgette bridal saree.' },
+      { name: 'Flaxen Yellow Crush Paper Silk Saree With Pearl Work', sku: 'TRD-YLW-004',
+        category: 'Designer Sarees', price: 12615, mrp: 15999, stock: 0, lowStockAt: 3,
         image: BASE_IMG + 'Flaxen%20Yellow%20Crush%20image%201.webp',
-        badge: 'New Arrivals', status: 'active',
-        description: 'Crush paper silk saree with hand pearl work.'
-      },
-      {
-        name: 'Steel Blue Premium Satin Silk Wedding Saree With Blouse Piece',
-        sku: 'TRD-BLU-005', category: 'Wedding Sarees',
-        price: 12615, mrp: 16999, stock: 15, lowStockAt: 5,
+        badge: 'New Arrivals', status: 'active', description: 'Crush paper silk saree with pearl work.' },
+      { name: 'Steel Blue Premium Satin Silk Wedding Saree With Blouse Piece', sku: 'TRD-BLU-005',
+        category: 'Wedding Sarees', price: 12615, mrp: 16999, stock: 15, lowStockAt: 5,
         image: BASE_IMG + 'Steel%20Blue%20Premium%20image%201.webp',
-        badge: 'New Arrivals', status: 'active',
-        description: 'Premium satin silk wedding saree with blouse piece.'
-      },
-      {
-        name: 'Teal Blue Crush Satin Silk Saree With Pearl Work',
-        sku: 'TRD-TEA-006', category: 'Designer Sarees',
-        price: 13335, mrp: 17999, stock: 6, lowStockAt: 5,
+        badge: 'New Arrivals', status: 'active', description: 'Premium satin silk wedding saree.' },
+      { name: 'Teal Blue Crush Satin Silk Saree With Pearl Work', sku: 'TRD-TEA-006',
+        category: 'Designer Sarees', price: 13335, mrp: 17999, stock: 6, lowStockAt: 5,
         image: BASE_IMG + 'Teal%20Blue%20Crush%20Satin%20image%201.webp',
-        badge: 'New Arrivals', status: 'active',
-        description: 'Crush satin silk saree with pearl work.'
-      },
-      {
-        name: 'Gorgeous Banarasi Silk Saree',
-        sku: 'TRD-BAN-007', category: 'Banarasi Sarees',
-        price: 9499, mrp: 12999, stock: 9, lowStockAt: 4,
+        badge: 'New Arrivals', status: 'active', description: 'Crush satin silk saree with pearl work.' },
+      { name: 'Gorgeous Banarasi Silk Saree', sku: 'TRD-BAN-007',
+        category: 'Banarasi Sarees', price: 9499, mrp: 12999, stock: 9, lowStockAt: 4,
         image: BASE_IMG + 'Gorgcous%20banarasi%20image.webp',
-        badge: 'Bestseller', status: 'active',
-        description: 'Handwoven Banarasi silk saree with rich zari pallu.'
-      },
-      {
-        name: 'Vibrant Patola Silk Saree',
-        sku: 'TRD-PAT-008', category: 'Silk Sarees',
-        price: 8750, mrp: 11500, stock: 4, lowStockAt: 4,
-        image: BASE_IMG + 'vibrant%20patola\'s%20image.webp',
-        badge: '', status: 'active',
-        description: 'Traditional double-ikat Patola saree.'
-      }
+        badge: 'Bestseller', status: 'active', description: 'Handwoven Banarasi silk saree.' },
+      { name: 'Vibrant Patola Silk Saree', sku: 'TRD-PAT-008',
+        category: 'Silk Sarees', price: 8750, mrp: 11500, stock: 4, lowStockAt: 4,
+        image: BASE_IMG + "vibrant%20patola's%20image.webp",
+        badge: '', status: 'active', description: 'Traditional double-ikat Patola saree.' }
     ];
     return raw.map((p, i) => Object.assign({}, p, {
-      id: uid() + i,
-      createdAt: now - i * 86400000,
-      updatedAt: now - i * 86400000
+      id: uid() + i, createdAt: now - i * 86400000, updatedAt: now - i * 86400000
     }));
   }
 
-  /* ============================================================
-     3. STATE
-     ============================================================ */
-  let products = [];
-  let categories = [];
-  let auth = {};
+  /* ============ STATE ============ */
+  let products = [], categories = [], auth = {};
   let editingId = null;
   let confirmResolve = null;
-
   const filters = { search: '', category: '', status: '', stock: '', sort: 'new' };
   const invFilters = { search: '', filter: '' };
 
-  /* ============================================================
-     4. PERSISTENCE
-     ============================================================ */
+  /* ============ PERSISTENCE ============ */
   function loadData() {
     auth = LS.get(K.auth, null);
     if (!auth || !auth.username || !auth.passHash) {
       auth = Object.assign({}, DEFAULT_AUTH);
       LS.set(K.auth, auth);
     }
-
     products = LS.get(K.products, null);
-    if (!Array.isArray(products)) {
-      products = seedProducts();
-      LS.set(K.products, products);
-    }
-
+    if (!Array.isArray(products)) { products = seedProducts(); LS.set(K.products, products); }
     categories = LS.get(K.categories, null);
     if (!Array.isArray(categories) || !categories.length) {
-      categories = DEFAULT_CATEGORIES.slice();
-      LS.set(K.categories, categories);
+      categories = DEFAULT_CATEGORIES.slice(); LS.set(K.categories, categories);
     }
   }
-
   const saveProducts   = () => LS.set(K.products, products);
   const saveCategories = () => LS.set(K.categories, categories);
 
-  /* ============================================================
-     5. SESSION / LOGIN
-     ============================================================ */
+  /* ============ SESSION ============ */
   function createSession(username) {
-    const s = { username, exp: Date.now() + SESSION_HOURS * 3600 * 1000 };
-    try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(s)); } catch (e) {}
+    try {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+        username, exp: Date.now() + SESSION_HOURS * 3600 * 1000
+      }));
+    } catch (e) {}
   }
   function getSession() {
     try {
@@ -998,15 +1064,12 @@
       if (!raw) return null;
       const s = JSON.parse(raw);
       if (!s || !s.exp || s.exp < Date.now()) {
-        sessionStorage.removeItem(SESSION_KEY);
-        return null;
+        sessionStorage.removeItem(SESSION_KEY); return null;
       }
       return s;
     } catch (e) { return null; }
   }
-  function clearSession() {
-    try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
-  }
+  function clearSession() { try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {} }
 
   function showLogin() {
     $('#app').style.display = 'none';
@@ -1018,38 +1081,33 @@
   function enterApp(session) {
     $('#loginScreen').style.display = 'none';
     $('#app').style.display = 'grid';
-
-    const name = session && session.username ? session.username : auth.username;
+    const name = (session && session.username) || auth.username;
     $('#userChip').textContent = name;
     $('#userAvatar').textContent = (name || 'A').charAt(0).toUpperCase();
     $('#credUser').value = auth.username;
-
     renderAll();
     showView('dashboard');
   }
 
-  /* Lockout after repeated failures */
-  function getLock() {
+  /* ============ LOGIN LOCK ============ */
+  const getLock = () => {
     const l = LS.get(K.lock, { fails: 0, until: 0 });
     return (l && typeof l === 'object') ? l : { fails: 0, until: 0 };
-  }
-  function setLock(l) { LS.set(K.lock, l); }
+  };
+  const setLock = l => LS.set(K.lock, l);
 
   function handleLogin(e) {
     e.preventDefault();
-
     const errBox = $('#loginError');
     const user = $('#loginUser').value.trim();
     const pass = $('#loginPass').value;
-
     errBox.classList.remove('show');
 
     const lock = getLock();
     if (lock.until && lock.until > Date.now()) {
       const secs = Math.ceil((lock.until - Date.now()) / 1000);
       errBox.textContent = 'Too many failed attempts. Try again in ' + secs + 's.';
-      errBox.classList.add('show');
-      return;
+      errBox.classList.add('show'); return;
     }
 
     const okUser = user.toLowerCase() === String(auth.username).toLowerCase();
@@ -1070,7 +1128,7 @@
       errBox.textContent = 'Too many failed attempts. Locked for 60 seconds.';
     } else {
       setLock({ fails, until: 0 });
-      errBox.textContent = 'Invalid username or password. (' + (5 - fails) + ' attempts left)';
+      errBox.textContent = 'Invalid credentials. (' + (5 - fails) + ' attempts left)';
     }
     errBox.classList.add('show');
     $('#loginPass').value = '';
@@ -1083,121 +1141,145 @@
     toast('Logged out', 'info');
   }
 
-  /* ============================================================
-     6. VIEW SWITCHING
-     ============================================================ */
+  /* ============ VIEW SWITCHING ============ */
   const VIEW_TITLES = {
-    dashboard: 'Dashboard',
-    products: 'Products',
-    inventory: 'Inventory',
-    categories: 'Categories',
-    settings: 'Settings'
+    dashboard: 'Dashboard', products: 'Products', inventory: 'Inventory',
+    categories: 'Categories', settings: 'Settings',
+    'product-form': 'Product Form'
   };
 
   function showView(name) {
     $$('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + name));
     $$('#sidebarNav button').forEach(b => b.classList.toggle('active', b.dataset.view === name));
-    $('#pageTitle').textContent = VIEW_TITLES[name] || 'Dashboard';
     closeSidebar();
     if (name === 'dashboard') renderDashboard();
     if (name === 'products') renderProducts();
     if (name === 'inventory') renderInventory();
     if (name === 'categories') renderCategories();
+    if (name === 'product-form') renderProductForm();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function openSidebar() {
-    $('#sidebar').classList.add('open');
-    $('#overlay').classList.add('show');
-  }
-  function closeSidebar() {
-    $('#sidebar').classList.remove('open');
-    $('#overlay').classList.remove('show');
-  }
+  const openSidebar  = () => { $('#sidebar').classList.add('open'); $('#overlay').classList.add('show'); };
+  const closeSidebar = () => { $('#sidebar').classList.remove('open'); $('#overlay').classList.remove('show'); };
 
-  /* ============================================================
-     7. STOCK HELPERS
-     ============================================================ */
+  /* ============ STOCK HELPERS ============ */
   function stockState(p) {
-    const s = Number(p.stock) || 0;
-    const alert = Number(p.lowStockAt) || 0;
+    const s = Number(p.stock) || 0, alert = Number(p.lowStockAt) || 0;
     if (s <= 0) return 'out';
     if (s <= alert) return 'low';
     return 'in';
   }
   const STOCK_LABEL = { in: 'In Stock', low: 'Low Stock', out: 'Out of Stock' };
+  const stockPill = p => { const st = stockState(p); return '<span class="pill ' + st + '">' + STOCK_LABEL[st] + '</span>'; };
 
-  function stockPill(p) {
-    const st = stockState(p);
-    return '<span class="pill ' + st + '">' + STOCK_LABEL[st] + '</span>';
-  }
-
-  /* ============================================================
-     8. DASHBOARD
-     ============================================================ */
+  /* ============ DASHBOARD ============ */
   function renderDashboard() {
-    const total = products.length;
+    const total  = products.length;
     const active = products.filter(p => p.status === 'active').length;
-    const units = products.reduce((a, p) => a + (Number(p.stock) || 0), 0);
-    const value = products.reduce((a, p) => a + (Number(p.price) || 0) * (Number(p.stock) || 0), 0);
-    const low = products.filter(p => stockState(p) === 'low').length;
-    const out = products.filter(p => stockState(p) === 'out').length;
+    const units  = products.reduce((a, p) => a + (Number(p.stock) || 0), 0);
+    const value  = products.reduce((a, p) => a + (Number(p.price) || 0) * (Number(p.stock) || 0), 0);
+    const low    = products.filter(p => stockState(p) === 'low').length;
+    const out    = products.filter(p => stockState(p) === 'out').length;
 
     $('#statsGrid').innerHTML = [
-      card('Total Products', total, active + ' active', ''),
-      card('Inventory Units', units.toLocaleString('en-IN'), 'pieces in stock', 'gold'),
-      card('Inventory Value', money(value), 'at selling price', 'g'),
-      card('Low Stock', low, 'need restocking', 'a'),
-      card('Out of Stock', out, 'unavailable', 'r')
+      statCard('Total Products', total, active + ' active', ''),
+      statCard('Inventory Value', money(value), 'at selling price', 'g'),
+      statCard('Units in Stock', units.toLocaleString('en-IN'), 'pieces', 'a'),
+      statCard('Low / Out', low + ' / ' + out, 'need attention', 'r')
     ].join('');
 
-    function card(lbl, val, sub, cls) {
+    function statCard(lbl, val, sub, cls) {
       return '<div class="stat ' + cls + '">' +
+        '<div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>' +
         '<div class="lbl">' + esc(lbl) + '</div>' +
         '<div class="val">' + esc(val) + '</div>' +
-        '<div class="sub">' + esc(sub) + '</div></div>';
+        '<div class="sub">' + esc(sub) + '</div>' +
+        '</div>';
     }
 
-    /* Low stock table */
-    const lowItems = products
-      .filter(p => stockState(p) !== 'in')
-      .sort((a, b) => (Number(a.stock) || 0) - (Number(b.stock) || 0))
-      .slice(0, 6);
+    renderChart();
 
-    $('#lowStockList').innerHTML = lowItems.length ? tableOf(lowItems) :
-      '<div class="empty"><strong>All good 🎉</strong>No products are running low.</div>';
+    const lowItems = products.filter(p => stockState(p) !== 'in')
+      .sort((a, b) => (Number(a.stock) || 0) - (Number(b.stock) || 0)).slice(0, 5);
+    $('#lowStockList').innerHTML = lowItems.length ? miniTable(lowItems) :
+      '<div class="empty"><strong>All good 🎉</strong>No products running low.</div>';
 
-    /* Recent */
-    const recent = products.slice()
-      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
-      .slice(0, 6);
+    const recent = products.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, 5);
+    $('#recentList').innerHTML = recent.length ? tableOfRecent(recent) :
+      '<div class="empty"><strong>No products yet</strong>Click "Add Product" to get started.</div>';
 
-    $('#recentList').innerHTML = recent.length ? tableOf(recent, true) :
-      '<div class="empty"><strong>No products yet</strong>Click “Add Product” to get started.</div>';
-
-    function tableOf(list, showPrice) {
+    function miniTable(list) {
       return '<table><tbody>' + list.map(p =>
-        '<tr>' +
-          '<td>' +
-            '<div class="cell-product">' +
-              '<img class="thumb" src="' + esc(p.image || PLACEHOLDER) + '" alt="" ' +
-                'onerror="this.onerror=null;this.src=PLACEHOLDER" />' +
-              '<div class="txt"><strong>' + esc(p.name) + '</strong>' +
-              '<small>' + esc(p.sku || '—') + ' · ' + esc(p.category || 'Uncategorised') + '</small></div>' +
-            '</div>' +
-          '</td>' +
-          '<td style="white-space:nowrap;font-weight:600">' +
-            (showPrice ? money(p.price) : '<span style="color:var(--muted);font-weight:500">' + (Number(p.stock) || 0) + ' pcs</span>') +
-          '</td>' +
-          '<td style="text-align:right">' + stockPill(p) + '</td>' +
-        '</tr>'
+        '<tr><td><div class="cell-product">' +
+        '<img class="thumb" src="' + esc(p.image || PLACEHOLDER) + '" alt="" onerror="this.src=PLACEHOLDER" />' +
+        '<div class="txt"><strong>' + esc(p.name) + '</strong><small>' + esc(p.sku || '—') + '</small></div>' +
+        '</div></td><td style="text-align:right">' + stockPill(p) + '</td></tr>'
       ).join('') + '</tbody></table>';
+    }
+    function tableOfRecent(list) {
+      return '<table><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th></tr></thead><tbody>' +
+        list.map(p =>
+          '<tr><td><div class="cell-product">' +
+          '<img class="thumb" src="' + esc(p.image || PLACEHOLDER) + '" alt="" onerror="this.src=PLACEHOLDER" />' +
+          '<div class="txt"><strong>' + esc(p.name) + '</strong><small>' + esc(p.sku || '—') + '</small></div>' +
+          '</div></td><td>' + esc(p.category || '—') + '</td>' +
+          '<td class="price-cell">' + money(p.price) + '</td>' +
+          '<td style="white-space:nowrap"><span style="font-weight:700">' + (Number(p.stock) || 0) + '</span> ' + stockPill(p) + '</td></tr>'
+        ).join('') + '</tbody></table>';
     }
   }
 
-  /* ============================================================
-     9. PRODUCTS VIEW
-     ============================================================ */
+  function renderChart() {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+    const data = [1800, 2400, 2200, 3100, 2800, 3600, 3200, 4200];
+    const W = 640, H = 240, PL = 50, PR = 20, PT = 20, PB = 40;
+    const cw = W - PL - PR, ch = H - PT - PB;
+    const max = Math.max.apply(null, data) * 1.15;
+    const pts = data.map((v, i) => ({
+      x: PL + (i / (data.length - 1)) * cw,
+      y: PT + (1 - v / max) * ch
+    }));
+
+    let d = 'M ' + pts[0].x + ' ' + pts[0].y;
+    for (let i = 1; i < pts.length; i++) {
+      const cp1x = pts[i - 1].x + (pts[i].x - pts[i - 1].x) / 3;
+      const cp2x = pts[i].x - (pts[i].x - pts[i - 1].x) / 3;
+      d += ' C ' + cp1x + ' ' + pts[i - 1].y + ', ' + cp2x + ' ' + pts[i].y + ', ' + pts[i].x + ' ' + pts[i].y;
+    }
+    const areaD = d + ' L ' + pts[pts.length - 1].x + ' ' + (PT + ch) + ' L ' + pts[0].x + ' ' + (PT + ch) + ' Z';
+
+    const gridLines = [0, 1, 2, 3, 4].map(i => {
+      const y = PT + (i / 4) * ch;
+      const val = Math.round(max - (i / 4) * max);
+      return '<line x1="' + PL + '" y1="' + y + '" x2="' + (W - PR) + '" y2="' + y +
+        '" stroke="#f1f5f9" stroke-width="1"/>' +
+        '<text x="' + (PL - 10) + '" y="' + (y + 4) + '" font-family="sans-serif" font-size="10" fill="#94a3b8" text-anchor="end">' +
+        val.toLocaleString('en-IN') + '</text>';
+    }).join('');
+
+    const labels = months.map((m, i) =>
+      '<text x="' + pts[i].x + '" y="' + (H - 12) + '" font-family="sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">' + m + '</text>'
+    ).join('');
+
+    const dots = pts.map(pt =>
+      '<circle cx="' + pt.x + '" cy="' + pt.y + '" r="4" fill="#fff" stroke="#f97316" stroke-width="2.5"/>'
+    ).join('');
+
+    $('#salesChart').innerHTML =
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto">' +
+      '<defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>' +
+      '<stop offset="100%" stop-color="#f97316" stop-opacity="0"/>' +
+      '</linearGradient></defs>' +
+      gridLines +
+      '<path d="' + areaD + '" fill="url(#areaGrad)"/>' +
+      '<path d="' + d + '" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+      dots + labels +
+      '</svg>';
+  }
+
+  /* ============ PRODUCTS ============ */
   function fillCategorySelect(sel, includeAll, allLabel) {
     if (!sel) return;
     const current = sel.value;
@@ -1206,24 +1288,20 @@
     sel.innerHTML = html;
     if (current && (includeAll || categories.includes(current))) sel.value = current;
   }
-
-  function renderCategoryOptions() {
+  const renderCategoryOptions = () => {
     fillCategorySelect($('#pCategory'), true, 'All Categories');
     fillCategorySelect($('#formCategory'), false);
-  }
+  };
 
   function getFilteredProducts() {
     let list = products.slice();
-
     const q = filters.search.trim().toLowerCase();
     if (q) list = list.filter(p =>
       String(p.name || '').toLowerCase().includes(q) ||
-      String(p.sku || '').toLowerCase().includes(q)
-    );
+      String(p.sku || '').toLowerCase().includes(q));
     if (filters.category) list = list.filter(p => p.category === filters.category);
-    if (filters.status) list = list.filter(p => (p.status || 'active') === filters.status);
-    if (filters.stock) list = list.filter(p => stockState(p) === filters.stock);
-
+    if (filters.status)   list = list.filter(p => (p.status || 'active') === filters.status);
+    if (filters.stock)    list = list.filter(p => stockState(p) === filters.stock);
     switch (filters.sort) {
       case 'name':       list.sort((a, b) => String(a.name).localeCompare(String(b.name))); break;
       case 'price-asc':  list.sort((a, b) => (a.price || 0) - (b.price || 0)); break;
@@ -1238,76 +1316,58 @@
   function renderProducts() {
     const list = getFilteredProducts();
     const tbody = $('#productsTbody');
-
     if (!list.length) {
       tbody.innerHTML = '<tr><td colspan="5"><div class="empty">' +
         '<strong>No products found</strong>' +
-        (products.length ? 'Try changing your filters.' : 'Click “+ Add Product” to create your first product.') +
+        (products.length ? 'Try changing your filters.' : 'Click "+ Add Product" to create your first product.') +
         '</div></td></tr>';
     } else {
       tbody.innerHTML = list.map(p => {
-        const badge = p.badge
-          ? '<span class="pill gold" style="margin-left:6px">' + esc(p.badge) + '</span>' : '';
+        const badge = p.badge ? '<span class="pill gold" style="margin-left:6px">' + esc(p.badge) + '</span>' : '';
         const status = p.status || 'active';
         return '<tr>' +
-          '<td>' +
-            '<div class="cell-product">' +
-              '<img class="thumb" src="' + esc(p.image || PLACEHOLDER) + '" alt="" ' +
-                'onerror="this.onerror=null;this.src=PLACEHOLDER" />' +
-              '<div class="txt"><strong>' + esc(p.name) + '</strong>' +
-                '<small>' + esc(p.sku || '—') + ' · ' + esc(p.category || 'Uncategorised') + '</small>' +
-              '</div>' +
-            '</div>' +
-          '</td>' +
+          '<td><div class="cell-product">' +
+          '<img class="thumb" src="' + esc(p.image || PLACEHOLDER) + '" alt="" onerror="this.src=PLACEHOLDER" />' +
+          '<div class="txt"><strong>' + esc(p.name) + '</strong>' +
+          '<small>' + esc(p.sku || '—') + ' · ' + esc(p.category || 'Uncategorised') + '</small>' +
+          '</div></div></td>' +
           '<td class="price-cell">' + money(p.price) +
-            (p.mrp && Number(p.mrp) > Number(p.price) ? '<small>' + money(p.mrp) + '</small>' : '') +
-          '</td>' +
-          '<td style="white-space:nowrap">' +
-            '<span style="font-weight:700">' + (Number(p.stock) || 0) + '</span> ' + stockPill(p) +
-          '</td>' +
+          (p.mrp && Number(p.mrp) > Number(p.price) ? '<small>' + money(p.mrp) + '</small>' : '') + '</td>' +
+          '<td style="white-space:nowrap"><span style="font-weight:700">' + (Number(p.stock) || 0) + '</span> ' + stockPill(p) + '</td>' +
           '<td><span class="pill ' + esc(status) + '">' + esc(status) + '</span>' + badge + '</td>' +
-          '<td>' +
-            '<div class="row-actions">' +
-              '<button class="btn ghost sm" data-edit="' + esc(p.id) + '">Edit</button>' +
-              '<button class="btn ghost sm" data-del="' + esc(p.id) + '" style="color:var(--red)">Delete</button>' +
-            '</div>' +
-          '</td>' +
-        '</tr>';
+          '<td><div class="row-actions">' +
+          '<button class="btn ghost sm" data-edit="' + esc(p.id) + '">Edit</button>' +
+          '<button class="btn ghost sm" data-del="' + esc(p.id) + '" style="color:var(--red)">Delete</button>' +
+          '</div></td></tr>';
       }).join('');
     }
-
     const units = list.reduce((a, p) => a + (Number(p.stock) || 0), 0);
     const value = list.reduce((a, p) => a + (Number(p.price) || 0) * (Number(p.stock) || 0), 0);
     $('#productsCount').textContent = list.length + ' of ' + products.length + ' products · ' + units + ' units';
     $('#productsValue').textContent = 'Value: ' + money(value);
-
     updateNavCounts();
   }
 
-  /* ============================================================
-     10. INVENTORY VIEW
-     ============================================================ */
+  /* ============ INVENTORY ============ */
   function renderInventory() {
     const units = products.reduce((a, p) => a + (Number(p.stock) || 0), 0);
     const value = products.reduce((a, p) => a + (Number(p.price) || 0) * (Number(p.stock) || 0), 0);
-    const low = products.filter(p => stockState(p) === 'low').length;
-    const out = products.filter(p => stockState(p) === 'out').length;
+    const low   = products.filter(p => stockState(p) === 'low').length;
+    const out   = products.filter(p => stockState(p) === 'out').length;
 
     $('#invStats').innerHTML = [
-      '<div class="stat gold"><div class="lbl">Total Units</div><div class="val">' + units.toLocaleString('en-IN') + '</div><div class="sub">across ' + products.length + ' products</div></div>',
-      '<div class="stat g"><div class="lbl">Stock Value</div><div class="val">' + money(value) + '</div><div class="sub">selling price basis</div></div>',
-      '<div class="stat a"><div class="lbl">Low Stock</div><div class="val">' + low + '</div><div class="sub">reorder soon</div></div>',
-      '<div class="stat r"><div class="lbl">Out of Stock</div><div class="val">' + out + '</div><div class="sub">needs attention</div></div>'
+      '<div class="stat"><div class="icon">📦</div><div class="lbl">Total Units</div><div class="val">' + units.toLocaleString('en-IN') + '</div><div class="sub">across ' + products.length + ' products</div></div>',
+      '<div class="stat g"><div class="icon">💰</div><div class="lbl">Stock Value</div><div class="val">' + money(value) + '</div><div class="sub">selling price basis</div></div>',
+      '<div class="stat a"><div class="icon">⚠️</div><div class="lbl">Low Stock</div><div class="val">' + low + '</div><div class="sub">reorder soon</div></div>',
+      '<div class="stat r"><div class="icon">🚫</div><div class="lbl">Out of Stock</div><div class="val">' + out + '</div><div class="sub">needs attention</div></div>'
     ].join('');
 
     let list = products.slice();
     const q = invFilters.search.trim().toLowerCase();
     if (q) list = list.filter(p =>
       String(p.name || '').toLowerCase().includes(q) ||
-      String(p.sku || '').toLowerCase().includes(q)
-    );
+      String(p.sku || '').toLowerCase().includes(q));
     if (invFilters.filter) list = list.filter(p => stockState(p) === invFilters.filter);
-
     list.sort((a, b) => (Number(a.stock) || 0) - (Number(b.stock) || 0));
 
     const tbody = $('#inventoryTbody');
@@ -1315,29 +1375,20 @@
       tbody.innerHTML = '<tr><td colspan="5"><div class="empty"><strong>Nothing here</strong>No items match this filter.</div></td></tr>';
     } else {
       tbody.innerHTML = list.map(p =>
-        '<tr>' +
-          '<td>' +
-            '<div class="cell-product">' +
-              '<img class="thumb" src="' + esc(p.image || PLACEHOLDER) + '" alt="" ' +
-                'onerror="this.onerror=null;this.src=PLACEHOLDER" />' +
-              '<div class="txt"><strong>' + esc(p.name) + '</strong>' +
-                '<small>' + esc(p.category || 'Uncategorised') + '</small></div>' +
-            '</div>' +
-          '</td>' +
-          '<td style="white-space:nowrap;color:var(--muted);font-size:12px">' + esc(p.sku || '—') + '</td>' +
-          '<td>' + stockPill(p) + '</td>' +
-          '<td style="color:var(--muted)">' + (Number(p.lowStockAt) || 0) + '</td>' +
-          '<td>' +
-            '<div class="stock-ctrl">' +
-              '<button class="icon-btn sm" data-dec="' + esc(p.id) + '" title="Decrease">−</button>' +
-              '<input type="number" class="stock-input" min="0" step="1" value="' + (Number(p.stock) || 0) + '" data-stock="' + esc(p.id) + '" />' +
-              '<button class="icon-btn sm" data-inc="' + esc(p.id) + '" title="Increase">+</button>' +
-            '</div>' +
-          '</td>' +
-        '</tr>'
+        '<tr><td><div class="cell-product">' +
+        '<img class="thumb" src="' + esc(p.image || PLACEHOLDER) + '" alt="" onerror="this.src=PLACEHOLDER" />' +
+        '<div class="txt"><strong>' + esc(p.name) + '</strong><small>' + esc(p.category || 'Uncategorised') + '</small></div>' +
+        '</div></td>' +
+        '<td style="white-space:nowrap;color:var(--muted);font-size:12px">' + esc(p.sku || '—') + '</td>' +
+        '<td>' + stockPill(p) + '</td>' +
+        '<td style="color:var(--muted)">' + (Number(p.lowStockAt) || 0) + '</td>' +
+        '<td><div class="stock-ctrl">' +
+        '<button class="icon-btn sm" data-dec="' + esc(p.id) + '">−</button>' +
+        '<input type="number" class="stock-input" min="0" step="1" value="' + (Number(p.stock) || 0) + '" data-stock="' + esc(p.id) + '" />' +
+        '<button class="icon-btn sm" data-inc="' + esc(p.id) + '">+</button>' +
+        '</div></td></tr>'
       ).join('');
     }
-
     $('#invCount').textContent = list.length + ' of ' + products.length + ' items';
     $('#invValue').textContent = 'Total stock value: ' + money(value);
     updateNavCounts();
@@ -1345,13 +1396,10 @@
 
   function updateNavCounts() {
     $('#navProductCount').textContent = products.length;
-    const lowOrOut = products.filter(p => stockState(p) !== 'in').length;
-    $('#navLowCount').textContent = lowOrOut;
+    $('#navLowCount').textContent = products.filter(p => stockState(p) !== 'in').length;
   }
 
-  /* ============================================================
-     11. CATEGORIES VIEW
-     ============================================================ */
+  /* ============ CATEGORIES ============ */
   function renderCategories() {
     const box = $('#catList');
     if (!categories.length) {
@@ -1363,60 +1411,57 @@
       return '<div class="cat-item">' +
         '<span class="nm">' + esc(c) + '</span>' +
         '<span class="cnt">' + count + '</span>' +
-        '<button class="icon-btn sm" data-delcat="' + esc(c) + '" title="Delete" style="color:var(--red)">✕</button>' +
-      '</div>';
+        '<button class="icon-btn sm" data-delcat="' + esc(c) + '" style="color:var(--red)">✕</button>' +
+        '</div>';
     }).join('');
   }
 
-  /* ============================================================
-     12. PRODUCT MODAL
-     ============================================================ */
-  function openProductModal(product) {
-    editingId = product ? product.id : null;
-    $('#modalTitle').textContent = product ? 'Edit Product' : 'Add Product';
-    $('#saveProductBtn').textContent = product ? 'Update Product' : 'Save Product';
-
+  /* ============ PRODUCT FORM ============ */
+  function renderProductForm() {
     const f = $('#productForm');
-    f.reset();
-
     renderCategoryOptions();
+    const p = editingId ? products.find(x => x.id === editingId) : null;
+    $('#formTitle').innerHTML = (p ? 'Edit Product' : 'Add New Product') +
+      '<small>' + (p ? 'Update details below' : 'Fill in the details below') + '</small>';
 
-    if (product) {
-      f.elements.name.value        = product.name || '';
-      f.elements.sku.value         = product.sku || '';
-      f.elements.category.value    = product.category || (categories[0] || '');
-      f.elements.price.value       = product.price != null ? product.price : '';
-      f.elements.mrp.value         = product.mrp != null ? product.mrp : '';
-      f.elements.stock.value       = product.stock != null ? product.stock : 0;
-      f.elements.lowStockAt.value  = product.lowStockAt != null ? product.lowStockAt : 5;
-      f.elements.image.value       = product.image || '';
-      f.elements.badge.value       = product.badge || '';
-      f.elements.status.value      = product.status || 'active';
-      f.elements.description.value = product.description || '';
+    f.reset();
+    if (p) {
+      f.elements.name.value        = p.name || '';
+      f.elements.sku.value         = p.sku || '';
+      f.elements.category.value    = p.category || (categories[0] || '');
+      f.elements.price.value       = p.price != null ? p.price : '';
+      f.elements.mrp.value         = p.mrp != null ? p.mrp : '';
+      f.elements.stock.value       = p.stock != null ? p.stock : 0;
+      f.elements.lowStockAt.value  = p.lowStockAt != null ? p.lowStockAt : 5;
+      f.elements.image.value       = p.image || '';
+      f.elements.badge.value       = p.badge || '';
+      f.elements.status.value      = p.status || 'active';
+      f.elements.description.value = p.description || '';
     } else {
       f.elements.stock.value = 0;
       f.elements.lowStockAt.value = 5;
       f.elements.status.value = 'active';
       if (categories.length) f.elements.category.value = categories[0];
     }
-
     updateImagePreview();
-    openModal('#productModal');
     setTimeout(() => f.elements.name.focus(), 80);
   }
 
   function updateImagePreview() {
     const url = $('#formImage').value.trim();
-    const box = $('#imgPreview');
-    if (!url) { box.innerHTML = 'Preview'; return; }
-    box.innerHTML = '<img src="' + esc(url) + '" alt="" onerror="this.onerror=null;this.parentElement.textContent=\'Invalid\'" />';
+    const img = $('#imgPreview');
+    const empty = $('#uploadEmpty');
+    if (!url) { img.style.display = 'none'; empty.style.display = 'flex'; return; }
+    img.src = url;
+    img.style.display = 'block';
+    empty.style.display = 'none';
+    img.onerror = () => { img.style.display = 'none'; empty.style.display = 'flex'; };
   }
 
   function handleProductSubmit(e) {
-    e.preventDefault();
-    const f = e.target;
-
-    const name = f.elements.name.value.trim();
+    if (e) e.preventDefault();
+    const f = $('#productForm');
+    const name  = f.elements.name.value.trim();
     const price = parseFloat(f.elements.price.value);
     const stock = parseInt(f.elements.stock.value, 10);
 
@@ -1440,49 +1485,42 @@
     };
 
     if (data.sku) {
-      const dupe = products.find(p =>
-        p.sku && p.sku.toLowerCase() === data.sku.toLowerCase() && p.id !== editingId
-      );
+      const dupe = products.find(p => p.sku &&
+        p.sku.toLowerCase() === data.sku.toLowerCase() && p.id !== editingId);
       if (dupe) { toast('SKU already used by another product', 'err'); return; }
     }
 
     if (editingId) {
       const idx = products.findIndex(p => p.id === editingId);
-      if (idx > -1) {
-        products[idx] = Object.assign({}, products[idx], data);
-      }
+      if (idx > -1) products[idx] = Object.assign({}, products[idx], data);
       toast('Product updated');
     } else {
       products.unshift(Object.assign({ id: uid(), createdAt: Date.now() }, data));
       toast('Product added');
     }
 
-    /* Make sure the category exists in the list */
     if (data.category && !categories.includes(data.category)) {
       categories.push(data.category);
       saveCategories();
     }
-
     saveProducts();
-    closeModal('#productModal');
     editingId = null;
     renderAll();
+    showView('products');
   }
 
-  /* ============================================================
-     13. DELETE / STOCK ACTIONS
-     ============================================================ */
+  function openProductForm(product) {
+    editingId = product ? product.id : null;
+    showView('product-form');
+  }
+
+  /* ============ DELETE / STOCK ============ */
   async function deleteProduct(id) {
     const p = products.find(x => x.id === id);
     if (!p) return;
-
-    const ok = await askConfirm(
-      'Delete product?',
-      '“' + p.name + '” will be permanently removed from your catalogue.',
-      'Delete'
-    );
+    const ok = await askConfirm('Delete product?',
+      '"' + p.name + '" will be permanently removed.', 'Delete');
     if (!ok) return;
-
     products = products.filter(x => x.id !== id);
     saveProducts();
     renderAll();
@@ -1494,37 +1532,22 @@
     if (!p) return;
     p.stock = Math.max(0, (Number(p.stock) || 0) + delta);
     p.updatedAt = Date.now();
-    saveProducts();
-    renderInventory();
-    renderDashboard();
+    saveProducts(); renderInventory(); renderDashboard();
   }
-
   function setStock(id, value) {
     const p = products.find(x => x.id === id);
     if (!p) return;
     p.stock = Math.max(0, parseInt(value, 10) || 0);
     p.updatedAt = Date.now();
-    saveProducts();
-    renderInventory();
-    renderDashboard();
+    saveProducts(); renderInventory(); renderDashboard();
   }
 
-  /* ============================================================
-     14. MODAL HELPERS
-     ============================================================ */
-  function openModal(sel) {
-    const m = $(sel);
-    if (!m) return;
-    m.classList.add('show');
-    document.body.classList.add('modal-open');
-  }
+  /* ============ CONFIRM MODAL ============ */
+  function openModal(sel) { $(sel).classList.add('show'); document.body.classList.add('modal-open'); }
   function closeModal(sel) {
-    const m = $(sel);
-    if (!m) return;
-    m.classList.remove('show');
+    $(sel).classList.remove('show');
     if (!$$('.modal.show').length) document.body.classList.remove('modal-open');
   }
-
   function askConfirm(title, text, dangerLabel) {
     return new Promise(resolve => {
       confirmResolve = resolve;
@@ -1539,13 +1562,10 @@
     if (confirmResolve) { confirmResolve(val); confirmResolve = null; }
   }
 
-  /* ============================================================
-     15. SETTINGS ACTIONS
-     ============================================================ */
+  /* ============ SETTINGS ============ */
   function handleCredsSubmit(e) {
     e.preventDefault();
     const f = e.target;
-
     const current = f.elements.current.value;
     const username = f.elements.username.value.trim();
     const next = f.elements.next.value;
@@ -1553,36 +1573,24 @@
 
     if (hash(current) !== auth.passHash) { toast('Current password is incorrect', 'err'); return; }
     if (!username) { toast('Username cannot be empty', 'err'); return; }
-    if (next.length < 6) { toast('New password must be at least 6 characters', 'err'); return; }
+    if (next.length < 6) { toast('Password must be at least 6 characters', 'err'); return; }
     if (next !== confirm) { toast('Passwords do not match', 'err'); return; }
 
     auth = { username, passHash: hash(next), updatedAt: Date.now() };
     LS.set(K.auth, auth);
     f.reset();
-
-    toast('Credentials updated — please log in again', 'info');
-    setTimeout(() => {
-      clearSession();
-      showLogin();
-    }, 900);
+    toast('Credentials updated — please login again', 'info');
+    setTimeout(() => { clearSession(); showLogin(); }, 900);
   }
 
   function exportBackup() {
-    const data = {
-      app: 'TrendOye Admin',
-      version: 1,
-      exportedAt: new Date().toISOString(),
-      products,
-      categories
-    };
+    const data = { app: 'TrendOye Admin', version: 2, exportedAt: new Date().toISOString(), products, categories };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = 'trendoye-backup-' + new Date().toISOString().slice(0, 10) + '.json';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    document.body.appendChild(a); a.click(); a.remove();
     URL.revokeObjectURL(url);
     toast('Backup downloaded');
   }
@@ -1594,32 +1602,25 @@
       let parsed;
       try { parsed = JSON.parse(reader.result); }
       catch (err) { toast('Invalid JSON file', 'err'); return; }
-
       const list = Array.isArray(parsed) ? parsed : parsed.products;
       if (!Array.isArray(list)) { toast('No products found in file', 'err'); return; }
 
-      const ok = await askConfirm(
-        'Replace all products?',
+      const ok = await askConfirm('Replace all products?',
         'Your current ' + products.length + ' products will be replaced with ' + list.length + ' imported products.',
-        'Import & Replace'
-      );
+        'Import & Replace');
       if (!ok) return;
 
       products = list.map(p => ({
-        id: p.id || uid(),
-        name: p.name || 'Untitled Product',
-        sku: p.sku || '',
+        id: p.id || uid(), name: p.name || 'Untitled Product', sku: p.sku || '',
         category: p.category || 'Uncategorised',
         price: Number(p.price) || 0,
         mrp: p.mrp === '' || p.mrp == null ? '' : Number(p.mrp) || 0,
         stock: Number(p.stock) || 0,
         lowStockAt: Number(p.lowStockAt) || 0,
-        image: p.image || '',
-        badge: p.badge || '',
+        image: p.image || '', badge: p.badge || '',
         status: ['active', 'draft', 'archived'].includes(p.status) ? p.status : 'active',
         description: p.description || '',
-        createdAt: p.createdAt || Date.now(),
-        updatedAt: Date.now()
+        createdAt: p.createdAt || Date.now(), updatedAt: Date.now()
       }));
 
       if (!Array.isArray(parsed.categories)) {
@@ -1628,10 +1629,7 @@
       } else {
         categories = parsed.categories.filter(c => typeof c === 'string' && c.trim());
       }
-
-      saveProducts();
-      saveCategories();
-      renderAll();
+      saveProducts(); saveCategories(); renderAll();
       toast('Backup imported — ' + products.length + ' products');
     };
     reader.onerror = () => toast('Could not read file', 'err');
@@ -1639,40 +1637,27 @@
   }
 
   async function reloadDemo() {
-    const ok = await askConfirm(
-      'Reload demo products?',
-      'Current products will be replaced with the demo catalogue.',
-      'Reload Demo'
-    );
+    const ok = await askConfirm('Reload demo products?',
+      'Current products will be replaced with the demo catalogue.', 'Reload Demo');
     if (!ok) return;
     products = seedProducts();
     categories = DEFAULT_CATEGORIES.slice();
-    saveProducts();
-    saveCategories();
-    renderAll();
+    saveProducts(); saveCategories(); renderAll();
     toast('Demo products restored');
   }
 
   async function factoryReset() {
-    const ok = await askConfirm(
-      'Factory reset everything?',
-      'This deletes ALL products, categories and your login credentials. The panel returns to default (admin / TrendOye@2026).',
-      'Reset Everything'
-    );
+    const ok = await askConfirm('Factory reset everything?',
+      'This deletes ALL products, categories and your login. The panel returns to default (admin / TrendOye@2026).',
+      'Reset Everything');
     if (!ok) return;
-
-    LS.del(K.products);
-    LS.del(K.categories);
-    LS.del(K.auth);
-    LS.del(K.lock);
+    [K.products, K.categories, K.auth, K.lock].forEach(k => LS.del(k));
     clearSession();
     toast('Factory reset complete', 'info');
     setTimeout(() => window.location.reload(), 700);
   }
 
-  /* ============================================================
-     16. MASTER RENDER
-     ============================================================ */
+  /* ============ MASTER RENDER ============ */
   function renderAll() {
     renderCategoryOptions();
     renderDashboard();
@@ -1682,173 +1667,146 @@
     updateNavCounts();
   }
 
-  /* ============================================================
-     17. EVENT BINDING
-     ============================================================ */
+  /* ============ EVENTS ============ */
   function bindEvents() {
-
-    /* ---- Login ---- */
     $('#loginForm').addEventListener('submit', handleLogin);
-
-    /* ---- Logout ---- */
     $('#logoutBtn').addEventListener('click', handleLogout);
 
-    /* ---- Sidebar nav ---- */
     $('#sidebarNav').addEventListener('click', e => {
       const btn = e.target.closest('button[data-view]');
       if (btn) showView(btn.dataset.view);
     });
 
-    /* ---- Mobile drawer ---- */
     $('#menuBtn').addEventListener('click', openSidebar);
     $('#overlay').addEventListener('click', closeSidebar);
 
-    /* ---- Dashboard shortcuts ---- */
-    /* (stat cards are display-only) */
+    $('#viewAllProducts').addEventListener('click', () => showView('products'));
 
-    /* ---- Product filters ---- */
+    /* Global search */
+    $('#globalSearch').addEventListener('input', e => {
+      filters.search = e.target.value;
+      if (!$('#view-products').classList.contains('active')) showView('products');
+      else renderProducts();
+    });
+
+    /* Product filters */
     $('#pSearch').addEventListener('input', e => { filters.search = e.target.value; renderProducts(); });
     $('#pCategory').addEventListener('change', e => { filters.category = e.target.value; renderProducts(); });
     $('#pStatus').addEventListener('change', e => { filters.status = e.target.value; renderProducts(); });
     $('#pStock').addEventListener('change', e => { filters.stock = e.target.value; renderProducts(); });
     $('#pSort').addEventListener('change', e => { filters.sort = e.target.value; renderProducts(); });
 
-    /* ---- Add product ---- */
-    $('#addProductBtn').addEventListener('click', () => openProductModal(null));
+    $('#addProductBtn').addEventListener('click', () => openProductForm(null));
 
-    /* ---- Products table actions ---- */
     $('#productsTbody').addEventListener('click', e => {
       const editBtn = e.target.closest('[data-edit]');
       const delBtn = e.target.closest('[data-del]');
       if (editBtn) {
         const p = products.find(x => x.id === editBtn.dataset.edit);
-        if (p) openProductModal(p);
+        if (p) openProductForm(p);
       }
       if (delBtn) deleteProduct(delBtn.dataset.del);
     });
 
-    /* ---- Inventory ---- */
+    /* Product form */
+    $('#formBackBtn').addEventListener('click', () => { editingId = null; showView('products'); });
+    $('#formCancelBtn').addEventListener('click', () => { editingId = null; showView('products'); });
+    $('#formSaveBtn').addEventListener('click', () => handleProductSubmit(null));
+    $('#productForm').addEventListener('submit', handleProductSubmit);
+    $('#formImage').addEventListener('input', updateImagePreview);
+
+    /* Image upload */
+    $('#uploadZone').addEventListener('click', () => $('#imageFileInput').click());
+    $('#imageFileInput').addEventListener('change', async e => {
+      const file = e.target.files && e.target.files[0];
+      e.target.value = '';
+      if (!file) return;
+      try {
+        toast('Processing image…', 'info');
+        const dataUrl = await resizeImage(file);
+        $('#formImage').value = dataUrl;
+        updateImagePreview();
+        toast('Image uploaded');
+      } catch (err) { toast(err.message || 'Image upload failed', 'err'); }
+    });
+
+    /* Inventory */
     $('#iSearch').addEventListener('input', e => { invFilters.search = e.target.value; renderInventory(); });
     $('#iFilter').addEventListener('change', e => { invFilters.filter = e.target.value; renderInventory(); });
-
     $('#inventoryTbody').addEventListener('click', e => {
       const inc = e.target.closest('[data-inc]');
       const dec = e.target.closest('[data-dec]');
       if (inc) changeStock(inc.dataset.inc, +1);
       if (dec) changeStock(dec.dataset.dec, -1);
     });
-
     $('#inventoryTbody').addEventListener('change', e => {
       const input = e.target.closest('[data-stock]');
       if (input) setStock(input.dataset.stock, input.value);
     });
 
-    /* ---- Categories ---- */
+    /* Categories */
     $('#catForm').addEventListener('submit', e => {
       e.preventDefault();
       const input = $('#catName');
       const name = input.value.trim();
       if (!name) return;
       if (categories.some(c => c.toLowerCase() === name.toLowerCase())) {
-        toast('Category already exists', 'err');
-        return;
+        toast('Category already exists', 'err'); return;
       }
-      categories.push(name);
-      saveCategories();
-      input.value = '';
-      renderAll();
-      toast('Category added');
+      categories.push(name); saveCategories(); input.value = '';
+      renderAll(); toast('Category added');
     });
-
     $('#catList').addEventListener('click', async e => {
       const btn = e.target.closest('[data-delcat]');
       if (!btn) return;
       const name = btn.dataset.delcat;
       const count = products.filter(p => p.category === name).length;
-
-      const ok = await askConfirm(
-        'Delete category?',
-        count
-          ? count + ' product(s) use “' + name + '”. They will be moved to “Uncategorised”.'
-          : '“' + name + '” will be removed.',
-        'Delete'
-      );
+      const ok = await askConfirm('Delete category?',
+        count ? count + ' product(s) use "' + name + '". They will be moved to "Uncategorised".'
+              : '"' + name + '" will be removed.', 'Delete');
       if (!ok) return;
-
       categories = categories.filter(c => c !== name);
       products.forEach(p => { if (p.category === name) p.category = 'Uncategorised'; });
-
-      if (!categories.includes('Uncategorised') && products.some(p => p.category === 'Uncategorised')) {
+      if (!categories.includes('Uncategorised') && products.some(p => p.category === 'Uncategorised'))
         categories.push('Uncategorised');
-      }
-
-      saveCategories();
-      saveProducts();
-      renderAll();
+      saveCategories(); saveProducts(); renderAll();
       toast('Category deleted', 'info');
     });
 
-    /* ---- Product modal ---- */
-    $('#productForm').addEventListener('submit', handleProductSubmit);
-    $('#formImage').addEventListener('input', updateImagePreview);
-
-    /* ---- Modal close buttons / backdrop ---- */
-    document.addEventListener('click', e => {
-      if (e.target.closest('[data-close]')) {
-        const modal = e.target.closest('.modal');
-        if (modal) closeModal('#' + modal.id);
-      }
-      if (e.target.classList.contains('modal')) {
-        closeModal('#' + e.target.id);
-      }
-    });
-
+    /* Modal close */
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         $$('.modal.show').forEach(m => closeModal('#' + m.id));
         closeSidebar();
       }
     });
-
-    /* ---- Confirm modal ---- */
     $('#confirmYes').addEventListener('click', () => resolveConfirm(true));
     $('#confirmNo').addEventListener('click', () => resolveConfirm(false));
 
-    /* ---- Settings ---- */
+    /* Settings */
     $('#credsForm').addEventListener('submit', handleCredsSubmit);
     $('#exportBtn').addEventListener('click', exportBackup);
-
     $('#importBtn').addEventListener('click', () => $('#importFile').click());
     $('#importFile').addEventListener('change', e => {
-      const file = e.target.files && e.target.files[0];
-      importBackup(file);
+      importBackup(e.target.files && e.target.files[0]);
       e.target.value = '';
     });
-
     $('#seedBtn').addEventListener('click', reloadDemo);
     $('#resetBtn').addEventListener('click', factoryReset);
   }
 
-  /* ============================================================
-     18. BOOT
-     ============================================================ */
+  /* ============ BOOT ============ */
   function boot() {
     loadData();
     bindEvents();
-
     const session = getSession();
-    if (session) {
-      enterApp(session);
-    } else {
-      showLogin();
-    }
+    if (session) enterApp(session);
+    else showLogin();
   }
 
-  if (document.readyState === 'loading') {
+  if (document.readyState === 'loading')
     document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
+  else boot();
 
 })();
 </script>
