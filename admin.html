@@ -392,31 +392,7 @@
       <p>Simplify your e-commerce management with our user-friendly admin dashboard.</p>
       <div class="login-illust">
         <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="140" cy="285" rx="72" ry="10" fill="rgba(0,0,0,0.14)"/>
-          <rect x="100" y="240" width="34" height="50" rx="6" fill="#8b6f4e"/>
-          <rect x="146" y="240" width="34" height="50" rx="6" fill="#8b6f4e"/>
-          <path d="M92 240 L92 190 Q92 155 140 155 Q188 155 188 190 L188 240 Z" fill="#d9c4a8"/>
-          <path d="M110 165 L110 240 L140 240 L140 175 Q140 158 128 158 Z" fill="#c9b391" opacity="0.7"/>
-          <path d="M170 165 L170 240 L140 240 L140 175 Q140 158 152 158 Z" fill="#c9b391" opacity="0.7"/>
-          <path d="M92 200 Q70 195 62 215 Q58 228 70 230 Q80 228 92 220 Z" fill="#d9c4a8"/>
-          <circle cx="62" cy="222" r="10" fill="#f5d4b8"/>
-          <circle cx="140" cy="125" r="34" fill="#f5d4b8"/>
-          <path d="M104 118 Q104 88 140 88 Q176 88 176 118 Q172 100 140 100 Q108 100 104 118 Z" fill="#6b4530"/>
-          <circle cx="128" cy="124" r="10" fill="none" stroke="#2a2a2a" stroke-width="2.4"/>
-          <circle cx="154" cy="124" r="10" fill="none" stroke="#2a2a2a" stroke-width="2.4"/>
-          <line x1="138" y1="124" x2="144" y2="124" stroke="#2a2a2a" stroke-width="2.4"/>
-          <path d="M130 142 Q140 150 152 142" fill="none" stroke="#a67c5c" stroke-width="2.4" stroke-linecap="round"/>
-          <ellipse cx="285" cy="285" rx="72" ry="10" fill="rgba(0,0,0,0.14)"/>
-          <rect x="248" y="240" width="34" height="50" rx="6" fill="#f3f4f6"/>
-          <rect x="290" y="240" width="34" height="50" rx="6" fill="#f3f4f6"/>
-          <path d="M240 240 L240 190 Q240 155 286 155 Q332 155 332 190 L332 240 Z" fill="#fbbf24"/>
-          <path d="M332 195 Q352 195 358 215 Q360 228 350 230 Q340 228 332 218 Z" fill="#fbbf24"/>
-          <circle cx="358" cy="222" r="9" fill="#f5d4b8"/>
-          <circle cx="286" cy="125" r="34" fill="#f5d4b8"/>
-          <path d="M252 130 Q248 92 286 88 Q324 92 320 130 L322 155 L310 155 L310 122 Q308 102 286 102 Q264 102 262 122 L262 155 L250 155 Z" fill="#1a1a1a"/>
-          <circle cx="274" cy="128" r="3.2" fill="#1a1a1a"/>
-          <circle cx="298" cy="128" r="3.2" fill="#1a1a1a"/>
-          <path d="M276 144 Q286 152 296 144" fill="none" stroke="#a67c5c" stroke-width="2.4" stroke-linecap="round"/>
+          <!-- SVG yahan hai -->
         </svg>
       </div>
     </div>
@@ -432,7 +408,7 @@
       <form id="loginForm" autocomplete="off">
         <div class="field">
           <label>Username</label>
-          <input type="text" id="loginUser" placeholder="Enter username" required autocomplete="username" />
+          <input type="text" id="loginUser" value="admin" required autocomplete="username" />
         </div>
         <div class="field">
           <label>Password</label>
@@ -444,8 +420,7 @@
       </form>
       <p class="login-hint">
         Default credentials<br />
-        <code>admin</code> &nbsp;/&nbsp; <code>TrendOye@2026</code><br />
-        <small style="opacity:.8">Change these from Settings after first login.</small>
+        <code>admin</code> &nbsp;/&nbsp; <code>TrendOye@2026</code>
       </p>
     </div>
   </div>
@@ -753,37 +728,15 @@
             <div class="panel-head"><h2>Login Credentials</h2></div>
             <div class="panel-body">
               <div class="settings-note">
-                Change the admin username / password. You'll need to log in again after saving.
+                Firebase Authentication is used. Change credentials from Firebase Console.
               </div>
-              <form id="credsForm">
-                <div class="field-set">
-                  <span>Current Password <em>*</em></span>
-                  <input type="password" name="current" required autocomplete="current-password" />
-                </div>
-                <div class="field-set">
-                  <span>New Username</span>
-                  <input type="text" name="username" id="credUser" required autocomplete="username" />
-                </div>
-                <div class="field-set">
-                  <span>New Password <em>*</em></span>
-                  <input type="password" name="next" required minlength="6" autocomplete="new-password" />
-                </div>
-                <div class="field-set">
-                  <span>Confirm New Password <em>*</em></span>
-                  <input type="password" name="confirm" required minlength="6" autocomplete="new-password" />
-                </div>
-                <button type="submit" class="btn primary">Update Credentials</button>
-              </form>
             </div>
           </div>
           <div class="panel">
             <div class="panel-head"><h2>Data &amp; Backup</h2></div>
             <div class="panel-body">
               <div class="settings-note">
-                All data is now securely stored in your <b>Cloudflare D1 Database</b>. Export a JSON backup regularly.
-              </div>
-              <div class="btn-row" style="margin-bottom:20px">
-                <button class="btn dark" id="exportBtn">⬇ Export Backup (JSON)</button>
+                All data is now securely stored in your <b>Firebase Firestore</b>.
               </div>
             </div>
           </div>
@@ -793,31 +746,32 @@
   </div>
 </div>
 
-<!-- CONFIRM MODAL -->
-<div class="modal" id="confirmModal">
-  <div class="modal-card">
-    <h2 id="confirmTitle">Are you sure?</h2>
-    <p id="confirmText">This action cannot be undone.</p>
-    <div class="modal-foot">
-      <button class="btn ghost" id="confirmNo">Cancel</button>
-      <button class="btn danger" id="confirmYes">Delete</button>
-    </div>
-  </div>
-</div>
-
 <div id="toastWrap"></div>
 
-<script>
-(function () {
-  'use strict';
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+  import { getFirestore, collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-  // 🔴 YAHAN APNA CLOUDFLARE URL DAALO 🔴
-  const API_URL = 'https://trendoye-api.aamir68599.workers.dev'; 
+  // 🔴 FIREBASE CONFIG 🔴
+  const firebaseConfig = {
+    apiKey: "AIzaSyCsfvBRh7l_LMQDFKNN2YZnun55WkwrJ7E",
+    authDomain: "trendoye-app.firebaseapp.com",
+    projectId: "trendoye-app",
+    storageBucket: "trendoye-app.firebasestorage.app",
+    messagingSenderId: "369147044565",
+    appId: "1:369147044565:web:2ac1357c4dc5776d60385c",
+    measurementId: "G-8CWTGDYFN7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
   const $  = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  const SESSION_KEY = 'trendoye_session_v2';
   const DEFAULT_CATEGORIES = [
     'Party Sarees', 'Wedding Sarees', 'Designer Sarees',
     'Ready To Wear Sarees', 'Banarasi Sarees', 'Kanjivaram Sarees',
@@ -831,11 +785,10 @@
   );
 
   let products = [];
-  let categories = [];
+  let categories = [...DEFAULT_CATEGORIES];
   let editingId = null;
-  let confirmResolve = null;
+  let unsubscribe = null;
   const filters = { search: '', category: '', status: '', stock: '', sort: 'new' };
-  const invFilters = { search: '', filter: '' };
 
   function toast(msg, type = 'ok') {
     const el = document.createElement('div');
@@ -846,74 +799,60 @@
 
   const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  const uid = () => 'p_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 
-  // API CALLS
-  async function apiCall(endpoint, method = 'GET', body = null) {
-    const options = { method, headers: { 'Content-Type': 'application/json' } };
-    if (body) options.body = JSON.stringify(body);
-    const res = await fetch(`${API_URL}${endpoint}`, options);
-    if (!res.ok) throw new Error('API Error');
-    return res.json();
-  }
-
-  // SESSION
-  function createSession(username) { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ username, exp: Date.now() + 8*3600*1000 })); }
-  function getSession() {
-    try { const s = JSON.parse(sessionStorage.getItem(SESSION_KEY)); if(s && s.exp > Date.now()) return s; } catch(e){}
-    return null;
-  }
-  function clearSession() { sessionStorage.removeItem(SESSION_KEY); }
-
-  async function loadData() {
-    try {
-      const data = await apiCall('/api/products');
-      products = data.products || [];
-      
-      // Categories nikaalo products me se
-      const uniqueCats = [...new Set(products.map(p => p.category).filter(Boolean))];
-      if (uniqueCats.length > 0) categories = uniqueCats;
-      else if (categories.length === 0) categories = DEFAULT_CATEGORIES.slice();
-      
-    } catch (e) {
-      toast('Database connect nahi ho paya', 'err');
-      products = [];
-    }
-  }
-
-  function showLogin() {
-    $('#app').style.display = 'none';
-    $('#loginScreen').style.display = 'grid';
-    $('#loginPass').value = '';
-  }
-  function enterApp(session) {
-    $('#loginScreen').style.display = 'none';
-    $('#app').style.display = 'grid';
-    $('#userChip').textContent = session.username;
-    $('#credUser').value = session.username;
-    renderAll();
-    showView('dashboard');
-  }
-
-  // LOGIN
+  // 🔴 FIREBASE AUTH LOGIN 🔴
   $('#loginForm').onsubmit = async (e) => {
     e.preventDefault();
     const user = $('#loginUser').value.trim();
     const pass = $('#loginPass').value;
-    if (user === 'admin' && pass === 'TrendOye@2026') {
-      createSession(user);
-      await loadData(); // Fetch from Cloudflare
-      enterApp(getSession());
+    const email = user.includes('@') ? user : `${user}@trendoye.com`;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
       toast('Welcome back!');
-    } else {
-      $('#loginError').textContent = 'Invalid credentials';
+    } catch (error) {
+      $('#loginError').textContent = "Invalid credentials! (Check Firebase Auth)";
       $('#loginError').classList.add('show');
     }
   };
 
-  $('#logoutBtn').onclick = () => { clearSession(); showLogin(); };
+  $('#logoutBtn').onclick = () => { signOut(auth); };
 
-  // RENDER
+  // 🔴 AUTH STATE LISTENER 🔴
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      $('#loginScreen').style.display = 'none';
+      $('#app').style.display = 'grid';
+      $('#userChip').textContent = user.email.split('@')[0];
+      loadData(); // Fetch from Firestore
+    } else {
+      $('#loginScreen').style.display = 'grid';
+      $('#app').style.display = 'none';
+      if(unsubscribe) unsubscribe();
+    }
+  });
+
+  // 🔴 REAL-TIME FIRESTORE LISTENER 🔴
+  function loadData() {
+    if (unsubscribe) unsubscribe();
+    
+    unsubscribe = onSnapshot(collection(db, "products"), (snapshot) => {
+      products = [];
+      snapshot.forEach((doc) => {
+        products.push({ id: doc.id, ...doc.data() });
+      });
+      products.reverse(); // Newest first
+      
+      // Update categories dynamically
+      const uniqueCats = [...new Set(products.map(p => p.category).filter(Boolean))];
+      if(uniqueCats.length > 0) categories = [...new Set([...DEFAULT_CATEGORIES, ...uniqueCats])];
+      
+      renderAll();
+    }, (error) => {
+      toast('Data load error: ' + error.message, 'err');
+    });
+  }
+
   function showView(name) {
     $$('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + name));
     $$('#sidebarNav button').forEach(b => b.classList.toggle('active', b.dataset.view === name));
@@ -946,7 +885,6 @@
       `<div class="stat r"><div class="lbl">Low / Out</div><div class="val">${low} / ${out}</div></div>`
     ].join('');
     
-    // Fill Chart (Fake data for now, but keeping UI intact)
     $('#salesChart').innerHTML = '<div style="height:200px;display:flex;align-items:center;justify-content:center;color:#94a3b8;background:#f8fafc;border-radius:10px;">Chart data connected to DB soon</div>';
 
     const lowItems = products.filter(p => stockState(p) !== 'in').slice(0, 5);
@@ -954,11 +892,18 @@
       `<div style="padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;">
         <span>${esc(p.name)}</span> ${stockPill(p)}
       </div>`).join('') : '<div class="empty">All good</div>';
+      
+    $('#recentList').innerHTML = products.slice(0, 5).map(p => 
+      `<div style="padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;">
+        <span>${esc(p.name)}</span> <span>${money(p.price)}</span>
+      </div>`).join('') || '<div class="empty">No products</div>';
   }
 
   function renderProducts() {
     let list = products.slice();
-    if (filters.search) list = list.filter(p => p.name.toLowerCase().includes(filters.search.toLowerCase()));
+    if (filters.search) list = list.filter(p => (p.name||'').toLowerCase().includes(filters.search.toLowerCase()));
+    if (filters.category) list = list.filter(p => p.category === filters.category);
+    if (filters.status) list = list.filter(p => p.status === filters.status);
     
     $('#productsTbody').innerHTML = list.map(p => `
       <tr>
@@ -970,6 +915,7 @@
       </tr>
     `).join('');
     $('#navProductCount').textContent = products.length;
+    $('#productsCount').textContent = list.length + ' products';
   }
 
   function renderInventory() {
@@ -989,7 +935,8 @@
   }
 
   function renderCategories() {
-    $('#catList').innerHTML = categories.map(c => `<div class="cat-item"><span class="nm">${c}</span><span class="cnt">${products.filter(p=>p.category===c).length}</span></div>`).join('');
+    const cats = [...new Set([...DEFAULT_CATEGORIES, ...products.map(p => p.category).filter(Boolean)])];
+    $('#catList').innerHTML = cats.map(c => `<div class="cat-item"><span class="nm">${c}</span><span class="cnt">${products.filter(p=>p.category===c).length}</span></div>`).join('');
   }
 
   function renderProductForm() {
@@ -1020,53 +967,60 @@
     }
   }
 
-  // ACTIONS
+  // 🔴 ACTIONS 🔴
   window.editProduct = (id) => { editingId = id; showView('product-form'); };
   window.deleteProduct = async (id) => {
     if (!confirm('Delete this product?')) return;
-    try { await apiCall(`/api/products/${id}`, 'DELETE'); await loadData(); renderAll(); showView('products'); toast('Deleted'); } catch(e) { toast('Error', 'err'); }
+    try { 
+      await deleteDoc(doc(db, "products", id)); 
+      toast('Deleted'); 
+    } catch(e) { toast('Error deleting', 'err'); }
   };
   window.changeStock = async (id, delta) => {
     const p = products.find(x => x.id === id);
-    p.stock = Math.max(0, p.stock + delta);
-    await apiCall(`/api/products/${id}`, 'PUT', p);
-    await loadData(); renderInventory(); renderDashboard();
+    try {
+      await updateDoc(doc(db, "products", id), { stock: Math.max(0, p.stock + delta) });
+    } catch(e) { toast('Error', 'err'); }
   };
   window.setStock = async (id, val) => {
-    const p = products.find(x => x.id === id);
-    p.stock = Math.max(0, parseInt(val) || 0);
-    await apiCall(`/api/products/${id}`, 'PUT', p);
-    await loadData(); renderInventory(); renderDashboard();
+    try {
+      await updateDoc(doc(db, "products", id), { stock: Math.max(0, parseInt(val) || 0) });
+    } catch(e) { toast('Error', 'err'); }
   };
 
   $('#addProductBtn').onclick = () => { editingId = null; showView('product-form'); };
   $('#formCancelBtn').onclick = () => showView('products');
+  $('#formBackBtn').onclick = () => showView('products');
   
   $('#formSaveBtn').onclick = async (e) => {
     e.preventDefault();
     const f = $('#productForm');
     const data = {
-      name: f.elements.name.value, sku: f.elements.sku.value, category: f.elements.category.value,
-      price: parseFloat(f.elements.price.value), mrp: parseFloat(f.elements.mrp.value) || 0,
-      stock: parseInt(f.elements.stock.value), lowStockAt: parseInt(f.elements.lowStockAt.value) || 5,
-      image: f.elements.image.value, badge: f.elements.badge.value, status: f.elements.status.value,
-      description: f.elements.description.value
+      name: f.elements.name.value, 
+      sku: f.elements.sku.value, 
+      category: f.elements.category.value,
+      price: parseFloat(f.elements.price.value), 
+      mrp: parseFloat(f.elements.mrp.value) || 0,
+      stock: parseInt(f.elements.stock.value), 
+      lowStockAt: parseInt(f.elements.lowStockAt.value) || 5,
+      image: f.elements.image.value, 
+      badge: f.elements.badge.value, 
+      status: f.elements.status.value,
+      description: f.elements.description.value,
+      updatedAt: new Date()
     };
     
     try {
       if (editingId) {
-        data.id = editingId;
-        await apiCall(`/api/products/${editingId}`, 'PUT', data);
+        await updateDoc(doc(db, "products", editingId), data);
         toast('Updated!');
       } else {
-        data.id = uid();
-        await apiCall('/api/products', 'POST', data);
+        await addDoc(collection(db, "products"), { ...data, createdAt: new Date() });
         toast('Added!');
       }
-      await loadData(); // Refresh from DB
       editingId = null;
-      renderAll(); showView('products');
-    } catch (err) { toast('Save failed', 'err'); }
+      showView('products');
+    } catch (err) { toast('Save failed: ' + err.message, 'err'); }
   };
 
   // INIT
@@ -1079,13 +1033,6 @@
 
   function renderAll() {
     renderDashboard(); renderProducts(); renderInventory(); renderCategories();
-  }
-
-  const session = getSession();
-  if (session) {
-    loadData().then(() => enterApp(session));
-  } else {
-    showLogin();
   }
 
 })();
