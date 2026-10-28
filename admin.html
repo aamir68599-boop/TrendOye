@@ -71,56 +71,6 @@
     background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 
-  /* LOGIN */
-  .login{min-height:100vh;display:grid;place-items:center;padding:24px;
-    background:
-      radial-gradient(circle at 15% 15%, #ffe9d6 0%, transparent 50%),
-      radial-gradient(circle at 85% 85%, #fff3e0 0%, transparent 50%),
-      #fff9f3}
-  .login-card{display:grid;grid-template-columns:1.05fr 1fr;
-    width:100%;max-width:1000px;background:#fff;border-radius:26px;overflow:hidden;
-    box-shadow:0 30px 80px rgba(249,115,22,.12), 0 4px 12px rgba(0,0,0,.04);
-    animation:pop .4s ease;min-height:560px}
-  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
-
-  .login-left{padding:44px 40px;background:linear-gradient(160deg,#fb923c 0%,#ea580c 100%);
-    color:#fff;display:flex;flex-direction:column;position:relative;overflow:hidden}
-  .login-left::before{content:'';position:absolute;width:340px;height:340px;
-    background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);
-    top:-80px;right:-80px;border-radius:50%}
-  .login-left h1{font-size:32px;font-weight:800;line-height:1.2;letter-spacing:-.02em;
-    margin-bottom:16px;position:relative;z-index:1}
-  .login-left h1 u{text-decoration-color:rgba(255,255,255,.5);text-underline-offset:8px;
-    text-decoration-thickness:3px}
-  .login-left p{font-size:14px;opacity:.92;line-height:1.6;margin-bottom:auto;
-    max-width:340px;position:relative;z-index:1}
-  .login-illust{position:relative;z-index:1;margin-top:32px;display:grid;place-items:center}
-  .login-illust svg{max-width:100%;height:auto}
-
-  .login-right{padding:48px 44px;display:flex;flex-direction:column;justify-content:center}
-  .login-brand{display:flex;align-items:center;gap:10px;margin-bottom:32px}
-  .login-brand .logo{width:40px;height:40px;border-radius:12px;
-    background:linear-gradient(135deg,#fb923c,#ea580c);
-    display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px}
-  .login-brand .name{font-size:20px;font-weight:800;letter-spacing:-.02em}
-  .login-right h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
-  .login-right .sub{color:var(--muted);font-size:14px;margin-bottom:26px}
-
-  .login-error{display:none;background:var(--red-soft);color:#b91c1c;
-    border:1px solid #fecaca;padding:11px 14px;border-radius:10px;
-    font-size:13px;margin-bottom:16px;font-weight:500}
-  .login-error.show{display:block}
-
-  .field{margin-bottom:16px}
-  .field label{display:block;font-size:12px;font-weight:600;color:#334155;
-    margin-bottom:7px;letter-spacing:.02em}
-  .field-hint{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-
-  .login-hint{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);
-    font-size:12px;color:var(--muted);line-height:1.8;text-align:center}
-  .login-hint code{background:#fff7ed;color:var(--orange-dark);
-    padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600}
-
   /* APP SHELL */
   .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
 
@@ -352,11 +302,6 @@
 
   /* RESPONSIVE */
   @media (max-width:1024px){
-    .login-card{grid-template-columns:1fr;max-width:440px}
-    .login-left{padding:32px 28px}
-    .login-left h1{font-size:24px}
-    .login-illust{margin-top:20px;max-height:200px}
-    .login-illust svg{max-height:200px}
     .app{grid-template-columns:1fr}
     .sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;height:100vh;
       transform:translateX(-100%);transition:transform .28s ease}
@@ -375,59 +320,13 @@
     .stat .val{font-size:22px}
     #toastWrap{left:14px;right:14px;top:14px}
     .toast{max-width:none}
-    .login{padding:14px}
-    .login-right{padding:36px 26px}
-    .login-left{padding:26px 24px}
-    .login-left h1{font-size:22px}
   }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div class="login" id="loginScreen">
-  <div class="login-card">
-    <div class="login-left">
-      <h1>Simplify management with our <u>dashboard.</u></h1>
-      <p>Simplify your e-commerce management with our user-friendly admin dashboard.</p>
-      <div class="login-illust">
-        <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
-          <!-- SVG yahan hai -->
-        </svg>
-      </div>
-    </div>
-
-    <div class="login-right">
-      <div class="login-brand">
-        <div class="logo">T</div>
-        <span class="name">TrendOye</span>
-      </div>
-      <h2>Welcome Back</h2>
-      <p class="sub">Please login to your admin account</p>
-      <div class="login-error" id="loginError"></div>
-      <form id="loginForm" autocomplete="off">
-        <div class="field">
-          <label>Username</label>
-          <input type="text" id="loginUser" value="admin" required autocomplete="username" />
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" id="loginPass" placeholder="Enter password" required autocomplete="current-password" />
-        </div>
-        <button type="submit" class="btn primary block" style="padding:13px;margin-top:6px">
-          Login
-        </button>
-      </form>
-      <p class="login-hint">
-        Default credentials<br />
-        <code>admin</code> &nbsp;/&nbsp; <code>TrendOye@2026</code>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- APP -->
-<div class="app" id="app" style="display:none">
+<!-- APP (Direct Access, No Login) -->
+<div class="app" id="app">
 
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-head">
@@ -466,10 +365,7 @@
     </nav>
 
     <div class="sidebar-foot">
-      <button id="logoutBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Logout
-      </button>
+      <button onclick="location.reload()">Refresh App</button>
     </div>
   </aside>
 
@@ -485,14 +381,11 @@
         <input type="search" id="globalSearch" placeholder="Search products…" />
       </div>
       <div class="topbar-right">
-        <button class="icon-btn" aria-label="Notifications">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        </button>
         <div class="user-chip">
-          <span class="av" id="userAvatar">A</span>
+          <span class="av">A</span>
           <div class="info">
-            <span class="nm" id="userChip">admin</span>
-            <span class="rl">Administrator</span>
+            <span class="nm">Admin</span>
+            <span class="rl">Logged In</span>
           </div>
         </div>
       </div>
@@ -504,13 +397,7 @@
         <div class="stats" id="statsGrid"></div>
         <div class="grid-2">
           <div class="panel chart-card">
-            <div class="chart-head">
-              <h3>Sales Overview</h3>
-              <select class="chart-select">
-                <option>Last 6 months</option>
-                <option>Last 12 months</option>
-              </select>
-            </div>
+            <div class="chart-head"><h3>Sales Overview</h3></div>
             <div id="salesChart"></div>
           </div>
           <div class="panel">
@@ -521,7 +408,6 @@
         <div class="panel" style="margin-top:20px">
           <div class="panel-head">
             <h2>Recently Added Products</h2>
-            <button class="btn ghost sm" id="viewAllProducts">View All →</button>
           </div>
           <div class="table-wrap" id="recentList"></div>
         </div>
@@ -531,27 +417,6 @@
       <section class="view" id="view-products">
         <div class="toolbar">
           <input type="search" class="grow" id="pSearch" placeholder="Search by name or SKU…" />
-          <select id="pCategory"><option value="">All Categories</option></select>
-          <select id="pStatus">
-            <option value="">All Status</option>
-            <option value="active">Active</option>
-            <option value="draft">Draft</option>
-            <option value="archived">Archived</option>
-          </select>
-          <select id="pStock">
-            <option value="">All Stock</option>
-            <option value="in">In Stock</option>
-            <option value="low">Low Stock</option>
-            <option value="out">Out of Stock</option>
-          </select>
-          <select id="pSort">
-            <option value="new">Newest First</option>
-            <option value="name">Name (A–Z)</option>
-            <option value="price-asc">Price ↑</option>
-            <option value="price-desc">Price ↓</option>
-            <option value="stock-asc">Stock ↑</option>
-            <option value="stock-desc">Stock ↓</option>
-          </select>
           <button class="btn primary" id="addProductBtn">+ Add Product</button>
         </div>
         <div class="panel">
@@ -569,20 +434,17 @@
               <tbody id="productsTbody"></tbody>
             </table>
           </div>
-          <div class="table-foot">
-            <span id="productsCount">0 products</span>
-            <span id="productsValue"></span>
-          </div>
+          <div class="table-foot"><span id="productsCount">0 products</span></div>
         </div>
       </section>
 
-      <!-- PRODUCT FORM (full page) -->
+      <!-- PRODUCT FORM -->
       <section class="view" id="view-product-form">
         <div class="form-page">
           <div class="form-head">
             <div style="flex:1;min-width:0">
               <button class="btn ghost sm" id="formBackBtn" style="margin-bottom:10px">← Back</button>
-              <h1 id="formTitle">Add New Product<small id="formSubtitle">Fill in the details below</small></h1>
+              <h1 id="formTitle">Add New Product</h1>
             </div>
             <div class="form-head-actions">
               <button type="button" class="btn ghost" id="formCancelBtn">Cancel</button>
@@ -593,78 +455,39 @@
           <form id="productForm" class="form-body">
             <div>
               <div class="form-card">
-                <h3>Thumbnail</h3>
-                <div class="upload-zone" id="uploadZone">
+                <h3>Thumbnail URL</h3>
+                <div class="upload-zone">
                   <img id="imgPreview" style="display:none" alt="" />
-                  <div class="upload-empty" id="uploadEmpty">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                    <p>Click to upload</p>
-                    <small>PNG, JPG, WEBP · max 2MB</small>
-                  </div>
-                  <input type="file" id="imageFileInput" accept="image/*" hidden />
+                  <div class="upload-empty" id="uploadEmpty"><p>Paste URL below</p></div>
                 </div>
-                <input type="text" name="image" id="formImage" placeholder="Or paste image URL…" />
+                <input type="text" name="image" id="formImage" placeholder="https://..." />
               </div>
-
               <div class="form-card">
                 <h3>Status</h3>
                 <label>
                   <span>Visibility</span>
-                  <select name="status">
-                    <option value="active">Active</option>
-                    <option value="draft">Draft</option>
-                    <option value="archived">Archived</option>
-                  </select>
+                  <select name="status"><option value="active">Active</option><option value="draft">Draft</option></select>
                 </label>
               </div>
             </div>
-
             <div>
               <div class="form-card">
                 <h3>General</h3>
-                <label>
-                  <span>Product Name <em>*</em></span>
-                  <input type="text" name="name" required maxlength="160" placeholder="e.g. Ruby Red Georgette Silk Party Saree" />
-                </label>
-                <label>
-                  <span>Description</span>
-                  <textarea name="description" rows="4" maxlength="500" placeholder="Fabric, work, blouse details…"></textarea>
-                </label>
+                <label><span>Product Name <em>*</em></span><input type="text" name="name" required /></label>
+                <label><span>Description</span><textarea name="description" rows="3"></textarea></label>
                 <div class="form-grid-2">
-                  <label>
-                    <span>Category</span>
-                    <select name="category" id="formCategory"></select>
-                  </label>
-                  <label>
-                    <span>SKU</span>
-                    <input type="text" name="sku" maxlength="40" placeholder="TRD-0001" />
-                  </label>
+                  <label><span>Category</span><input type="text" name="category" placeholder="e.g. Party Sarees" /></label>
+                  <label><span>SKU</span><input type="text" name="sku" /></label>
                 </div>
-                <label>
-                  <span>Badge Label</span>
-                  <input type="text" name="badge" maxlength="30" placeholder="New Arrivals" />
-                </label>
+                <label><span>Badge Label</span><input type="text" name="badge" /></label>
               </div>
-
               <div class="form-card">
                 <h3>Pricing &amp; Stock</h3>
                 <div class="form-grid-2">
-                  <label>
-                    <span>Selling Price (₹) <em>*</em></span>
-                    <input type="number" name="price" min="0" step="0.01" required placeholder="0.00" />
-                  </label>
-                  <label>
-                    <span>MRP (₹)</span>
-                    <input type="number" name="mrp" min="0" step="0.01" placeholder="0.00" />
-                  </label>
-                  <label>
-                    <span>Stock Quantity <em>*</em></span>
-                    <input type="number" name="stock" min="0" step="1" required value="0" />
-                  </label>
-                  <label>
-                    <span>Low Stock Alert At</span>
-                    <input type="number" name="lowStockAt" min="0" step="1" value="5" />
-                  </label>
+                  <label><span>Selling Price (₹) <em>*</em></span><input type="number" name="price" required /></label>
+                  <label><span>MRP (₹)</span><input type="number" name="mrp" /></label>
+                  <label><span>Stock <em>*</em></span><input type="number" name="stock" required value="10" /></label>
+                  <label><span>Low Stock Alert</span><input type="number" name="lowStockAt" value="5" /></label>
                 </div>
               </div>
             </div>
@@ -674,36 +497,14 @@
 
       <!-- INVENTORY -->
       <section class="view" id="view-inventory">
-        <div class="stats" id="invStats"></div>
-        <div class="toolbar">
-          <input type="search" class="grow" id="iSearch" placeholder="Search product or SKU…" />
-          <select id="iFilter">
-            <option value="">All Items</option>
-            <option value="low">Low Stock</option>
-            <option value="out">Out of Stock</option>
-            <option value="in">Healthy Stock</option>
-          </select>
-        </div>
         <div class="panel">
-          <div class="panel-head">
-            <h2>Stock Manager</h2>
-            <span style="font-size:12px;color:var(--muted)">Changes save automatically</span>
-          </div>
+          <div class="panel-head"><h2>Stock Manager</h2></div>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>SKU</th>
-                  <th>Status</th>
-                  <th>Alert At</th>
-                  <th style="min-width:200px">Stock Quantity</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Product</th><th>SKU</th><th>Status</th><th>Stock Quantity</th></tr></thead>
               <tbody id="inventoryTbody"></tbody>
             </table>
           </div>
-          <div class="table-foot"><span id="invCount">0 items</span><span id="invValue"></span></div>
         </div>
       </section>
 
@@ -711,36 +512,13 @@
       <section class="view" id="view-categories">
         <div class="panel">
           <div class="panel-head"><h2>Product Categories</h2></div>
-          <div class="panel-body">
-            <form class="cat-form" id="catForm">
-              <input type="text" id="catName" placeholder="New category name (e.g. Banarasi Sarees)" required />
-              <button type="submit" class="btn primary">Add Category</button>
-            </form>
-            <div class="cat-list" id="catList"></div>
-          </div>
+          <div class="panel-body"><div class="cat-list" id="catList"></div></div>
         </div>
       </section>
 
       <!-- SETTINGS -->
       <section class="view" id="view-settings">
-        <div class="grid-2 even">
-          <div class="panel">
-            <div class="panel-head"><h2>Login Credentials</h2></div>
-            <div class="panel-body">
-              <div class="settings-note">
-                Login is hardcoded for simplicity. Username: <b>admin</b>, Password: <b>TrendOye@2026</b>
-              </div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-head"><h2>Data &amp; Backup</h2></div>
-            <div class="panel-body">
-              <div class="settings-note">
-                All data is now securely stored in your <b>Firebase Firestore</b>.
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="panel"><div class="panel-head"><h2>Settings</h2></div><div class="panel-body">Admin Panel (No Auth Required)</div></div>
       </section>
     </main>
   </div>
@@ -748,12 +526,11 @@
 
 <div id="toastWrap"></div>
 
-<!-- Firebase SDK (Only App and Firestore, No Auth) -->
+<!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
   import { getFirestore, collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-  // 🔴 FIREBASE CONFIG 🔴
   const firebaseConfig = {
     apiKey: "AIzaSyCsfvBRh7l_LMQDFKNN2YZnun55WkwrJ7E",
     authDomain: "trendoye-app.firebaseapp.com",
@@ -767,26 +544,17 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const $  = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const $  = (sel) => document.querySelector(sel);
+  const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-  const DEFAULT_CATEGORIES = [
-    'Party Sarees', 'Wedding Sarees', 'Designer Sarees',
-    'Ready To Wear Sarees', 'Banarasi Sarees', 'Kanjivaram Sarees',
-    'Lehenga Sets', 'Silk Sarees'
-  ];
-  const PLACEHOLDER = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="88" height="110">' +
-    '<rect width="100%" height="100%" fill="#f1f5f9"/>' +
-    '<text x="50%" y="52%" font-family="sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">No Image</text>' +
-    '</svg>'
-  );
+  const DEFAULT_CATEGORIES = ['Party Sarees', 'Wedding Sarees', 'Designer Sarees', 'Ready To Wear Sarees', 'Banarasi Sarees', 'Kanjivaram Sarees', 'Lehenga Sets', 'Silk Sarees'];
+  const PLACEHOLDER = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="88" height="110"><rect width="100%" height="100%" fill="#f1f5f9"/><text x="50%" y="52%" font-family="sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">No Image</text></svg>');
 
   let products = [];
   let categories = [...DEFAULT_CATEGORIES];
   let editingId = null;
   let unsubscribe = null;
-  const filters = { search: '', category: '', status: '', stock: '', sort: 'new' };
+  const filters = { search: '' };
 
   function toast(msg, type = 'ok') {
     const el = document.createElement('div');
@@ -795,62 +563,20 @@
     setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 2800);
   }
 
-  const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 });
+  const esc = s => String(s == null ? '' : s).replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  // 🔴 SIMPLE HARDCODED LOGIN 🔴
-  $('#loginForm').onsubmit = (e) => {
-    e.preventDefault();
-    const user = $('#loginUser').value.trim();
-    const pass = $('#loginPass').value;
-
-    if (user === 'admin' && pass === 'TrendOye@2026') {
-      sessionStorage.setItem('trendoye_admin_logged_in', 'true');
-      enterApp();
-    } else {
-      $('#loginError').textContent = "Galat Username ya Password!";
-      $('#loginError').classList.add('show');
-    }
-  };
-
-  $('#logoutBtn').onclick = () => { 
-    sessionStorage.removeItem('trendoye_admin_logged_in');
-    location.reload(); 
-  };
-
-  function enterApp() {
-    $('#loginScreen').style.display = 'none';
-    $('#app').style.display = 'grid';
-    loadData(); // Fetch from Firestore
-  }
-
-  // Check on page load
-  if (sessionStorage.getItem('trendoye_admin_logged_in') === 'true') {
-    enterApp();
-  } else {
-    $('#loginScreen').style.display = 'grid';
-    $('#app').style.display = 'none';
-  }
-
-  // 🔴 REAL-TIME FIRESTORE LISTENER 🔴
+  // Load Data
   function loadData() {
     if (unsubscribe) unsubscribe();
-    
     unsubscribe = onSnapshot(collection(db, "products"), (snapshot) => {
       products = [];
-      snapshot.forEach((doc) => {
-        products.push({ id: doc.id, ...doc.data() });
-      });
-      products.reverse(); // Newest first
-      
-      // Update categories dynamically
+      snapshot.forEach((doc) => products.push({ id: doc.id, ...doc.data() }));
+      products.reverse();
       const uniqueCats = [...new Set(products.map(p => p.category).filter(Boolean))];
       if(uniqueCats.length > 0) categories = [...new Set([...DEFAULT_CATEGORIES, ...uniqueCats])];
-      
       renderAll();
-    }, (error) => {
-      toast('Data load error: ' + error.message, 'err');
-    });
+    }, (error) => toast('Firebase Rules check karein! Data load error: ' + error.message, 'err'));
   }
 
   function showView(name) {
@@ -863,54 +589,40 @@
     if (name === 'product-form') renderProductForm();
   }
 
-  function stockState(p) {
+  function stockPill(p) {
     const s = Number(p.stock) || 0, alert = Number(p.lowStockAt) || 0;
-    if (s <= 0) return 'out';
-    if (s <= alert) return 'low';
-    return 'in';
+    if (s <= 0) return `<span class="pill out">Out</span>`;
+    if (s <= alert) return `<span class="pill low">Low</span>`;
+    return `<span class="pill in">In Stock</span>`;
   }
-  const stockPill = p => { const st = stockState(p); return `<span class="pill ${st}">${st==='in'?'In Stock':st==='low'?'Low Stock':'Out of Stock'}</span>`; };
 
   function renderDashboard() {
     const total = products.length;
-    const units = products.reduce((a, p) => a + (Number(p.stock) || 0), 0);
     const value = products.reduce((a, p) => a + (Number(p.price) || 0) * (Number(p.stock) || 0), 0);
-    const low = products.filter(p => stockState(p) === 'low').length;
-    const out = products.filter(p => stockState(p) === 'out').length;
 
-    $('#statsGrid').innerHTML = [
-      `<div class="stat"><div class="lbl">Total Products</div><div class="val">${total}</div></div>`,
-      `<div class="stat g"><div class="lbl">Inventory Value</div><div class="val">${money(value)}</div></div>`,
-      `<div class="stat a"><div class="lbl">Units in Stock</div><div class="val">${units}</div></div>`,
-      `<div class="stat r"><div class="lbl">Low / Out</div><div class="val">${low} / ${out}</div></div>`
-    ].join('');
+    $('#statsGrid').innerHTML = `
+      <div class="stat"><div class="lbl">Total Products</div><div class="val">${total}</div></div>
+      <div class="stat g"><div class="lbl">Inventory Value</div><div class="val">${money(value)}</div></div>
+    `;
+    $('#salesChart').innerHTML = '<div style="height:150px;display:flex;align-items:center;justify-content:center;color:#94a3b8;background:#f8fafc;border-radius:10px;">Chart</div>';
     
-    $('#salesChart').innerHTML = '<div style="height:200px;display:flex;align-items:center;justify-content:center;color:#94a3b8;background:#f8fafc;border-radius:10px;">Chart data connected to DB soon</div>';
-
-    const lowItems = products.filter(p => stockState(p) !== 'in').slice(0, 5);
-    $('#lowStockList').innerHTML = lowItems.length ? lowItems.map(p => 
-      `<div style="padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;">
-        <span>${esc(p.name)}</span> ${stockPill(p)}
-      </div>`).join('') : '<div class="empty">All good</div>';
-      
+    $('#lowStockList').innerHTML = products.filter(p => Number(p.stock) <= 5).slice(0,5).map(p => 
+      `<div style="padding:10px;border-bottom:1px solid #eee;">${esc(p.name)}</div>`
+    ).join('') || '<div class="empty">No alerts</div>';
+    
     $('#recentList').innerHTML = products.slice(0, 5).map(p => 
-      `<div style="padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;">
-        <span>${esc(p.name)}</span> <span>${money(p.price)}</span>
-      </div>`).join('') || '<div class="empty">No products</div>';
+      `<div style="padding:10px;border-bottom:1px solid #eee;">${esc(p.name)}</div>`
+    ).join('') || '<div class="empty">No products</div>';
   }
 
   function renderProducts() {
-    let list = products.slice();
-    if (filters.search) list = list.filter(p => (p.name||'').toLowerCase().includes(filters.search.toLowerCase()));
-    if (filters.category) list = list.filter(p => p.category === filters.category);
-    if (filters.status) list = list.filter(p => p.status === filters.status);
-    
+    let list = products.filter(p => (p.name||'').toLowerCase().includes(filters.search.toLowerCase()));
     $('#productsTbody').innerHTML = list.map(p => `
       <tr>
         <td><div class="cell-product"><img class="thumb" src="${esc(p.image || PLACEHOLDER)}" /><div class="txt"><strong>${esc(p.name)}</strong><small>${esc(p.sku || '—')}</small></div></div></td>
         <td class="price-cell">${money(p.price)}</td>
         <td>${p.stock} ${stockPill(p)}</td>
-        <td><span class="pill ${p.status || 'active'}">${p.status || 'active'}</span></td>
+        <td><span class="pill ${p.status}">${p.status}</span></td>
         <td><div class="row-actions"><button class="btn ghost sm" onclick="window.editProduct('${p.id}')">Edit</button><button class="btn ghost sm" style="color:red" onclick="window.deleteProduct('${p.id}')">Del</button></div></td>
       </tr>
     `).join('');
@@ -924,7 +636,6 @@
         <td>${esc(p.name)}</td>
         <td>${esc(p.sku || '—')}</td>
         <td>${stockPill(p)}</td>
-        <td>${p.lowStockAt || 5}</td>
         <td>
           <button class="icon-btn sm" onclick="window.changeStock('${p.id}', -1)">−</button>
           <input type="number" class="stock-input" value="${p.stock}" onchange="window.setStock('${p.id}', this.value)" />
@@ -941,16 +652,14 @@
 
   function renderProductForm() {
     const p = editingId ? products.find(x => x.id === editingId) : null;
-    $('#formTitle').innerHTML = (p ? 'Edit Product' : 'Add New Product');
-    
-    $('#formCategory').innerHTML = categories.map(c => `<option value="${c}">${c}</option>`).join('');
+    $('#formTitle').textContent = (p ? 'Edit Product' : 'Add New Product');
     const f = $('#productForm');
     f.reset();
     
     if (p) {
       f.elements.name.value = p.name;
       f.elements.sku.value = p.sku || '';
-      f.elements.category.value = p.category || categories[0];
+      f.elements.category.value = p.category || '';
       f.elements.price.value = p.price;
       f.elements.mrp.value = p.mrp || '';
       f.elements.stock.value = p.stock;
@@ -960,32 +669,20 @@
       f.elements.status.value = p.status || 'active';
       f.elements.description.value = p.description || '';
       if (p.image) { $('#imgPreview').src = p.image; $('#imgPreview').style.display = 'block'; $('#uploadEmpty').style.display = 'none'; }
-      else { $('#imgPreview').style.display = 'none'; $('#uploadEmpty').style.display = 'flex'; }
-    } else {
-      if (categories.length) f.elements.category.value = categories[0];
-      $('#imgPreview').style.display = 'none'; $('#uploadEmpty').style.display = 'flex';
     }
   }
 
-  // 🔴 ACTIONS 🔴
   window.editProduct = (id) => { editingId = id; showView('product-form'); };
   window.deleteProduct = async (id) => {
     if (!confirm('Delete this product?')) return;
-    try { 
-      await deleteDoc(doc(db, "products", id)); 
-      toast('Deleted'); 
-    } catch(e) { toast('Error deleting', 'err'); }
+    try { await deleteDoc(doc(db, "products", id)); toast('Deleted'); } catch(e) { toast('Error', 'err'); }
   };
   window.changeStock = async (id, delta) => {
     const p = products.find(x => x.id === id);
-    try {
-      await updateDoc(doc(db, "products", id), { stock: Math.max(0, p.stock + delta) });
-    } catch(e) { toast('Error', 'err'); }
+    try { await updateDoc(doc(db, "products", id), { stock: Math.max(0, p.stock + delta) }); } catch(e) {}
   };
   window.setStock = async (id, val) => {
-    try {
-      await updateDoc(doc(db, "products", id), { stock: Math.max(0, parseInt(val) || 0) });
-    } catch(e) { toast('Error', 'err'); }
+    try { await updateDoc(doc(db, "products", id), { stock: Math.max(0, parseInt(val) || 0) }); } catch(e) {}
   };
 
   $('#addProductBtn').onclick = () => { editingId = null; showView('product-form'); };
@@ -996,18 +693,11 @@
     e.preventDefault();
     const f = $('#productForm');
     const data = {
-      name: f.elements.name.value, 
-      sku: f.elements.sku.value, 
-      category: f.elements.category.value,
-      price: parseFloat(f.elements.price.value), 
-      mrp: parseFloat(f.elements.mrp.value) || 0,
-      stock: parseInt(f.elements.stock.value), 
-      lowStockAt: parseInt(f.elements.lowStockAt.value) || 5,
-      image: f.elements.image.value, 
-      badge: f.elements.badge.value, 
-      status: f.elements.status.value,
-      description: f.elements.description.value,
-      updatedAt: new Date()
+      name: f.elements.name.value, sku: f.elements.sku.value, category: f.elements.category.value,
+      price: parseFloat(f.elements.price.value), mrp: parseFloat(f.elements.mrp.value) || 0,
+      stock: parseInt(f.elements.stock.value), lowStockAt: parseInt(f.elements.lowStockAt.value) || 5,
+      image: f.elements.image.value, badge: f.elements.badge.value, status: f.elements.status.value,
+      description: f.elements.description.value
     };
     
     try {
@@ -1015,27 +705,31 @@
         await updateDoc(doc(db, "products", editingId), data);
         toast('Updated!');
       } else {
-        await addDoc(collection(db, "products"), { ...data, createdAt: new Date() });
+        await addDoc(collection(db, "products"), data);
         toast('Added!');
       }
       editingId = null;
       showView('products');
-    } catch (err) { toast('Save failed: ' + err.message, 'err'); }
+    } catch (err) { toast('Save failed: Check Firestore Rules!', 'err'); }
   };
 
-  // INIT
   $('#sidebarNav').onclick = (e) => {
     const btn = e.target.closest('button[data-view]');
     if (btn) showView(btn.dataset.view);
   };
   $('#globalSearch').oninput = (e) => { filters.search = e.target.value; showView('products'); renderProducts(); };
-  $('#formImage').oninput = (e) => { if(e.target.value){ $('#imgPreview').src = e.target.value; $('#imgPreview').style.display = 'block'; $('#uploadEmpty').style.display = 'none'; } else { $('#imgPreview').style.display = 'none'; $('#uploadEmpty').style.display = 'flex'; }};
+  $('#formImage').oninput = (e) => { 
+    if(e.target.value){ $('#imgPreview').src = e.target.value; $('#imgPreview').style.display = 'block'; $('#uploadEmpty').style.display = 'none'; } 
+    else { $('#imgPreview').style.display = 'none'; $('#uploadEmpty').style.display = 'flex'; }
+  };
 
   function renderAll() {
     renderDashboard(); renderProducts(); renderInventory(); renderCategories();
   }
 
-})();
+  // Start Data Fetching directly
+  loadData();
+
 </script>
 </body>
 </html>
