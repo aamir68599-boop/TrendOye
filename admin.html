@@ -800,18 +800,39 @@
   const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-  // 🔴 FIREBASE AUTH LOGIN 🔴
+  // 🔴 FIREBASE AUTH LOGIN (Detailed Error Handling) 🔴
   $('#loginForm').onsubmit = async (e) => {
     e.preventDefault();
     const user = $('#loginUser').value.trim();
     const pass = $('#loginPass').value;
+    
+    // Agar user email nahi daalta toh @trendoye.com add karo
     const email = user.includes('@') ? user : `${user}@trendoye.com`;
+
+    $('#loginError').classList.remove('show');
 
     try {
       await signInWithEmailAndPassword(auth, email, pass);
       toast('Welcome back!');
     } catch (error) {
-      $('#loginError').textContent = "Invalid credentials! (Check Firebase Auth)";
+      console.error("Login Error Details:", error); // F12 Console mein check karein
+      
+      let errorMsg = "";
+      if (error.code === 'auth/user-not-found') {
+        errorMsg = "User not found. Check if user is created in Firebase Auth.";
+      } else if (error.code === 'auth/wrong-password') {
+        errorMsg = "Wrong Password. Please check your password.";
+      } else if (error.code === 'auth/invalid-credential') {
+        errorMsg = "Invalid Email or Password. Check credentials.";
+      } else if (error.code === 'auth/network-request-failed') {
+        errorMsg = "Network Error. Adblocker block kar raha ho sakta hai.";
+      } else if (error.code === 'auth/unauthorized-domain') {
+        errorMsg = "Domain unauthorized. Add your domain in Firebase Settings.";
+      } else {
+        errorMsg = error.message;
+      }
+      
+      $('#loginError').textContent = `${errorMsg} (Email used: ${email})`;
       $('#loginError').classList.add('show');
     }
   };
