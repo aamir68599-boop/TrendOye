@@ -728,7 +728,7 @@
             <div class="panel-head"><h2>Login Credentials</h2></div>
             <div class="panel-body">
               <div class="settings-note">
-                Firebase Authentication is used. Change credentials from Firebase Console.
+                Login is hardcoded for simplicity. Username: <b>admin</b>, Password: <b>TrendOye@2026</b>
               </div>
             </div>
           </div>
@@ -748,10 +748,9 @@
 
 <div id="toastWrap"></div>
 
-<!-- Firebase SDK -->
+<!-- Firebase SDK (Only App and Firestore, No Auth) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
   import { getFirestore, collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
   // 🔴 FIREBASE CONFIG 🔴
@@ -766,7 +765,6 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
   const db = getFirestore(app);
 
   const $  = (sel, root = document) => root.querySelector(sel);
@@ -800,58 +798,39 @@
   const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-  // 🔴 FIREBASE AUTH LOGIN (Detailed Error Handling) 🔴
-  $('#loginForm').onsubmit = async (e) => {
+  // 🔴 SIMPLE HARDCODED LOGIN 🔴
+  $('#loginForm').onsubmit = (e) => {
     e.preventDefault();
     const user = $('#loginUser').value.trim();
     const pass = $('#loginPass').value;
-    
-    // Agar user email nahi daalta toh @trendoye.com add karo
-    const email = user.includes('@') ? user : `${user}@trendoye.com`;
 
-    $('#loginError').classList.remove('show');
-
-    try {
-      await signInWithEmailAndPassword(auth, email, pass);
-      toast('Welcome back!');
-    } catch (error) {
-      console.error("Login Error Details:", error); // F12 Console mein check karein
-      
-      let errorMsg = "";
-      if (error.code === 'auth/user-not-found') {
-        errorMsg = "User not found. Check if user is created in Firebase Auth.";
-      } else if (error.code === 'auth/wrong-password') {
-        errorMsg = "Wrong Password. Please check your password.";
-      } else if (error.code === 'auth/invalid-credential') {
-        errorMsg = "Invalid Email or Password. Check credentials.";
-      } else if (error.code === 'auth/network-request-failed') {
-        errorMsg = "Network Error. Adblocker block kar raha ho sakta hai.";
-      } else if (error.code === 'auth/unauthorized-domain') {
-        errorMsg = "Domain unauthorized. Add your domain in Firebase Settings.";
-      } else {
-        errorMsg = error.message;
-      }
-      
-      $('#loginError').textContent = `${errorMsg} (Email used: ${email})`;
+    if (user === 'admin' && pass === 'TrendOye@2026') {
+      sessionStorage.setItem('trendoye_admin_logged_in', 'true');
+      enterApp();
+    } else {
+      $('#loginError').textContent = "Galat Username ya Password!";
       $('#loginError').classList.add('show');
     }
   };
 
-  $('#logoutBtn').onclick = () => { signOut(auth); };
+  $('#logoutBtn').onclick = () => { 
+    sessionStorage.removeItem('trendoye_admin_logged_in');
+    location.reload(); 
+  };
 
-  // 🔴 AUTH STATE LISTENER 🔴
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      $('#loginScreen').style.display = 'none';
-      $('#app').style.display = 'grid';
-      $('#userChip').textContent = user.email.split('@')[0];
-      loadData(); // Fetch from Firestore
-    } else {
-      $('#loginScreen').style.display = 'grid';
-      $('#app').style.display = 'none';
-      if(unsubscribe) unsubscribe();
-    }
-  });
+  function enterApp() {
+    $('#loginScreen').style.display = 'none';
+    $('#app').style.display = 'grid';
+    loadData(); // Fetch from Firestore
+  }
+
+  // Check on page load
+  if (sessionStorage.getItem('trendoye_admin_logged_in') === 'true') {
+    enterApp();
+  } else {
+    $('#loginScreen').style.display = 'grid';
+    $('#app').style.display = 'none';
+  }
 
   // 🔴 REAL-TIME FIRESTORE LISTENER 🔴
   function loadData() {
