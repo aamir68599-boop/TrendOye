@@ -327,7 +327,7 @@
             <div class="panel-head"><h2>Quick Tips</h2></div>
             <div class="panel-body" style="font-size:13px;color:#64748b;line-height:1.75">
               Har product ka apna <b>URL slug</b> automatically ban jata hai.<br>
-              Product page URL: <code style="color:#ea580c">/product-slug</code>
+              Product page URL: <code style="color:#ea580c">/product.html?slug=...</code>
             </div>
           </div>
         </div>
@@ -483,7 +483,8 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
   import {
     getFirestore, collection, onSnapshot, addDoc, doc,
-    updateDoc, deleteDoc, query, where, getDocs, limit
+    updateDoc, deleteDoc, query, where, getDocs, limit,
+    serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -527,7 +528,7 @@
   const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 });
   const esc = s => String(s == null ? '' : s).replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-  /* Slug banao: "Black Georgette Silk Party Saree" -> "black-georgette-silk-party-saree" */
+  /* Slug banao */
   function slugify(str) {
     return String(str || '')
       .toLowerCase().trim()
@@ -538,7 +539,6 @@
       .replace(/^-+|-+$/g, '')
       .slice(0, 90);
   }
-  /* Typing ke waqt ke liye — trailing dash allow karta hai */
   function slugLive(str) {
     return String(str || '')
       .toLowerCase()
@@ -547,7 +547,7 @@
       .replace(/-{2,}/g, '-');
   }
 
-  /* Slug unique banao: duplicate ho to -2, -3 lagao */
+  /* Slug unique banao */
   async function ensureUniqueSlug(base, excludeId = null) {
     let baseSlug = slugify(base) || 'product';
     let slug = baseSlug;
@@ -575,7 +575,6 @@
 
       renderAll();
 
-      // Purane products jinme slug nahi hai — unke liye URL auto generate karo
       if (!backfilled) { backfilled = true; backfillSlugs(); }
     }, (error) => toast('Firebase Rules check karein! ' + error.message, 'err'));
   }
@@ -697,8 +696,8 @@
     const f = $('#productForm');
     const val = slugify(f.elements.slug.value || f.elements.name.value) || 'your-product-name';
     const a = $('#slugPreview');
-    a.innerHTML = `<b>URL:</b> ${SITE_URL}/${val}`;
-    a.href = `${SITE_URL}/${val}`;
+    a.innerHTML = `<b>URL:</b> ${SITE_URL}/product.html?slug=${val}`;
+    a.href = `${SITE_URL}/product.html?slug=${val}`;
   }
 
   function renderProductForm() {
@@ -757,11 +756,12 @@
   /* ---------- ACTIONS ---------- */
   window.editProduct = (id) => { editingId = id; showView('product-form'); };
 
+  /* ✅ FIXED: product.html?slug=... khulega */
   window.openPage = (id) => {
     const p = products.find(x => x.id === id);
     if (!p) return;
     const slug = p.slug || slugify(p.name);
-    window.open(`${SITE_URL}/${slug}`, '_blank');
+    window.open(`${SITE_URL}/product.html?slug=${encodeURIComponent(slug)}`, '_blank');
   };
 
   window.deleteProduct = async (id) => {
@@ -797,7 +797,7 @@
     }
   };
 
-  /* ---------- SAVE (slug generate + save) ---------- */
+  /* ---------- SAVE (slug generate + createdAt) ---------- */
   $('#formSaveBtn').onclick = async (e) => {
     e.preventDefault();
     const f = $('#productForm');
@@ -835,11 +835,12 @@
         description: f.elements.description.value
       };
 
+      /* ✅ NEW: createdAt / updatedAt save */
       if (editingId) {
-        await updateDoc(doc(db, "products", editingId), data);
+        await updateDoc(doc(db, "products", editingId), { ...data, updatedAt: serverTimestamp() });
         toast('Product updated ✔');
       } else {
-        await addDoc(collection(db, "products"), data);
+        await addDoc(collection(db, "products"), { ...data, createdAt: serverTimestamp() });
         toast('Product added ✔ URL: /' + finalSlug);
       }
 
