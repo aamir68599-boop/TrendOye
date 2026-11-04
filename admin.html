@@ -377,7 +377,6 @@
           </div>
 
           <form id="productForm" class="form-body">
-            <!-- LEFT COLUMN -->
             <div>
               <div class="form-card">
                 <h3>Thumbnail</h3>
@@ -415,7 +414,6 @@
               </div>
             </div>
 
-            <!-- RIGHT COLUMN -->
             <div>
               <div class="form-card">
                 <h3>General</h3>
@@ -487,6 +485,7 @@
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
+  /* ✅ Firebase Config — yahi aapka diya hua hai */
   const firebaseConfig = {
     apiKey: "AIzaSyCsfvBRh7l_LMQDFKNN2YZnun55WkwrJ7E",
     authDomain: "trendoye-app.firebaseapp.com",
@@ -528,7 +527,6 @@
   const money = n => '₹ ' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 });
   const esc = s => String(s == null ? '' : s).replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-  /* Slug banao */
   function slugify(str) {
     return String(str || '')
       .toLowerCase().trim()
@@ -547,7 +545,6 @@
       .replace(/-{2,}/g, '-');
   }
 
-  /* Slug unique banao */
   async function ensureUniqueSlug(base, excludeId = null) {
     let baseSlug = slugify(base) || 'product';
     let slug = baseSlug;
@@ -587,7 +584,7 @@
       try {
         const slug = await ensureUniqueSlug(p.name || 'product', p.id);
         await updateDoc(doc(db, 'products', p.id), { slug });
-      } catch (e) { /* ignore */ }
+      } catch (e) { }
     }
     toast('All product URLs generated ✔');
   }
@@ -738,7 +735,6 @@
     updateSlugPreview();
   }
 
-  /* Live slug syncing */
   const formEl = $('#productForm');
   formEl.elements.name.addEventListener('input', () => {
     if (!slugTouched) {
@@ -756,7 +752,6 @@
   /* ---------- ACTIONS ---------- */
   window.editProduct = (id) => { editingId = id; showView('product-form'); };
 
-  /* ✅ FIXED: product.html?slug=... khulega */
   window.openPage = (id) => {
     const p = products.find(x => x.id === id);
     if (!p) return;
@@ -797,7 +792,7 @@
     }
   };
 
-  /* ---------- SAVE (slug generate + createdAt) ---------- */
+  /* ---------- SAVE (slug + createdAt) ---------- */
   $('#formSaveBtn').onclick = async (e) => {
     e.preventDefault();
     const f = $('#productForm');
@@ -835,7 +830,6 @@
         description: f.elements.description.value
       };
 
-      /* ✅ NEW: createdAt / updatedAt save */
       if (editingId) {
         await updateDoc(doc(db, "products", editingId), { ...data, updatedAt: serverTimestamp() });
         toast('Product updated ✔');
