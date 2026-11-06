@@ -366,7 +366,6 @@
     <div class="container">
       <h2 class="section-title">New Arrivals Sarees</h2>
 
-      <!-- ✅ ADDED id="productGrid" ONLY. Aapke 6 products waise hi hain. -->
       <div class="product-grid" id="productGrid">
 
         <a class="product-card" href="https://trendoye.aamir68599.workers.dev/black-georgette-silk-party-saree">
@@ -609,7 +608,7 @@
   </script>
 
   <!-- ============================================
-       ✅ ADDED: FIREBASE — DYNAMIC PRODUCTS
+       ✅ FIREBASE — DYNAMIC PRODUCTS
        Static 6 products upar hain, ye sirf naye
        Firebase products ke liye hai (grid ke end me add hote hain)
        ============================================ -->
@@ -633,6 +632,16 @@
     const grid  = document.getElementById('productGrid');
     if (!grid) { console.warn('productGrid not found'); }
 
+    // ✅ NEW: hide these test/junk products from display
+    //    (add or remove names here anytime — case-insensitive)
+    const HIDDEN_PRODUCT_NAMES = new Set([
+      'silver bottles',
+      'trendoye-dbhhh',
+      'party wear saressioo',
+      'party wear saress',
+      'trendoye-db'
+    ]);
+
     const PLACEHOLDER = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
       '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400"><rect width="100%" height="100%" fill="#f5ede0"/><text x="50%" y="52%" font-family="sans-serif" font-size="13" fill="#b9a98a" text-anchor="middle">No Image</text></svg>'
     );
@@ -641,7 +650,6 @@
     const toMs  = v => !v ? 0 : (typeof v === 'number' ? v : (v.seconds ? v.seconds * 1000 : 0));
 
     function cardHTML(p) {
-      // Product page: product.html?slug=...
       const href    = 'product.html?slug=' + encodeURIComponent(p.slug || '');
       const img     = p.image || PLACEHOLDER;
       const price   = Number(p.price) || 0;
@@ -678,6 +686,11 @@
           const p = d.data();
           if (p.status === 'draft') return;   // draft hide
           if (!p.slug) return;                 // slug ke bina nahi dikhana
+
+          // ✅ NEW: hidden test-products filter
+          const nm = (p.name || '').trim().toLowerCase();
+          if (HIDDEN_PRODUCT_NAMES.has(nm)) return;
+
           items.push({ id: d.id, ...p });
         });
         items.sort((a, b) => toMs(b.createdAt) - toMs(a.createdAt));
